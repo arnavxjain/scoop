@@ -2,12 +2,43 @@ import 'dart:ui';
 
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
+}
+
+TextStyle base(double fontSize){
+  return TextStyle(
+      fontFamily: "SF Pro Display",
+      color: Colors.white,
+      fontSize: fontSize,
+      fontWeight: FontWeight.bold,
+      letterSpacing: -1
+  );
+}
+
+TextStyle baseLight(double fontSize){
+  return TextStyle(
+      fontFamily: "SF Pro Display",
+      color: Colors.white,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w500,
+      letterSpacing: -0.7
+  );
+}
+
+TextStyle baseOpacedDown(double fontSize){
+  return TextStyle(
+      fontFamily: "SF Pro Display",
+      color: Colors.white.withOpacity(0.7),
+      fontSize: fontSize,
+      fontWeight: FontWeight.w500,
+      letterSpacing: -0.7
+  );
 }
 
 class _HomeState extends State<Home> {
@@ -48,7 +79,7 @@ class _HomeState extends State<Home> {
                   shadows: const [
                     BoxShadow(
                       color: Colors.black26,
-                      blurRadius: 10.0,
+                      blurRadius: 30.0,
                       spreadRadius: 5,
                       offset: Offset(
                         0,
@@ -64,7 +95,68 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-              )
+              ),
+              const SizedBox(height: 30),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(FeatherIcons.box, color: Colors.white,size: 20,),
+                    SizedBox(width: 5),
+                    Text("Your new feed is ready", style: baseLight(18.0))
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Listener(
+
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("View all sources", style: baseOpacedDown(14)),
+                    Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white)
+                  ],
+                ),
+              ),
+              const Expanded(child: SizedBox(width: 10)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  themeButton((FeatherIcons.shuffle), "Shuffle", (){print("shuffle");}),
+                  themeButton((FeatherIcons.play), "Begin", (){print("begin");})
+                ],
+              ),
+              const SizedBox(height: 46,)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  themeButton(IconData shuffle, String text, dynamic tap) {
+    return GestureDetector(
+      onTap: tap,
+      child: Container(
+        width: 180,
+        height: 50,
+        margin: EdgeInsets.symmetric(horizontal: 6.0),
+        decoration: ShapeDecoration(
+          color: Color(0xFF222222),
+            shape: SmoothRectangleBorder(
+            borderRadius: SmoothBorderRadius(
+            cornerRadius: 12,
+            cornerSmoothing: 0.9,
+            ),
+          ),
+        ),
+        child: GestureDetector(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(shuffle, color: Color(0xFF4D7EFF), size: 16,),
+              SizedBox(width: 7,),
+              Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 16),)
             ],
           ),
         ),
