@@ -119,13 +119,9 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const Expanded(child: SizedBox(width: 10)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  themeButton((FeatherIcons.shuffle), "Shuffle", (){print("shuffle");}),
-                  themeButton((FeatherIcons.play), "Begin", (){print("begin");})
-                ],
-              ),
+              themeButton(Icons.play_arrow_rounded, "Start", () {
+
+              }),
               const SizedBox(height: 46,)
             ],
           ),
@@ -138,25 +134,37 @@ class _HomeState extends State<Home> {
     return GestureDetector(
       onTap: tap,
       child: Container(
-        width: 180,
+        width: 170,
         height: 50,
         margin: EdgeInsets.symmetric(horizontal: 6.0),
         decoration: ShapeDecoration(
-          color: Color(0xFF222222),
+          color: Colors.black87,
             shape: SmoothRectangleBorder(
             borderRadius: SmoothBorderRadius(
             cornerRadius: 12,
             cornerSmoothing: 0.9,
             ),
           ),
+            shadows: const [
+              BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 16.0,
+                  spreadRadius: 8,
+                  offset: Offset(
+                      0,
+                      6
+                  )
+              )
+            ]
         ),
         child: GestureDetector(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(shuffle, color: Color(0xFF4D7EFF), size: 16,),
-              SizedBox(width: 7,),
-              Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 16),)
+              Icon(shuffle, color: Color(0xFF4D7EFF), size: 24,),
+              SizedBox(width: 4,),
+              Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 17),),
+              const SizedBox(width: 4,)
             ],
           ),
         ),
