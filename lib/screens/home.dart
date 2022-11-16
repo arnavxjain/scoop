@@ -108,8 +108,31 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(height: 8),
-              Listener(
-
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          height: 200,
+                          color: Colors.amber,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const Text('Modal BottomSheet'),
+                                ElevatedButton(
+                                  child: const Text('Close BottomSheet'),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -138,7 +161,7 @@ class _HomeState extends State<Home> {
         height: 50,
         margin: EdgeInsets.symmetric(horizontal: 6.0),
         decoration: ShapeDecoration(
-          color: Colors.black87,
+          color: Colors.black26,
             shape: SmoothRectangleBorder(
             borderRadius: SmoothBorderRadius(
             cornerRadius: 12,
