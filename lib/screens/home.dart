@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:sheet/sheet.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -31,6 +33,16 @@ TextStyle baseLight(double fontSize){
   );
 }
 
+TextStyle blueInk(double fontSize) {
+  return TextStyle(
+      fontFamily: "SF Pro Display",
+      color: Color(0xFF007AFF),
+      fontSize: fontSize,
+      fontWeight: FontWeight.bold,
+      letterSpacing: -0.7
+  );
+}
+
 TextStyle baseOpacedDown(double fontSize){
   return TextStyle(
       fontFamily: "SF Pro Display",
@@ -54,7 +66,7 @@ class _HomeState extends State<Home> {
                 ), fit: BoxFit.cover),
         ),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 60.0, sigmaY: 60.0),
+          filter: ImageFilter.blur(sigmaX: 400.0, sigmaY: 400.0),
           child: Column(
             children: [
               const SizedBox(height: 66),
@@ -107,30 +119,32 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               GestureDetector(
                 onTap: () {
-                  showModalBottomSheet<void>(
+                  showMaterialModalBottomSheet(
+                    duration: Duration(milliseconds: 300),
+                    // expand: true,
+                    // bounce: true,
+                    // elevation: ,
+                    // useRootNavigator: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    backgroundColor: Colors.transparent,
                       context: context,
-                      builder: (BuildContext context) {
-                        return Container(
-                          height: 200,
-                          color: Colors.amber,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const Text('Modal BottomSheet'),
-                                ElevatedButton(
-                                  child: const Text('Close BottomSheet'),
-                                  onPressed: () => Navigator.pop(context),
-                                ),
-                              ],
+                      builder: (context) => Container(
+                        // padding: EdgeInsets.all(24),
+                        height: MediaQuery.of(context).size.height-64,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFF1D1D1E),
+                          shape: SmoothRectangleBorder(
+                            borderRadius: SmoothBorderRadius(
+                              cornerRadius: 26,
+                              cornerSmoothing: 0.9,
                             ),
                           ),
-                        );
-                      }
+                        ),
+                        child: _sources(),
+                      ),
                   );
                 },
                 child: Row(
@@ -145,7 +159,7 @@ class _HomeState extends State<Home> {
               themeButton(Icons.play_arrow_rounded, "Start", () {
 
               }),
-              const SizedBox(height: 46,)
+              const SizedBox(height: 46,),
             ],
           ),
         ),
@@ -192,6 +206,40 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
+    );
+  }
+
+  _sources() {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 23, left: 21, right: 20, bottom: 20),
+          decoration: BoxDecoration(
+
+            border: Border(
+              bottom: BorderSide(
+                color: Color(0xFF333333),
+                width: 1.0
+              )
+            )
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Sources", style: base(18)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Done",
+                  style: blueInk(18),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }
