@@ -61,8 +61,8 @@ class _HomeState extends State<Home> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
             image: const DecorationImage(
-                image: AssetImage(
-                  "/Users/arnavjain/Documents/flutter/scoop/lib/assets/demo.png",
+                image: NetworkImage(
+                  "https://inspgr.id/app/uploads/2020/03/3D-uv-06.jpg",
                 ), fit: BoxFit.cover),
         ),
         child: BackdropFilter(
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                 height: (MediaQuery.of(context).size.width) - 50,
                 decoration: ShapeDecoration(
                   image: const DecorationImage(
-                    image: AssetImage("/Users/arnavjain/Documents/flutter/scoop/lib/assets/demo.png"),
+                    image: NetworkImage("https://inspgr.id/app/uploads/2020/03/3D-uv-06.jpg"),
                     fit: BoxFit.fill
                   ),
                   shadows: const [
@@ -133,7 +133,7 @@ class _HomeState extends State<Home> {
                       context: context,
                       builder: (context) => Container(
                         // padding: EdgeInsets.all(24),
-                        height: MediaQuery.of(context).size.height-64,
+                        height: MediaQuery.of(context).size.height-55,
                         decoration: ShapeDecoration(
                           color: Color(0xFF1D1D1E),
                           shape: SmoothRectangleBorder(
@@ -175,7 +175,7 @@ class _HomeState extends State<Home> {
         height: 50,
         margin: EdgeInsets.symmetric(horizontal: 6.0),
         decoration: ShapeDecoration(
-          color: Colors.black26,
+          color: Colors.black87,
             shape: SmoothRectangleBorder(
             borderRadius: SmoothBorderRadius(
             cornerRadius: 12,
@@ -185,8 +185,8 @@ class _HomeState extends State<Home> {
             shadows: const [
               BoxShadow(
                   color: Colors.black26,
-                  blurRadius: 16.0,
-                  spreadRadius: 8,
+                  blurRadius: 14.0,
+                  spreadRadius: 1,
                   offset: Offset(
                       0,
                       6
@@ -215,7 +215,6 @@ class _HomeState extends State<Home> {
         Container(
           padding: EdgeInsets.only(top: 23, left: 21, right: 20, bottom: 20),
           decoration: BoxDecoration(
-
             border: Border(
               bottom: BorderSide(
                 color: Color(0xFF333333),
