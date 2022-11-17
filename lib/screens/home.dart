@@ -70,13 +70,13 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               const SizedBox(height: 66),
-              const Center(child: Text("scoop", style: TextStyle(
+              Text("scoop", style: TextStyle(
                 fontFamily: "SF Pro Display",
                 fontSize: 24,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                letterSpacing: -1
-              ),)),
+                letterSpacing: -1,
+              ),),
               const SizedBox(height: 16,),
               Container(
                 padding: EdgeInsets.zero,
