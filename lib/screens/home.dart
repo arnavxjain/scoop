@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
             borderRadius: BorderRadius.circular(30.0),
             image: const DecorationImage(
                 image: NetworkImage(
-                  "https://inspgr.id/app/uploads/2020/03/3D-uv-06.jpg",
+                  "https://upload.wikimedia.org/wikipedia/en/0/08/Justin_Bieber_-_Justice.png",
                 ), fit: BoxFit.cover),
         ),
         child: BackdropFilter(
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                 height: (MediaQuery.of(context).size.width) - 50,
                 decoration: ShapeDecoration(
                   image: const DecorationImage(
-                    image: NetworkImage("https://inspgr.id/app/uploads/2020/03/3D-uv-06.jpg"),
+                    image: NetworkImage("https://upload.wikimedia.org/wikipedia/en/0/08/Justin_Bieber_-_Justice.png"),
                     fit: BoxFit.fill
                   ),
                   shadows: const [
@@ -113,7 +113,7 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(FeatherIcons.box, color: Colors.white,size: 20,),
+                    Icon(FeatherIcons.box, color: Colors.white,size: 20),
                     SizedBox(width: 5),
                     Text("Your new feed is ready", style: baseLight(18.0))
                   ],
@@ -121,6 +121,7 @@ class _HomeState extends State<Home> {
               ),
               const SizedBox(height: 12),
               GestureDetector(
+                behavior: HitTestBehavior.opaque,
                 onTap: () {
                   showMaterialModalBottomSheet(
                     duration: Duration(milliseconds: 300),
@@ -171,14 +172,14 @@ class _HomeState extends State<Home> {
     return GestureDetector(
       onTap: tap,
       child: Container(
-        width: 170,
-        height: 50,
+        width: MediaQuery.of(context).size.width-50,
+        height: 54,
         margin: EdgeInsets.symmetric(horizontal: 6.0),
         decoration: ShapeDecoration(
           color: Colors.black87,
             shape: SmoothRectangleBorder(
             borderRadius: SmoothBorderRadius(
-            cornerRadius: 12,
+            cornerRadius: 14,
             cornerSmoothing: 0.9,
             ),
           ),
@@ -198,9 +199,9 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(shuffle, color: Color(0xFF4D7EFF), size: 24,),
+              Icon(shuffle, color: Color(0xFF418CFF), size: 24,),
               SizedBox(width: 4,),
-              Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 17),),
+              Text(text, style: TextStyle(color: Color(0xFF418CFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 17),),
               const SizedBox(width: 4,)
             ],
           ),
