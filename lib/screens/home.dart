@@ -288,6 +288,7 @@ class _HomeState extends State<Home> {
               // const SizedBox(height: 20),
               themeButton(Icons.play_arrow_rounded, "Start", () {
                 // func(x) for initiating main void function
+                print("initiate");
               }),
               const SizedBox(height: 36,),
             ],
