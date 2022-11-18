@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -54,6 +55,29 @@ TextStyle baseOpacedDown(double fontSize){
 }
 
 class _HomeState extends State<Home> {
+
+  List options = [
+    'Global',
+    'India',
+    'USA',
+    'UK',
+    'Oman',
+    'Qatar',
+    'Thailand'
+  ];
+
+  List valuations = [
+    'gl',
+    'in',
+    'us',
+    'uk',
+    'om',
+    'qtr',
+    'th'
+  ];
+
+  int choseIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,10 +143,10 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              const SizedBox(height: 12),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                // behavior: HitTestBehavior.opaque,
+                onPressed: () {
                   showMaterialModalBottomSheet(
                     duration: Duration(milliseconds: 300),
                     // expand: true,
@@ -157,10 +181,93 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const Expanded(child: SizedBox(width: 10)),
+              SizedBox(
+                height: 38,
+                child: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    showMaterialModalBottomSheet(
+                      duration: Duration(milliseconds: 300),
+                      // expand: true,
+                      // bounce: true,
+                      // elevation: ,
+                      // useRootNavigator: true,
+                      barrierColor: Colors.black.withOpacity(0.7),
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => Container(
+                        // padding: EdgeInsets.all(24),
+                        height: (MediaQuery.of(context).size.height)*0.3,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFF1D1D1E),
+                          shape: SmoothRectangleBorder(
+                            borderRadius: SmoothBorderRadius(
+                              cornerRadius: 26,
+                              cornerSmoothing: 0.9,
+                            ),
+                          ),
+                        ),
+                        child: CupertinoPicker(
+                          looping: true,
+                          itemExtent: 37.0,
+                          backgroundColor: Colors.black87,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("Global", style: baseLight(21),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("India", style: baseLight(21),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("USA", style: baseLight(21),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("UK", style: baseLight(21),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("Oman", style: baseLight(21),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("Qatar", style: baseLight(21),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("Thailand", style: baseLight(21),),
+                            ),
+                          ],
+                          onSelectedItemChanged: (int index) {
+                            setState(() {
+                              choseIndex = index;
+                              print(valuations[index]);
+                            });
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 80,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(options[choseIndex], style: base(18),),
+                        Icon(FeatherIcons.chevronDown, color: Colors.white,)
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              // const SizedBox(height: 20),
               themeButton(Icons.play_arrow_rounded, "Start", () {
 
               }),
-              const SizedBox(height: 46,),
+              const SizedBox(height: 36,),
             ],
           ),
         ),
@@ -169,8 +276,8 @@ class _HomeState extends State<Home> {
   }
 
   themeButton(IconData shuffle, String text, dynamic tap) {
-    return GestureDetector(
-      onTap: tap,
+    return CupertinoButton(
+      onPressed: tap,
       child: Container(
         width: MediaQuery.of(context).size.width-50,
         height: 54,
@@ -199,9 +306,9 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(shuffle, color: Color(0xFF418CFF), size: 24,),
+              Icon(shuffle, color: Color(0xFF4D7EFF), size: 24,),
               SizedBox(width: 4,),
-              Text(text, style: TextStyle(color: Color(0xFF418CFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 17),),
+              Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 17),),
               const SizedBox(width: 4,)
             ],
           ),
@@ -227,13 +334,17 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Sources", style: base(18)),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  "Done",
-                  style: blueInk(18),
+              SizedBox(
+                height: 20,
+                child: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Done",
+                    style: blueInk(18),
+                  ),
                 ),
               )
             ],
