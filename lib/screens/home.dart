@@ -120,7 +120,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              const SizedBox(height: 19,),
+              const SizedBox(height: 17,),
               Container(
                 padding: EdgeInsets.zero,
                 margin: EdgeInsets.zero,
@@ -162,41 +162,45 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              CupertinoButton(
-                padding: EdgeInsets.zero,
-                // behavior: HitTestBehavior.opaque,
-                onPressed: () {
-                  showMaterialModalBottomSheet(
-                    duration: Duration(milliseconds: 300),
-                    // expand: true,
-                    // bounce: true,
-                    // elevation: ,
-                    // useRootNavigator: true,
-                    barrierColor: Colors.black.withOpacity(0.7),
-                    backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (context) => Container(
-                        // padding: EdgeInsets.all(24),
-                        height: MediaQuery.of(context).size.height-55,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFF1D1D1E),
-                          shape: SmoothRectangleBorder(
-                            borderRadius: SmoothBorderRadius(
-                              cornerRadius: 26,
-                              cornerSmoothing: 0.9,
+              SizedBox(
+                width: 130,
+                height: 40,
+                child: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  // behavior: HitTestBehavior.opaque,
+                  onPressed: () {
+                    showMaterialModalBottomSheet(
+                      duration: Duration(milliseconds: 300),
+                      // expand: true,
+                      // bounce: true,
+                      // elevation: ,
+                      // useRootNavigator: true,
+                      barrierColor: Colors.black.withOpacity(0.7),
+                      backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) => Container(
+                          // padding: EdgeInsets.all(24),
+                          height: MediaQuery.of(context).size.height-55,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFF1D1D1E),
+                            shape: SmoothRectangleBorder(
+                              borderRadius: SmoothBorderRadius(
+                                cornerRadius: 26,
+                                cornerSmoothing: 0.9,
+                              ),
                             ),
                           ),
+                          child: _sources(),
                         ),
-                        child: _sources(),
-                      ),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("View all sources", style: baseOpacedDown(14)),
-                    Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white)
-                  ],
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("View all sources", style: baseOpacedDown(14)),
+                      Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white)
+                    ],
+                  ),
                 ),
               ),
               const Expanded(child: SizedBox(width: 10)),
