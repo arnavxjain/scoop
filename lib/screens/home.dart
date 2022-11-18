@@ -93,15 +93,24 @@ class _HomeState extends State<Home> {
           filter: ImageFilter.blur(sigmaX: 400.0, sigmaY: 400.0),
           child: Column(
             children: [
-              const SizedBox(height: 66),
-              Text("scoop", style: TextStyle(
-                fontFamily: "SF Pro Display",
-                fontSize: 24,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                letterSpacing: -1,
-              ),),
-              const SizedBox(height: 16,),
+              const SizedBox(height: 70),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 33),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Scoop", style: TextStyle(
+                      fontFamily: "SF Pro Display",
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -1,
+                    ),),
+                    Icon(FeatherIcons.chevronRight, color: Colors.white,)
+                  ],
+                ),
+              ),
+              const SizedBox(height: 14,),
               Container(
                 padding: EdgeInsets.zero,
                 margin: EdgeInsets.zero,
