@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
             borderRadius: BorderRadius.circular(30.0),
             image: const DecorationImage(
                 image: NetworkImage(
-                  "https://upload.wikimedia.org/wikipedia/en/0/08/Justin_Bieber_-_Justice.png",
+                  "https://cdn8.openculture.com/2018/02/26214611/Arlo-safe-e1519715317729.jpg",
                 ), fit: BoxFit.cover),
         ),
         child: BackdropFilter(
@@ -128,7 +128,7 @@ class _HomeState extends State<Home> {
                 height: (MediaQuery.of(context).size.width) - 50,
                 decoration: ShapeDecoration(
                   image: const DecorationImage(
-                    image: NetworkImage("https://upload.wikimedia.org/wikipedia/en/0/08/Justin_Bieber_-_Justice.png"),
+                    image: NetworkImage("https://cdn8.openculture.com/2018/02/26214611/Arlo-safe-e1519715317729.jpg"),
                     fit: BoxFit.fill
                   ),
                   shadows: const [
