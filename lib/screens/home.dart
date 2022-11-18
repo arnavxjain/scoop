@@ -356,7 +356,7 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Sources", style: base(18)),
+              Text("News Sources", style: base(18)),
               SizedBox(
                 height: 20,
                 child: CupertinoButton(
