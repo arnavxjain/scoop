@@ -107,7 +107,7 @@ class _HomeState extends State<Home> {
                       letterSpacing: -1,
                     ),),
                     SizedBox(
-                      height: 17,
+                      height: 21,
                       width: 24,
                       child: CupertinoButton(
                         padding: EdgeInsets.zero,
