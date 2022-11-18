@@ -106,11 +106,21 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.w800,
                       letterSpacing: -1,
                     ),),
-                    Icon(FeatherIcons.chevronRight, color: Colors.white,)
+                    SizedBox(
+                      height: 17,
+                      width: 24,
+                      child: CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          print("header button");
+                        },
+                        child: Icon(FeatherIcons.chevronRight, color: Colors.white,)
+                      ),
+                    )
                   ],
                 ),
               ),
-              const SizedBox(height: 14,),
+              const SizedBox(height: 19,),
               Container(
                 padding: EdgeInsets.zero,
                 margin: EdgeInsets.zero,
@@ -219,7 +229,6 @@ class _HomeState extends State<Home> {
                         child: CupertinoPicker(
                           looping: true,
                           itemExtent: 37.0,
-                          backgroundColor: Colors.black87,
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
