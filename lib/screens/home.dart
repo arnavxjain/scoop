@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
     'th'
   ];
 
-  int choseIndex = 0;
+  int systemIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -265,7 +265,7 @@ class _HomeState extends State<Home> {
                           ],
                           onSelectedItemChanged: (int index) {
                             setState(() {
-                              choseIndex = index;
+                              systemIndex = index;
                               print(valuations[index]);
                             });
                           },
@@ -278,7 +278,7 @@ class _HomeState extends State<Home> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(options[choseIndex], style: base(18),),
+                        Text(options[systemIndex], style: base(18),),
                         Icon(FeatherIcons.chevronDown, color: Colors.white,)
                       ],
                     ),
