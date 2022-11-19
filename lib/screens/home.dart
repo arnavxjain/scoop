@@ -76,7 +76,24 @@ class _HomeState extends State<Home> {
     'th'
   ];
 
+  List types = [
+    'Politics',
+    'Sports',
+    'Healthcare',
+    'Trending',
+    'Business'
+  ];
+
+  List typeValuations = [
+    'politics',
+    'sports',
+    'healthcare',
+    'trending',
+    'business'
+  ];
+
   int systemIndex = 0;
+  int systemType = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -220,7 +237,7 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Select news region", style: base(18),),
+                    Text("News Region", style: base(18),),
                     SizedBox(
                       height: 38,
                       child: CupertinoButton(
@@ -238,7 +255,6 @@ class _HomeState extends State<Home> {
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) => Container(
-                              // padding: EdgeInsets.all(24),
                               height: (MediaQuery.of(context).size.height)*0.3,
                               decoration: ShapeDecoration(
                                 color: Color(0xFF1D1D1E),
@@ -249,45 +265,82 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              child: CupertinoPicker(
-                                looping: true,
-                                itemExtent: 37.0,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Global", style: baseLight(21),),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(width: 10),
+                                        SizedBox(
+                                          height: 20,
+                                          child: CupertinoButton(
+                                            padding: EdgeInsets.zero,
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "Done",
+                                              style: blueInk(18),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("India", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("USA", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("UK", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Oman", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Qatar", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Thailand", style: baseLight(21),),
+                                  Container(
+                                    height: (MediaQuery.of(context).size.height)*0.2,
+                                    // padding: EdgeInsets.all(24),
+                                    //'Global',
+                                    //     'India',
+                                    //     'USA',
+                                    //     'UK',
+                                    //     'Oman',
+                                    //     'Qatar',
+                                    //     'Thailand'
+                                    child: CupertinoPicker(
+                                      looping: true,
+                                      itemExtent: 37.0,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Global", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("India", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("USA", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("UK", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Oman", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Qatar", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Thailand", style: baseLight(21),),
+                                        ),
+                                      ],
+                                      onSelectedItemChanged: (int index) {
+                                        setState(() {
+                                          systemIndex = index;
+                                          print(valuations[index]);
+                                        });
+                                      },
+                                    ),
                                   ),
                                 ],
-                                onSelectedItemChanged: (int index) {
-                                  setState(() {
-                                    systemIndex = index;
-                                    print(valuations[index]);
-                                  });
-                                },
                               ),
                             ),
                           );
@@ -324,7 +377,7 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Select news type", style: base(18),),
+                    Text("News Category", style: base(18),),
                     SizedBox(
                       height: 38,
                       child: CupertinoButton(
@@ -342,56 +395,77 @@ class _HomeState extends State<Home> {
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) => Container(
-                              // padding: EdgeInsets.all(24),
-                              height: (MediaQuery.of(context).size.height)*0.3,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFF1D1D1E),
-                                shape: SmoothRectangleBorder(
-                                  borderRadius: SmoothBorderRadius(
-                                    cornerRadius: 26,
-                                    cornerSmoothing: 0.9,
+                                height: (MediaQuery.of(context).size.height)*0.3,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFF1D1D1E),
+                                  shape: SmoothRectangleBorder(
+                                    borderRadius: SmoothBorderRadius(
+                                      cornerRadius: 26,
+                                      cornerSmoothing: 0.9,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              child: CupertinoPicker(
-                                looping: true,
-                                itemExtent: 37.0,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Global", style: baseLight(21),),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(width: 10),
+                                        SizedBox(
+                                          height: 20,
+                                          child: CupertinoButton(
+                                            padding: EdgeInsets.zero,
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "Done",
+                                              style: blueInk(18),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("India", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("USA", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("UK", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Oman", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Qatar", style: baseLight(21),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text("Thailand", style: baseLight(21),),
+                                  Container(
+                                    height: (MediaQuery.of(context).size.height)*0.2,
+                                    // padding: EdgeInsets.all(24),
+                                    child: CupertinoPicker(
+                                      looping: true,
+                                      itemExtent: 37.0,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Politics", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Sports", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Healthcare", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Trending", style: baseLight(21),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text("Business", style: baseLight(21),),
+                                        ),
+                                      ],
+                                      onSelectedItemChanged: (int index) {
+                                        setState(() {
+                                          systemType = index;
+                                          print(typeValuations[index]);
+                                        });
+                                      },
+                                    ),
                                   ),
                                 ],
-                                onSelectedItemChanged: (int index) {
-                                  setState(() {
-                                    systemIndex = index;
-                                    print(valuations[index]);
-                                  });
-                                },
                               ),
                             ),
                           );
@@ -402,7 +476,7 @@ class _HomeState extends State<Home> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(options[systemIndex], style: base(18),),
+                              Text(types[systemType], style: base(18),),
                               Icon(FeatherIcons.chevronDown, color: Colors.white,)
                             ],
                           ),
@@ -412,7 +486,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              // const SizedBox(height: 20),
+              const SizedBox(height: 10),
               themeButton(Icons.play_arrow_rounded, "Start", () {
                 // func(x) for initiating main void function
                 print("initiate");
