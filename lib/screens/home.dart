@@ -242,8 +242,8 @@ class _HomeState extends State<Home> {
                       height: 38,
                       child: CupertinoButton(
                         borderRadius: BorderRadius.circular(10),
-                        // color: Colors.grey.withOpacity(0.2),
-                        padding: EdgeInsets.zero,
+                        color: Colors.grey.withOpacity(0.2),
+                        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 13),
                         onPressed: () {
                           showMaterialModalBottomSheet(
                             duration: Duration(milliseconds: 300),
@@ -361,6 +361,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
+              SizedBox(height: 14,),
               Container(
                 // margin: EdgeInsets.symmetric(horizontal: 26.0),
                 // padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
@@ -382,8 +383,8 @@ class _HomeState extends State<Home> {
                       height: 38,
                       child: CupertinoButton(
                         borderRadius: BorderRadius.circular(10),
-                        // color: Colors.grey.withOpacity(0.2),
-                        padding: EdgeInsets.zero,
+                        color: Colors.grey.withOpacity(0.2),
+                        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 13),
                         onPressed: () {
                           showMaterialModalBottomSheet(
                             duration: Duration(milliseconds: 300),
@@ -557,7 +558,7 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("News Sources", style: base(18)),
+              Text("News Sources", style: baseLight(18)),
               SizedBox(
                 height: 20,
                 child: CupertinoButton(
