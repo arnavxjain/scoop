@@ -95,15 +95,17 @@ class _HomeState extends State<Home> {
   int systemIndex = 0;
   int systemType = 0;
 
+  String demoImgURL = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/cool-animated-video-music-album-cover-design-template-b32363ff46d21798e89fe1333c50a6fc_screen.jpg?ts=1633603106";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
-            image: const DecorationImage(
+            image: DecorationImage(
                 image: NetworkImage(
-                  "https://cdn8.openculture.com/2018/02/26214611/Arlo-safe-e1519715317729.jpg",
+                  demoImgURL,
                 ), fit: BoxFit.cover),
         ),
         child: BackdropFilter(
@@ -144,8 +146,8 @@ class _HomeState extends State<Home> {
                 width: (MediaQuery.of(context).size.width) - 50,
                 height: (MediaQuery.of(context).size.width) - 50,
                 decoration: ShapeDecoration(
-                  image: const DecorationImage(
-                    image: NetworkImage("https://cdn8.openculture.com/2018/02/26214611/Arlo-safe-e1519715317729.jpg"),
+                  image: DecorationImage(
+                    image: NetworkImage(demoImgURL),
                     fit: BoxFit.fill
                   ),
                   shadows: const [
