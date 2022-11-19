@@ -534,7 +534,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(shuffle, color: Color(0xFF4D7EFF), size: 24,),
-              SizedBox(width: 4,),
+              SizedBox(width: 3,),
               Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 17),),
               const SizedBox(width: 4,)
             ],
