@@ -204,85 +204,107 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const Expanded(child: SizedBox(width: 10)),
-              SizedBox(
-                height: 38,
-                child: CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {
-                    showMaterialModalBottomSheet(
-                      duration: Duration(milliseconds: 300),
-                      // expand: true,
-                      // bounce: true,
-                      // elevation: ,
-                      // useRootNavigator: true,
-                      barrierColor: Colors.black.withOpacity(0.7),
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (context) => Container(
-                        // padding: EdgeInsets.all(24),
-                        height: (MediaQuery.of(context).size.height)*0.3,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFF1D1D1E),
-                          shape: SmoothRectangleBorder(
-                            borderRadius: SmoothBorderRadius(
-                              cornerRadius: 26,
-                              cornerSmoothing: 0.9,
-                            ),
-                          ),
-                        ),
-                        child: CupertinoPicker(
-                          looping: true,
-                          itemExtent: 37.0,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("Global", style: baseLight(21),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("India", style: baseLight(21),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("USA", style: baseLight(21),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("UK", style: baseLight(21),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("Oman", style: baseLight(21),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("Qatar", style: baseLight(21),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("Thailand", style: baseLight(21),),
-                            ),
-                          ],
-                          onSelectedItemChanged: (int index) {
-                            setState(() {
-                              systemIndex = index;
-                              print(valuations[index]);
-                            });
-                          },
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: 80,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(options[systemIndex], style: base(18),),
-                        Icon(FeatherIcons.chevronDown, color: Colors.white,)
-                      ],
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 26.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+                decoration: ShapeDecoration(
+                  color: Colors.grey.withOpacity(0.12),
+                  shape: SmoothRectangleBorder(
+                    borderRadius: SmoothBorderRadius(
+                      cornerRadius: 14,
+                      cornerSmoothing: 0.9,
                     ),
                   ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Select news region", style: base(18),),
+                    SizedBox(
+                      height: 38,
+                      child: CupertinoButton(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.withOpacity(0.2),
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          showMaterialModalBottomSheet(
+                            duration: Duration(milliseconds: 300),
+                            // expand: true,
+                            // bounce: true,
+                            // elevation: ,
+                            // useRootNavigator: true,
+                            barrierColor: Colors.black.withOpacity(0.7),
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) => Container(
+                              // padding: EdgeInsets.all(24),
+                              height: (MediaQuery.of(context).size.height)*0.3,
+                              decoration: ShapeDecoration(
+                                color: Color(0xFF1D1D1E),
+                                shape: SmoothRectangleBorder(
+                                  borderRadius: SmoothBorderRadius(
+                                    cornerRadius: 26,
+                                    cornerSmoothing: 0.9,
+                                  ),
+                                ),
+                              ),
+                              child: CupertinoPicker(
+                                looping: true,
+                                itemExtent: 37.0,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text("Global", style: baseLight(21),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text("India", style: baseLight(21),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text("USA", style: baseLight(21),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text("UK", style: baseLight(21),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text("Oman", style: baseLight(21),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text("Qatar", style: baseLight(21),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text("Thailand", style: baseLight(21),),
+                                  ),
+                                ],
+                                onSelectedItemChanged: (int index) {
+                                  setState(() {
+                                    systemIndex = index;
+                                    print(valuations[index]);
+                                  });
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          // width: 120,
+                          padding: EdgeInsets.symmetric(horizontal: 13),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(options[systemIndex], style: base(18),),
+                              Icon(FeatherIcons.chevronDown, color: Colors.white,)
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               // const SizedBox(height: 20),
