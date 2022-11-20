@@ -109,7 +109,7 @@ class _HomeState extends State<Home> {
                 ), fit: BoxFit.cover),
         ),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 400.0, sigmaY: 400.0),
+          filter: ImageFilter.blur(sigmaX: 200.0, sigmaY: 200.0),
           child: Column(
             children: [
               const SizedBox(height: 70),
@@ -177,7 +177,7 @@ class _HomeState extends State<Home> {
                   children: [
                     Icon(FeatherIcons.box, color: Colors.white,size: 20),
                     SizedBox(width: 5),
-                    Text("Your new feed is ready", style: baseLight(18.0))
+                    Text("Your news feed is ready", style: baseLight(18.0))
                   ],
                 ),
               ),
