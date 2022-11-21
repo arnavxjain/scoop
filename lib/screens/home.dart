@@ -270,7 +270,7 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                                    padding: EdgeInsets.only(top: 20, right: 24, left: 24),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -411,7 +411,7 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+                                    padding: EdgeInsets.only(top: 20, left: 24, right: 24),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
