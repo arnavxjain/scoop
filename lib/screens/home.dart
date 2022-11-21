@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:scoop/network/network.dart';
 import 'package:sheet/sheet.dart';
 
 class Home extends StatefulWidget {
@@ -188,6 +189,7 @@ class _HomeState extends State<Home> {
                   padding: EdgeInsets.zero,
                   // behavior: HitTestBehavior.opaque,
                   onPressed: () {
+                    NetworkSystem().showSources();
                     showMaterialModalBottomSheet(
                       duration: Duration(milliseconds: 300),
                       // expand: true,
@@ -491,8 +493,7 @@ class _HomeState extends State<Home> {
               ),
               const SizedBox(height: 10),
               themeButton(Icons.play_arrow_rounded, "Start", () {
-                // func(x) for initiating main void function
-                print("initiate");
+
               }),
               const SizedBox(height: 36,),
             ],
@@ -576,8 +577,76 @@ class _HomeState extends State<Home> {
               )
             ],
           ),
-        )
+        ),
+        // GridView.count(
+        //   crossAxisCount: 1,
+        //   mainAxisSpacing: 10,
+        //   // crossAxisSpacing: 10,
+        //   padding: EdgeInsets.all(30),
+        //   children: [
+        //     _sourceDisplay("BBC News", "General"),
+        //   ],
+        // )
+        // FutureBuilder(
+        //   future: NetworkSystem().showSources(),
+        //   builder: (context, AsyncSnapshot snapshot) {
+        //     if (snapshot.hasData) {
+        //       // return _sourceDisplay(, )
+        //     }
+        //   },
+        // )
       ],
+    );
+  }
+
+  _sourceDisplay(String name, String text) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      height: 60,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      width: MediaQuery.of(context).size.width * 0.92,
+      decoration: ShapeDecoration(
+        color: Colors.grey.withOpacity(0.1),
+        shape: SmoothRectangleBorder(
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: 12,
+            cornerSmoothing: 0.9,
+          ),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(name, style: base(16),),
+              Text(text, style: baseOpacedDown(12),),
+            ],
+          ),
+          Container(
+            width: 20,
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              // color: Colors.grey.withOpacity(0.4)
+            ),
+            child: SizedBox(
+              width: 30,
+              height: 30,
+              child: CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  print("demos");
+                },
+                child: Icon(FeatherIcons.chevronRight, color: Colors.white.withOpacity(0.5), size: 22,)
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

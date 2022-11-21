@@ -11,10 +11,11 @@
 //     this.vote});
 // }
 
-class Source {
-  final String? imageURL;
+class SourceObj {
+  // final String? imageURL;
   final String? name;
   final String? URL;
+  final String? type;
 
-  Source({this.imageURL, this.name, this.URL});
+  SourceObj({this.name, this.URL, this.type});
 }

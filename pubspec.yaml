@@ -23,6 +23,7 @@ dependencies:
   flutter_feather_icons: ^2.0.0+1
   modal_bottom_sheet: ^2.1.2
   sheet: ^0.0.4+1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
