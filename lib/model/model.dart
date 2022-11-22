@@ -13,9 +13,9 @@
 
 class SourceObj {
   // final String? imageURL;
-  final String? name;
-  final String? URL;
-  final String? type;
+  final String name;
+  final String URL;
+  final String type;
 
-  SourceObj({this.name, this.URL, this.type});
+  SourceObj({required this.name, required this.URL, required this.type});
 }

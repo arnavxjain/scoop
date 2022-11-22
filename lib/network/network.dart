@@ -15,7 +15,7 @@ class NetworkSystem {
       final res = json.decode(response.body);
       final resSources = res["sources"];
 
-      for (int x = 0; x < 12; x++) {
+      for (int x = 0; x < resSources.length; x++) {
         SourceObj newSource = SourceObj(
           name: resSources[x]["name"],
           URL: resSources[x]["url"],

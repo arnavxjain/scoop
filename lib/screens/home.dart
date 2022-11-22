@@ -5,8 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
 import 'package:sheet/sheet.dart';
+
+late List<SourceObj> sources;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -578,33 +581,50 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        // GridView.count(
-        //   crossAxisCount: 1,
-        //   mainAxisSpacing: 10,
-        //   // crossAxisSpacing: 10,
-        //   padding: EdgeInsets.all(30),
-        //   children: [
-        //     _sourceDisplay("BBC News", "General"),
-        //   ],
-        // )
-        // FutureBuilder(
-        //   future: NetworkSystem().showSources(),
-        //   builder: (context, AsyncSnapshot snapshot) {
-        //     if (snapshot.hasData) {
-        //       // return _sourceDisplay(, )
-        //     }
-        //   },
-        // )
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 16),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width*0.94,
+            height: 40,
+            child: CupertinoSearchTextField(
+              backgroundColor: Color(0xFF252525),
+              borderRadius: BorderRadius.circular(11),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(left: 4.0),
+                child: Icon(FeatherIcons.search, color: Colors.grey.withOpacity(0.7), size: 18,),
+              ),
+            )
+          ),
+        ),
+        FutureBuilder<List<SourceObj>>(
+          future: NetworkSystem().showSources(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Expanded(child: Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7),)));
+            } else {
+              List<SourceObj> sources = snapshot.data!;
+              return Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: ListView.builder(
+                    itemCount: sources.length,
+                    itemBuilder: (context, index) => _sourceDisplay(sources[index].name, sources[index].type),
+                  ),
+                ),
+              );
+            }
+          },
+        )
       ],
     );
   }
 
   _sourceDisplay(String name, String text) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 7),
       height: 60,
       padding: EdgeInsets.symmetric(horizontal: 20),
-      width: MediaQuery.of(context).size.width * 0.92,
+      width: MediaQuery.of(context).size.width * 0.90,
       decoration: ShapeDecoration(
         color: Colors.grey.withOpacity(0.1),
         shape: SmoothRectangleBorder(
@@ -623,7 +643,8 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(name, style: base(16),),
-              Text(text, style: baseOpacedDown(12),),
+              SizedBox(height: 3,),
+              Text(text.toCapitalized(), style: baseOpacedDown(12),),
             ],
           ),
           Container(
@@ -649,4 +670,9 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+extension StringCasingExtension on String {
+  String toCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
 }
