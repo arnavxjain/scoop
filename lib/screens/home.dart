@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
   int systemIndex = 0;
   int systemType = 0;
 
-  String demoImgURL = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/cool-animated-video-music-album-cover-design-template-b32363ff46d21798e89fe1333c50a6fc_screen.jpg?ts=1633603106";
+  String demoImgURL = "https://www.bworldonline.com/wp-content/uploads/2022/10/Digital-art.jpg";
 
   @override
   Widget build(BuildContext context) {
@@ -199,14 +199,14 @@ class _HomeState extends State<Home> {
                       // bounce: true,
                       // elevation: ,
                       // useRootNavigator: true,
-                      barrierColor: Colors.black.withOpacity(0.7),
+                      // barrierColor: Colors.black.withOpacity(0.7),
                       backgroundColor: Colors.transparent,
                         context: context,
                         builder: (context) => Container(
                           // padding: EdgeInsets.all(24),
                           height: MediaQuery.of(context).size.height-55,
                           decoration: ShapeDecoration(
-                            color: Color(0xFF1D1D1E),
+                            color: Color(0xFF1C1C1E),
                             shape: SmoothRectangleBorder(
                               borderRadius: SmoothBorderRadius(
                                 cornerRadius: 26,
@@ -258,13 +258,13 @@ class _HomeState extends State<Home> {
                             // bounce: true,
                             // elevation: ,
                             // useRootNavigator: true,
-                            barrierColor: Colors.black.withOpacity(0.7),
+                            // barrierColor: Colors.black.withOpacity(0.7),
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) => Container(
                               height: (MediaQuery.of(context).size.height)*0.3,
                               decoration: ShapeDecoration(
-                                color: Color(0xFF1D1D1E),
+                                color: Color(0xFF1C1C1E),
                                 shape: SmoothRectangleBorder(
                                   borderRadius: SmoothBorderRadius(
                                     cornerRadius: 26,
@@ -605,10 +605,14 @@ class _HomeState extends State<Home> {
               List<SourceObj> sources = snapshot.data!;
               return Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: ListView.builder(
-                    itemCount: sources.length,
-                    itemBuilder: (context, index) => _sourceDisplay(sources[index].name, sources[index].type),
+                  // padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Scrollbar(
+                    isAlwaysShown: true,
+                    child: ListView.builder(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                      itemCount: sources.length,
+                      itemBuilder: (context, index) => _sourceDisplay(sources[index].name, sources[index].type),
+                    ),
                   ),
                 ),
               );
