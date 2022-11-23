@@ -28,4 +28,28 @@ class NetworkSystem {
 
     return sources;
   }
+
+  Future<List<Article>> contentBuilder() async {
+    List<Article> articles = [];
+
+    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=in&apiKey=$apiKey")));
+
+    if (response.statusCode == 200) {
+      final res = json.decode(response.body);
+      final resArticles = res["articles"];
+
+      for (int x = 0; x < resArticles.length; x++) {
+        Article newArticle = Article(
+            imgURL: resArticles[x]["urlToImage"] ?? "https://www.pngitem.com/pimgs/m/119-1190874_warning-icon-png-png-download-icon-transparent-png.png",
+            title: resArticles[x]["title"] ?? "Error",
+            content: resArticles[x]["content"] ?? "demodemodemodemodmeodmedomdeomedomeomdoemdoemomdeo",
+            source: "bbc.com"
+        );
+
+        articles.add(newArticle);
+      }
+    }
+
+    return articles;
+  }
 }

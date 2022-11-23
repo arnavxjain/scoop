@@ -7,6 +7,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
+import 'package:scoop/screens/scoop.dart';
 import 'package:sheet/sheet.dart';
 
 late List<SourceObj> sources;
@@ -496,7 +497,7 @@ class _HomeState extends State<Home> {
               ),
               const SizedBox(height: 10),
               themeButton(Icons.play_arrow_rounded, "Start", () {
-
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream()));
               }),
               const SizedBox(height: 36,),
             ],
