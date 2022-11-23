@@ -96,7 +96,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                 Text(snapshot.data![index].title,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 18,
+                                    fontSize: 20,
                                     letterSpacing: -0.5,
                                     color: Colors.black
                                   ),
