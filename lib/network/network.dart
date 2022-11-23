@@ -40,10 +40,10 @@ class NetworkSystem {
 
       for (int x = 0; x < resArticles.length; x++) {
         Article newArticle = Article(
-            imgURL: resArticles[x]["urlToImage"] ?? "https://www.pngitem.com/pimgs/m/119-1190874_warning-icon-png-png-download-icon-transparent-png.png",
+            imgURL: resArticles[x]["urlToImage"] ?? "https://picsum.photos/200/200",
             title: resArticles[x]["title"] ?? "Error",
             content: resArticles[x]["content"] ?? "demodemodemodemodmeodmedomdeomedomeomdoemdoemomdeo",
-            source: "bbc.com"
+            source: resArticles[x]["source"]["name"] ?? "n/a"
         );
 
         articles.add(newArticle);
