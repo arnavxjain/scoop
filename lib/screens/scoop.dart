@@ -137,31 +137,4 @@ class _ScoopStreamState extends State<ScoopStream> {
       ),
     );
   }
-
-  _systemize() {}
-
-  _article(param0) {
-    // print(param0.imgURL);
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       borderRadius: BorderRadius.circular(30.0),
-  //       image: DecorationImage(
-  //           image: NetworkImage(
-  //             param0.imgURL,
-  //           ), fit: BoxFit.cover),
-  //     ),
-  //     child: BackdropFilter(
-  //       filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-  //       child: Column(
-  //         children: [
-  //           Center(
-  //             child: Text(param0.title),
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-}
-
 }
