@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
   int systemIndex = 0;
   int systemType = 0;
 
-  String demoImgURL = "https://www.bworldonline.com/wp-content/uploads/2022/10/Digital-art.jpg";
+  String demoImgURL = "https://static.displate.com/280x392/displate/2021-01-29/a641e1fd41d3f55561dc08ede4870c94_446ec879a970d1c93879fa7992dc4cd2.jpg";
 
   @override
   Widget build(BuildContext context) {
@@ -132,13 +132,19 @@ class _HomeState extends State<Home> {
                     ),),
                     SizedBox(
                       height: 21,
-                      width: 24,
                       child: CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          print("header button");
+                          print("header sider");
                         },
-                        child: Icon(FeatherIcons.chevronRight, color: Colors.white,)
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(FeatherIcons.info, color: Colors.white),
+                            Icon(FeatherIcons.chevronRight, color: Colors.white)
+                          ],
+                        )
                       ),
                     )
                   ],
@@ -153,7 +159,7 @@ class _HomeState extends State<Home> {
                 decoration: ShapeDecoration(
                   image: DecorationImage(
                     image: NetworkImage(demoImgURL),
-                    fit: BoxFit.fill
+                    fit: BoxFit.cover
                   ),
                   shadows: const [
                     BoxShadow(

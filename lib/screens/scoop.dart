@@ -18,12 +18,14 @@ class ScoopStream extends StatefulWidget {
 
 class _ScoopStreamState extends State<ScoopStream> {
 
+  final _controller = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height-0.1,
+        height: double.infinity,
         child: FutureBuilder(
           future: NetworkSystem().contentBuilder(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -36,16 +38,15 @@ class _ScoopStreamState extends State<ScoopStream> {
             } else {
               print(snapshot.data);
               List<Article> articles = snapshot.data!;
-              return Expanded(
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  controller: PageController(viewportFraction: 0.8),
-                  padding: EdgeInsets.symmetric(vertical: 0),
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    // print(snapshot.data![index].imgURL);
-
-                    return ClipRect(
+              return PageView.builder(
+                controller: _controller,
+                padEnds: false,
+                scrollDirection: Axis.vertical,
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: double.infinity,
+                    child: ClipRect(
                       child: Container(
                         padding: EdgeInsets.only(top: 70, left: 10, right: 10),
                         height: MediaQuery.of(context).size.height,
@@ -139,9 +140,9 @@ class _ScoopStreamState extends State<ScoopStream> {
                           ),
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               );
             }
           },
