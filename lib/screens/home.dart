@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
   String locale = "India";
   String category = "General";
 
-  String demoImgURL = "https://images.ctfassets.net/hrltx12pl8hq/a2hkMAaruSQ8haQZ4rBL9/8ff4a6f289b9ca3f4e6474f29793a74a/nature-image-for-website.jpg?fit=fill&w=480&h=320";
+  String demoImgURL = "https://wideeducation.org/wp-content/uploads/2022/06/IKEA.jpg";
 
   @override
   Widget build(BuildContext context) {
@@ -253,7 +253,7 @@ class _HomeState extends State<Home> {
                       height: 38,
                       child: CupertinoButton(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.2),
+                        // color: Colors.grey.withOpacity(0.2),
                         padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                         onPressed: () {
                           showMaterialModalBottomSheet(
@@ -372,7 +372,7 @@ class _HomeState extends State<Home> {
                       height: 38,
                       child: CupertinoButton(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.2),
+                        // color: Colors.grey.withOpacity(0.2),
                         padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                         onPressed: () {
                           showMaterialModalBottomSheet(
