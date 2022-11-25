@@ -29,10 +29,10 @@ class NetworkSystem {
     return sources;
   }
 
-  Future<List<Article>> contentBuilder() async {
+  Future<List<Article>> contentBuilder(locale, category) async {
     List<Article> articles = [];
 
-    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=in&apiKey=$apiKey")));
+    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey")));
 
     if (response.statusCode == 200) {
       final res = json.decode(response.body);

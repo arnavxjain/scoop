@@ -62,45 +62,42 @@ TextStyle baseOpacedDown(double fontSize){
 class _HomeState extends State<Home> {
 
   List options = [
-    'Global',
     'India',
     'USA',
     'UK',
-    'Oman',
-    'Qatar',
-    'Thailand'
+    'UAE',
+    'Singapore',
+    'Canada'
   ];
 
   List valuations = [
-    'gl',
     'in',
     'us',
-    'uk',
-    'om',
-    'qtr',
-    'th'
+    'gb',
+    'ae',
+    'sg',
+    'ca'
   ];
 
   List types = [
-    'Politics',
-    'Sports',
-    'Healthcare',
-    'Trending',
-    'Business'
+    'general',
+    'entertainment',
+    'business',
+    'health',
+    'science',
+    'sports',
+    'technology'
   ];
 
-  List typeValuations = [
-    'politics',
-    'sports',
-    'healthcare',
-    'trending',
-    'business'
-  ];
+  // business entertainment general health science sports technology
 
   int systemIndex = 0;
   int systemType = 0;
 
-  String demoImgURL = "https://static.displate.com/280x392/displate/2021-01-29/a641e1fd41d3f55561dc08ede4870c94_446ec879a970d1c93879fa7992dc4cd2.jpg";
+  String locale = "India";
+  String category = "General";
+
+  String demoImgURL = "https://images.ctfassets.net/hrltx12pl8hq/a2hkMAaruSQ8haQZ4rBL9/8ff4a6f289b9ca3f4e6474f29793a74a/nature-image-for-website.jpg?fit=fill&w=480&h=320";
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +254,7 @@ class _HomeState extends State<Home> {
                       child: CupertinoButton(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey.withOpacity(0.2),
-                        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 13),
+                        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                         onPressed: () {
                           showMaterialModalBottomSheet(
                             duration: Duration(milliseconds: 300),
@@ -317,39 +314,17 @@ class _HomeState extends State<Home> {
                                       looping: true,
                                       itemExtent: 37.0,
                                       children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Global", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("India", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("USA", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("UK", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Oman", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Qatar", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Thailand", style: baseLight(21),),
-                                        ),
+                                        for (String each in options) Padding(
+                                            padding: const EdgeInsets.only(top: 5.0),
+                                            child: Text(each, style: baseLight(21))
+                                        )
                                       ],
                                       onSelectedItemChanged: (int index) {
                                         setState(() {
                                           systemIndex = index;
-                                          print(valuations[index]);
+                                          // print(valuations[index]);
+                                          locale = valuations[index];
+                                          print(locale);
                                         });
                                       },
                                     ),
@@ -398,7 +373,7 @@ class _HomeState extends State<Home> {
                       child: CupertinoButton(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey.withOpacity(0.2),
-                        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 13),
+                        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                         onPressed: () {
                           showMaterialModalBottomSheet(
                             duration: Duration(milliseconds: 300),
@@ -451,31 +426,16 @@ class _HomeState extends State<Home> {
                                       looping: true,
                                       itemExtent: 37.0,
                                       children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Politics", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Sports", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Healthcare", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Trending", style: baseLight(21),),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5.0),
-                                          child: Text("Business", style: baseLight(21),),
-                                        ),
+                                        for (String typex in types) Padding(
+                                            padding: const EdgeInsets.only(top: 5.0),
+                                            child: Text(typex.toCapitalized(), style: baseLight(21))
+                                        )
                                       ],
                                       onSelectedItemChanged: (int index) {
                                         setState(() {
-                                          systemType = index;
-                                          print(typeValuations[index]);
+                                          category = types[index];
+
+                                          print(category);
                                         });
                                       },
                                     ),
@@ -491,7 +451,7 @@ class _HomeState extends State<Home> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(types[systemType], style: base(18),),
+                              Text(category.toCapitalized(), style: base(18),),
                               Icon(FeatherIcons.chevronDown, color: Colors.white,)
                             ],
                           ),
@@ -503,7 +463,7 @@ class _HomeState extends State<Home> {
               ),
               const SizedBox(height: 10),
               themeButton(Icons.play_arrow_rounded, "Start", () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale,)));
               }),
               const SizedBox(height: 36,),
             ],
