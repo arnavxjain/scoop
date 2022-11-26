@@ -106,11 +106,6 @@ class _HomeState extends State<Home> {
       body: FutureBuilder(
         future: NetworkSystem().sysInit(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CupertinoActivityIndicator(),
-            );
-          } else {
             return Container(
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
@@ -509,7 +504,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
             );
-        }
         },
       ),
     );
