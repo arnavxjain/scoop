@@ -54,4 +54,20 @@ class NetworkSystem {
 
     return articles;
   }
+
+  Future<Article> sysInit() async {
+    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=in&apiKey=$apiKey")));
+
+    final res = json.decode(response.body);
+    final resArticles = res["articles"];
+
+    Article newArticle = Article(
+        imgURL: resArticles[0]["urlToImage"] ?? "https://picsum.photos/200/200",
+        title: resArticles[0]["title"] ?? "Error",
+        content: resArticles[0]["content"] ?? "No Content Available",
+        source: resArticles[0]["source"]["name"] ?? "n/a"
+    );
+
+    return newArticle;
+  }
 }

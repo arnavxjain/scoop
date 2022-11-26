@@ -5,6 +5,7 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
@@ -88,6 +89,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
+                                  alignment: Alignment.topRight,
                                   padding: EdgeInsets.zero,
                                   margin: EdgeInsets.zero,
                                   width: (MediaQuery.of(context).size.width) - 50,
@@ -109,12 +111,47 @@ class _ScoopStreamState extends State<ScoopStream> {
                                           )
                                       )
                                     ],
-                                    color: Colors.red.withOpacity(0.75),
+                                    color: Colors.grey.withOpacity(0.75),
                                     shape: SmoothRectangleBorder(
                                       borderRadius: SmoothBorderRadius(
                                         cornerRadius: 18,
                                         cornerSmoothing: 0.9,
                                       ),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(15),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(height: 1),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(100),
+                                              boxShadow: [
+                                              ]
+                                          ),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(100),
+                                            ),
+                                            child: SizedBox(
+                                                child: CupertinoButton(
+                                                    padding: EdgeInsets.zero,
+                                                    child: Icon(Ionicons.share_outline, color: Colors.white, size: 20,),
+                                                    onPressed: () {
+                                                    }
+                                                )
+                                            ),
+                                          ),
+                                        ).frosted(
+                                          blur: 7,
+                                          borderRadius: BorderRadius.circular(100),
+                                          frostColor: Colors.black.withOpacity(0.1)
+                                          // fro
+                                        ),
+
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -166,7 +203,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                               child: Text(
                                                 "Read More",
                                                 style: TextStyle(
-                                                  color: Colors.blueAccent,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 17
                                                 ),
@@ -191,42 +228,16 @@ class _ScoopStreamState extends State<ScoopStream> {
             ),
           ),
           Positioned(
-            bottom: 40,
-            left: 40,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 22,
-                      spreadRadius: 10,
-                      offset: Offset(0, 0)
-                  ),
-                ]
-              ),
-              child: Container(
-                padding: EdgeInsets.all(3),
-                // padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  // color: Colors.grey.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.white.withOpacity(0.01)
-                ),
-                child: SizedBox(
-                    child: CupertinoButton(
-                      padding: EdgeInsets.zero,
-                        child: Icon(FeatherIcons.chevronLeft, color: Colors.black,),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        }
-                    )
-                ),
-              ).frosted(
-                frostOpacity: 0.1,
-                blur: 4,
-                borderRadius: BorderRadius.circular(100),
-              ),
+            bottom: 42,
+            left: 30,
+            child: SizedBox(
+                child: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                    child: Icon(FeatherIcons.chevronLeft, color: Colors.white, size: 30,),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }
+                )
             ),
           ),
         ],
