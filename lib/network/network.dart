@@ -34,6 +34,8 @@ class NetworkSystem {
 
     Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey")));
 
+    print("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey");
+
     if (response.statusCode == 200) {
       final res = json.decode(response.body);
       final resArticles = res["articles"];

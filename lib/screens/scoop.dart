@@ -74,6 +74,11 @@ class _ScoopStreamState extends State<ScoopStream> {
                               ),
                             ),
                           ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
+                            color: Colors.black.withOpacity(0.4),
+                          ),
                           Positioned(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height,
@@ -143,22 +148,6 @@ class _ScoopStreamState extends State<ScoopStream> {
                                           ),
                                         ),
                                       ),
-                                      // SizedBox(height: 7.5),
-                                      // SizedBox(
-                                      //   height: 20,
-                                      //   // width: 100,
-                                      //   child: CupertinoButton(
-                                      //     padding: EdgeInsets.zero,
-                                      //     onPressed: () {},
-                                      //     child: Row(
-                                      //       mainAxisAlignment: MainAxisAlignment.start,
-                                      //       children: [
-                                      //         Text("View Article", style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600),),
-                                      //         Icon(FeatherIcons.chevronRight, size: 19, color: Colors.white.withOpacity(0.3),)
-                                      //       ],
-                                      //     ),
-                                      //   ),
-                                      // ),
                                       SizedBox(height: 15),
                                       Text(snapshot.data![index].content,
                                         style: TextStyle(
@@ -168,8 +157,24 @@ class _ScoopStreamState extends State<ScoopStream> {
                                             letterSpacing: -0.4
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 13,
+                                      Row(
+                                        children: [
+                                          SizedBox(
+                                            child: CupertinoButton(
+                                              onPressed: () {},
+                                              padding: EdgeInsets.zero,
+                                              child: Text(
+                                                "Read More",
+                                                style: TextStyle(
+                                                  color: Colors.blueAccent,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 17
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 1,)
+                                        ],
                                       ),
                                     ],
                                   ),

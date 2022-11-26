@@ -94,8 +94,8 @@ class _HomeState extends State<Home> {
   int systemIndex = 0;
   int systemType = 0;
 
-  String locale = "India";
-  String category = "General";
+  String locale = "in";
+  String category = "general";
 
   String demoImgURL = "https://wideeducation.org/wp-content/uploads/2022/06/IKEA.jpg";
 
@@ -340,7 +340,7 @@ class _HomeState extends State<Home> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(options[systemIndex], style: base(18),),
+                              Text(options[valuations.indexOf(locale)], style: base(18),),
                               Icon(FeatherIcons.chevronDown, color: Colors.white,)
                             ],
                           ),
@@ -463,7 +463,7 @@ class _HomeState extends State<Home> {
               ),
               const SizedBox(height: 10),
               themeButton(Icons.play_arrow_rounded, "Start", () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale,)));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
               }),
               const SizedBox(height: 36,),
             ],
