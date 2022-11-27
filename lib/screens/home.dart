@@ -119,7 +119,7 @@ class _HomeState extends State<Home> {
                 filter: ImageFilter.blur(sigmaX: 200.0, sigmaY: 200.0),
                 child: Column(
                   children: [
-                    const SizedBox(height: 70),
+                    const SizedBox(height: 66),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 33),
                       child: Row(
