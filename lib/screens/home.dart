@@ -103,409 +103,410 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: NetworkSystem().sysInit(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            return Container(
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                image: DecorationImage(
-                    image: NetworkImage(
-                      snapshot.data!.imgURL,
-                    ), fit: BoxFit.cover),
+      body: Container(
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        image: DecorationImage(
+            image: NetworkImage(
+              demoImgURL,
+              // snapshot.data!.imgURL,
+            ), fit: BoxFit.cover),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 200.0, sigmaY: 200.0),
+        child: Column(
+          children: [
+            const SizedBox(height: 66),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 33),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Scoop", style: TextStyle(
+                    fontFamily: "SF Pro Display",
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -1,
+                  ),),
+                  SizedBox(
+                    height: 21,
+                    child: CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          print("header sider");
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(FeatherIcons.info, color: Colors.white),
+                            Icon(FeatherIcons.chevronRight, color: Colors.white)
+                          ],
+                        )
+                    ),
+                  )
+                ],
               ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 200.0, sigmaY: 200.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 66),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 33),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Scoop", style: TextStyle(
-                            fontFamily: "SF Pro Display",
-                            fontSize: 24,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -1,
-                          ),),
-                          SizedBox(
-                            height: 21,
-                            child: CupertinoButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: () {
-                                  print("header sider");
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(FeatherIcons.info, color: Colors.white),
-                                    Icon(FeatherIcons.chevronRight, color: Colors.white)
-                                  ],
-                                )
-                            ),
+            ),
+            const SizedBox(height: 17,),
+          FutureBuilder(
+              future: NetworkSystem().sysInit(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: EdgeInsets.zero,
+                  margin: EdgeInsets.zero,
+                  clipBehavior: Clip.hardEdge,
+                  width: (MediaQuery.of(context).size.width) - 50,
+                  height: (MediaQuery.of(context).size.width) - 50,
+                  decoration: ShapeDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(snapshot.data!.imgURL),
+                        fit: BoxFit.cover
+                    ),
+                    shadows: const [
+                      BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 30.0,
+                          spreadRadius: 5,
+                          offset: Offset(
+                              0,
+                              6
                           )
-                        ],
+                      )
+                    ],
+                    color: Colors.grey.withOpacity(0.75),
+                    shape: SmoothRectangleBorder(
+                      borderRadius: SmoothBorderRadius(
+                        cornerRadius: 18,
+                        cornerSmoothing: 0.9,
                       ),
                     ),
-                    const SizedBox(height: 17,),
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      padding: EdgeInsets.zero,
-                      margin: EdgeInsets.zero,
-                      clipBehavior: Clip.hardEdge,
-                      width: (MediaQuery.of(context).size.width) - 50,
-                      height: (MediaQuery.of(context).size.width) - 50,
-                      decoration: ShapeDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(snapshot.data!.imgURL),
-                            fit: BoxFit.cover
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 30.0,
-                              spreadRadius: 5,
-                              offset: Offset(
-                                  0,
-                                  6
-                              )
-                          )
+                  ),
+                  child: ListView(
+                    padding: EdgeInsets.only(top: 0, right: 0, left: 0, bottom: 6),
+                    shrinkWrap: true,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(snapshot.data!.title,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                                letterSpacing: -0.5,
+                                color: Colors.white
+                            ),
+                          ),
+                          SizedBox(height: 7),
+                          Text(snapshot.data!.source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600, fontSize: 16)),
                         ],
-                        color: Colors.grey.withOpacity(0.75),
+                      ),
+                    ],
+                  ).frosted(
+                    blur: 20,
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    frostColor: Colors.black.withOpacity(0.1),
+                    // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))
+                  ),
+                );
+              }
+            ),
+            const SizedBox(height: 30),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(FeatherIcons.box, color: Colors.white,size: 20),
+                  SizedBox(width: 5),
+                  Text("Your news feed is ready", style: baseLight(18.0))
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 130,
+              height: 40,
+              child: CupertinoButton(
+                padding: EdgeInsets.zero,
+                // behavior: HitTestBehavior.opaque,
+                onPressed: () {
+                  NetworkSystem().showSources();
+                  showMaterialModalBottomSheet(
+                    duration: Duration(milliseconds: 300),
+                    // expand: true,
+                    // bounce: true,
+                    // elevation: ,
+                    // useRootNavigator: true,
+                    // barrierColor: Colors.black.withOpacity(0.7),
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) => Container(
+                      // padding: EdgeInsets.all(24),
+                      height: MediaQuery.of(context).size.height-55,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFF1C1C1E),
                         shape: SmoothRectangleBorder(
                           borderRadius: SmoothBorderRadius(
-                            cornerRadius: 18,
+                            cornerRadius: 26,
                             cornerSmoothing: 0.9,
                           ),
                         ),
                       ),
-                      child: ListView(
-                        padding: EdgeInsets.only(top: 0, right: 0, left: 0, bottom: 6),
-                        shrinkWrap: true,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(snapshot.data!.title,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 17,
-                                    letterSpacing: -0.5,
-                                    color: Colors.white
+                      child: _sources(),
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("View all sources", style: baseOpacedDown(14)),
+                    Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white)
+                  ],
+                ),
+              ),
+            ),
+            const Expanded(child: SizedBox(width: 10)),
+            Container(
+              // margin: EdgeInsets.symmetric(horizontal: 26.0),
+              // padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 32),
+              decoration: ShapeDecoration(
+                // color: Colors.grey.withOpacity(0.12),
+                shape: SmoothRectangleBorder(
+                  borderRadius: SmoothBorderRadius(
+                    cornerRadius: 14,
+                    cornerSmoothing: 0.9,
+                  ),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("News Region", style: base(18),),
+                  SizedBox(
+                    height: 38,
+                    child: CupertinoButton(
+                      borderRadius: BorderRadius.circular(10),
+                      // color: Colors.grey.withOpacity(0.2),
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                      onPressed: () {
+                        showMaterialModalBottomSheet(
+                          duration: Duration(milliseconds: 300),
+                          // expand: true,
+                          // bounce: true,
+                          // elevation: ,
+                          // useRootNavigator: true,
+                          // barrierColor: Colors.black.withOpacity(0.7),
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) => Container(
+                            height: (MediaQuery.of(context).size.height)*0.3,
+                            decoration: ShapeDecoration(
+                              color: Color(0xFF1C1C1E),
+                              shape: SmoothRectangleBorder(
+                                borderRadius: SmoothBorderRadius(
+                                  cornerRadius: 26,
+                                  cornerSmoothing: 0.9,
                                 ),
                               ),
-                              SizedBox(height: 7),
-                              Text(snapshot.data!.source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600, fontSize: 16)),
-                            ],
-                          ),
-                        ],
-                      ).frosted(
-                        blur: 20,
-                        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                        frostColor: Colors.black.withOpacity(0.1),
-                        // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(FeatherIcons.box, color: Colors.white,size: 20),
-                          SizedBox(width: 5),
-                          Text("Your news feed is ready", style: baseLight(18.0))
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 130,
-                      height: 40,
-                      child: CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        // behavior: HitTestBehavior.opaque,
-                        onPressed: () {
-                          NetworkSystem().showSources();
-                          showMaterialModalBottomSheet(
-                            duration: Duration(milliseconds: 300),
-                            // expand: true,
-                            // bounce: true,
-                            // elevation: ,
-                            // useRootNavigator: true,
-                            // barrierColor: Colors.black.withOpacity(0.7),
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (context) => Container(
-                              // padding: EdgeInsets.all(24),
-                              height: MediaQuery.of(context).size.height-55,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFF1C1C1E),
-                                shape: SmoothRectangleBorder(
-                                  borderRadius: SmoothBorderRadius(
-                                    cornerRadius: 26,
-                                    cornerSmoothing: 0.9,
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(top: 20, right: 24, left: 24),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(width: 10),
+                                      SizedBox(
+                                        height: 20,
+                                        child: CupertinoButton(
+                                          padding: EdgeInsets.zero,
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            "Done",
+                                            style: blueInk(18),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                              child: _sources(),
+                                Container(
+                                  height: (MediaQuery.of(context).size.height)*0.2,
+                                  // padding: EdgeInsets.all(24),
+                                  //'Global',
+                                  //     'India',
+                                  //     'USA',
+                                  //     'UK',
+                                  //     'Oman',
+                                  //     'Qatar',
+                                  //     'Thailand'
+                                  child: CupertinoPicker(
+                                    looping: true,
+                                    itemExtent: 37.0,
+                                    children: <Widget>[
+                                      for (String each in options) Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text(each, style: baseLight(21))
+                                      )
+                                    ],
+                                    onSelectedItemChanged: (int index) {
+                                      setState(() {
+                                        systemIndex = index;
+                                        // print(valuations[index]);
+                                        locale = valuations[index];
+                                        print(locale);
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
-                          );
-                        },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        // width: 120,
+                        // padding: EdgeInsets.symmetric(horizontal: 13),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("View all sources", style: baseOpacedDown(14)),
-                            Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white)
+                            Text(options[valuations.indexOf(locale)], style: base(18),),
+                            Icon(FeatherIcons.chevronDown, color: Colors.white,)
                           ],
                         ),
                       ),
                     ),
-                    const Expanded(child: SizedBox(width: 10)),
-                    Container(
-                      // margin: EdgeInsets.symmetric(horizontal: 26.0),
-                      // padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
-                      padding: EdgeInsets.symmetric(horizontal: 32),
-                      decoration: ShapeDecoration(
-                        // color: Colors.grey.withOpacity(0.12),
-                        shape: SmoothRectangleBorder(
-                          borderRadius: SmoothBorderRadius(
-                            cornerRadius: 14,
-                            cornerSmoothing: 0.9,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("News Region", style: base(18),),
-                          SizedBox(
-                            height: 38,
-                            child: CupertinoButton(
-                              borderRadius: BorderRadius.circular(10),
-                              // color: Colors.grey.withOpacity(0.2),
-                              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                              onPressed: () {
-                                showMaterialModalBottomSheet(
-                                  duration: Duration(milliseconds: 300),
-                                  // expand: true,
-                                  // bounce: true,
-                                  // elevation: ,
-                                  // useRootNavigator: true,
-                                  // barrierColor: Colors.black.withOpacity(0.7),
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) => Container(
-                                    height: (MediaQuery.of(context).size.height)*0.3,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFF1C1C1E),
-                                      shape: SmoothRectangleBorder(
-                                        borderRadius: SmoothBorderRadius(
-                                          cornerRadius: 26,
-                                          cornerSmoothing: 0.9,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.only(top: 20, right: 24, left: 24),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              SizedBox(width: 10),
-                                              SizedBox(
-                                                height: 20,
-                                                child: CupertinoButton(
-                                                  padding: EdgeInsets.zero,
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text(
-                                                    "Done",
-                                                    style: blueInk(18),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          height: (MediaQuery.of(context).size.height)*0.2,
-                                          // padding: EdgeInsets.all(24),
-                                          //'Global',
-                                          //     'India',
-                                          //     'USA',
-                                          //     'UK',
-                                          //     'Oman',
-                                          //     'Qatar',
-                                          //     'Thailand'
-                                          child: CupertinoPicker(
-                                            looping: true,
-                                            itemExtent: 37.0,
-                                            children: <Widget>[
-                                              for (String each in options) Padding(
-                                                  padding: const EdgeInsets.only(top: 5.0),
-                                                  child: Text(each, style: baseLight(21))
-                                              )
-                                            ],
-                                            onSelectedItemChanged: (int index) {
-                                              setState(() {
-                                                systemIndex = index;
-                                                // print(valuations[index]);
-                                                locale = valuations[index];
-                                                print(locale);
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                // width: 120,
-                                // padding: EdgeInsets.symmetric(horizontal: 13),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(options[valuations.indexOf(locale)], style: base(18),),
-                                    Icon(FeatherIcons.chevronDown, color: Colors.white,)
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 14,),
-                    Container(
-                      // margin: EdgeInsets.symmetric(horizontal: 26.0),
-                      // padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
-                      padding: EdgeInsets.symmetric(horizontal: 32),
-                      decoration: ShapeDecoration(
-                        // color: Colors.grey.withOpacity(0.12),
-                        shape: SmoothRectangleBorder(
-                          borderRadius: SmoothBorderRadius(
-                            cornerRadius: 14,
-                            cornerSmoothing: 0.9,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("News Category", style: base(18),),
-                          SizedBox(
-                            height: 38,
-                            child: CupertinoButton(
-                              borderRadius: BorderRadius.circular(10),
-                              // color: Colors.grey.withOpacity(0.2),
-                              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                              onPressed: () {
-                                showMaterialModalBottomSheet(
-                                  duration: Duration(milliseconds: 300),
-                                  // expand: true,
-                                  // bounce: true,
-                                  // elevation: ,
-                                  // useRootNavigator: true,
-                                  barrierColor: Colors.black.withOpacity(0.7),
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) => Container(
-                                    height: (MediaQuery.of(context).size.height)*0.3,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFF1D1D1E),
-                                      shape: SmoothRectangleBorder(
-                                        borderRadius: SmoothBorderRadius(
-                                          cornerRadius: 26,
-                                          cornerSmoothing: 0.9,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.only(top: 20, left: 24, right: 24),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              SizedBox(width: 10),
-                                              SizedBox(
-                                                height: 20,
-                                                child: CupertinoButton(
-                                                  padding: EdgeInsets.zero,
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text(
-                                                    "Done",
-                                                    style: blueInk(18),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          height: (MediaQuery.of(context).size.height)*0.2,
-                                          // padding: EdgeInsets.all(24),
-                                          child: CupertinoPicker(
-                                            looping: true,
-                                            itemExtent: 37.0,
-                                            children: <Widget>[
-                                              for (String typex in types) Padding(
-                                                  padding: const EdgeInsets.only(top: 5.0),
-                                                  child: Text(typex.toCapitalized(), style: baseLight(21))
-                                              )
-                                            ],
-                                            onSelectedItemChanged: (int index) {
-                                              setState(() {
-                                                category = types[index];
-
-                                                print(category);
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                // width: 120,
-                                // padding: EdgeInsets.symmetric(horizontal: 13),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(category.toCapitalized(), style: base(18),),
-                                    Icon(FeatherIcons.chevronDown, color: Colors.white,)
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    themeButton(Icons.play_arrow_rounded, "Start", () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
-                    }),
-                    const SizedBox(height: 36,),
-                  ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 14,),
+            Container(
+              // margin: EdgeInsets.symmetric(horizontal: 26.0),
+              // padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 32),
+              decoration: ShapeDecoration(
+                // color: Colors.grey.withOpacity(0.12),
+                shape: SmoothRectangleBorder(
+                  borderRadius: SmoothBorderRadius(
+                    cornerRadius: 14,
+                    cornerSmoothing: 0.9,
+                  ),
                 ),
               ),
-            );
-        },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("News Category", style: base(18),),
+                  SizedBox(
+                    height: 38,
+                    child: CupertinoButton(
+                      borderRadius: BorderRadius.circular(10),
+                      // color: Colors.grey.withOpacity(0.2),
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                      onPressed: () {
+                        showMaterialModalBottomSheet(
+                          duration: Duration(milliseconds: 300),
+                          // expand: true,
+                          // bounce: true,
+                          // elevation: ,
+                          // useRootNavigator: true,
+                          barrierColor: Colors.black.withOpacity(0.7),
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) => Container(
+                            height: (MediaQuery.of(context).size.height)*0.3,
+                            decoration: ShapeDecoration(
+                              color: Color(0xFF1D1D1E),
+                              shape: SmoothRectangleBorder(
+                                borderRadius: SmoothBorderRadius(
+                                  cornerRadius: 26,
+                                  cornerSmoothing: 0.9,
+                                ),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(top: 20, left: 24, right: 24),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(width: 10),
+                                      SizedBox(
+                                        height: 20,
+                                        child: CupertinoButton(
+                                          padding: EdgeInsets.zero,
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            "Done",
+                                            style: blueInk(18),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: (MediaQuery.of(context).size.height)*0.2,
+                                  // padding: EdgeInsets.all(24),
+                                  child: CupertinoPicker(
+                                    looping: true,
+                                    itemExtent: 37.0,
+                                    children: <Widget>[
+                                      for (String typex in types) Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text(typex.toCapitalized(), style: baseLight(21))
+                                      )
+                                    ],
+                                    onSelectedItemChanged: (int index) {
+                                      setState(() {
+                                        category = types[index];
+
+                                        print(category);
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        // width: 120,
+                        // padding: EdgeInsets.symmetric(horizontal: 13),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(category.toCapitalized(), style: base(18),),
+                            Icon(FeatherIcons.chevronDown, color: Colors.white,)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            themeButton(Icons.play_arrow_rounded, "Start", () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
+            }),
+            const SizedBox(height: 36,),
+          ],
+        ),
       ),
+    ),
     );
   }
 

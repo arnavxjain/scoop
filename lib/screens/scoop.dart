@@ -32,6 +32,8 @@ class _ScoopStreamState extends State<ScoopStream> {
 
   final _controller = PageController();
 
+  double boxHeight = 300;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
