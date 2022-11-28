@@ -91,7 +91,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  alignment: Alignment.topRight,
+                                  alignment: Alignment.topLeft,
                                   padding: EdgeInsets.zero,
                                   margin: EdgeInsets.zero,
                                   width: (MediaQuery.of(context).size.width) - 50,
