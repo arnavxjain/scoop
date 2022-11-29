@@ -9,6 +9,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
 import 'package:scoop/screens/scoop.dart';
+import 'package:scoop/screens/settings.dart';
 import 'package:sheet/sheet.dart';
 
 late List<SourceObj> sources;
@@ -140,7 +141,7 @@ class _HomeState extends State<Home> {
                             child: CupertinoButton(
                                 padding: EdgeInsets.zero,
                                 onPressed: () {
-                                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Settings()));
                                 },
                                 child: Icon(Icons.account_circle_rounded, color: Colors.white, size: 27,)
                             ),
