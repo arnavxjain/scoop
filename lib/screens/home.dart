@@ -229,6 +229,7 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           NetworkSystem().showSources();
                           showMaterialModalBottomSheet(
+                            clipBehavior: Clip.hardEdge,
                             duration: Duration(milliseconds: 300),
                             // expand: true,
                             // bounce: true,

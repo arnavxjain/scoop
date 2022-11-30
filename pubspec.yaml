@@ -25,6 +25,7 @@ dependencies:
   sheet: ^0.0.4+1
   http: ^0.13.5
   ionicons: ^0.2.1
+  liquid_pull_to_refresh: ^3.0.1
 
 dev_dependencies:
   flutter_test:
