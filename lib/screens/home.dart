@@ -238,6 +238,7 @@ class _HomeState extends State<Home> {
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) => Container(
+                              clipBehavior: Clip.hardEdge,
                               // padding: EdgeInsets.all(24),
                               height: MediaQuery.of(context).size.height-55,
                               decoration: ShapeDecoration(
