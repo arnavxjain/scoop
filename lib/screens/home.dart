@@ -122,17 +122,17 @@ class _HomeState extends State<Home> {
                 filter: ImageFilter.blur(sigmaX: 200.0, sigmaY: 200.0),
                 child: Column(
                   children: [
-                    const SizedBox(height: 66),
+                    const SizedBox(height: 70),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 33),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Scoop", style: TextStyle(
+                          Text("Good Evening, Arnav", style: TextStyle(
                             fontFamily: "SF Pro Display",
-                            fontSize: 24,
+                            fontSize: 20,
                             color: Colors.white,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w700,
                             letterSpacing: -1,
                           ),),
                           SizedBox(
