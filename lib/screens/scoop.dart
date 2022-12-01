@@ -312,7 +312,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                           "Scroll Layout",
                                           style: TextStyle(
                                             fontSize: 16,
-                                            color: Colors.white.withOpacity(0.7),
+                                            color: Colors.white.withOpacity(0.8),
                                             fontWeight: FontWeight.w600,
                                             letterSpacing: -1
                                           ),
