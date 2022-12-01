@@ -8,6 +8,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:pull_down_button/pull_down_button.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
 import 'package:sheet/sheet.dart';
@@ -245,12 +246,69 @@ class _ScoopStreamState extends State<ScoopStream> {
             bottom: 42,
             left: 30,
             child: SizedBox(
-                child: CupertinoButton(
-                  padding: EdgeInsets.zero,
-                    child: Icon(FeatherIcons.chevronLeft, color: Colors.white, size: 30,),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }
+              width: MediaQuery.of(context).size.width- 68,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CupertinoButton(
+                      padding: EdgeInsets.zero,
+                        child: Icon(FeatherIcons.chevronLeft, color: Colors.white, size: 30,),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }
+                    ),
+                    CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        child: Icon(CupertinoIcons.ellipsis_circle, color: Colors.white, size: 26,),
+                        onPressed: () {
+                          showMaterialModalBottomSheet(
+                            clipBehavior: Clip.hardEdge,
+                            barrierColor: Colors.black.withOpacity(0.9),
+                            backgroundColor: Color(0xFF191919),
+                              context: context,
+                              builder: (context) => Container(
+                                padding: EdgeInsets.all(20),
+                                height: MediaQuery.of(context).size.height*0.4,
+                                decoration: ShapeDecoration(
+                                  // color: Color(0xFF1C1C1E),
+                                  shape: SmoothRectangleBorder(
+                                    borderRadius: SmoothBorderRadius(
+                                      cornerRadius: 10,
+                                      cornerSmoothing: 0.9,
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Preferences", style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: -1,
+                                          fontSize: 20
+                                        )),
+                                        SizedBox(
+                                          height: 25,
+                                          width: 24,
+                                          child: CupertinoButton(
+                                              padding: EdgeInsets.zero,
+                                              child: Icon(CupertinoIcons.clear_circled_solid, color: Colors.grey.withOpacity(0.4), size: 27,),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              }
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                          );
+                        }
+                    ),
+                  ],
                 )
             ),
           ),

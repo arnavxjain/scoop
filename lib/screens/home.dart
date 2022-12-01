@@ -5,6 +5,7 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
@@ -91,6 +92,9 @@ class _HomeState extends State<Home> {
     'technology'
   ];
 
+  LocalStorage firstEntry = new LocalStorage("firstEntry");
+
+
   // business entertainment general health science sports technology
 
   int systemIndex = 0;
@@ -108,6 +112,7 @@ class _HomeState extends State<Home> {
         future: NetworkSystem().sysInit(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
+            // print(firstEntry.ready˳);
             return Container(
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
@@ -229,7 +234,10 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           NetworkSystem().showSources();
                           showMaterialModalBottomSheet(
-                            clipBehavior: Clip.hardEdge,
+                            useRootNavigator: true,
+                            elevation: 10,
+                            // elevation: 10,
+                            // clipBehavior: Clip.hardEdge,
                             duration: Duration(milliseconds: 300),
                             // expand: true,
                             // bounce: true,
