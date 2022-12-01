@@ -279,6 +279,8 @@ class _ScoopStreamState extends State<ScoopStream> {
                                   ),
                                 ),
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -301,7 +303,23 @@ class _ScoopStreamState extends State<ScoopStream> {
                                           ),
                                         )
                                       ],
-                                    )
+                                    ),
+                                    SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Scroll Layout",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white.withOpacity(0.7),
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: -1
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    // Container(width: double.infinity, height: 1, color: Colors.grey.withOpacity(0.3),)
                                   ],
                                 ),
                               )
