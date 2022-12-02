@@ -262,18 +262,17 @@ class _ScoopStreamState extends State<ScoopStream> {
                         child: Icon(CupertinoIcons.ellipsis_circle, color: Colors.white, size: 26,),
                         onPressed: () {
                           showMaterialModalBottomSheet(
-                            clipBehavior: Clip.hardEdge,
-                            barrierColor: Colors.black.withOpacity(0.9),
-                            backgroundColor: Color(0xFF191919),
+                            // barrierColor: Colors.black.withOpacity(0.5),
+                            backgroundColor: Colors.transparent,
                               context: context,
                               builder: (context) => Container(
                                 padding: EdgeInsets.all(20),
                                 height: MediaQuery.of(context).size.height*0.4,
                                 decoration: ShapeDecoration(
-                                  // color: Color(0xFF1C1C1E),
+                                  color: Color(0xFF1C1C1E),
                                   shape: SmoothRectangleBorder(
                                     borderRadius: SmoothBorderRadius(
-                                      cornerRadius: 10,
+                                      cornerRadius: 13,
                                       cornerSmoothing: 0.9,
                                     ),
                                   ),
@@ -304,7 +303,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                         )
                                       ],
                                     ),
-                                    SizedBox(height: 20),
+                                    SizedBox(height: 15),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
