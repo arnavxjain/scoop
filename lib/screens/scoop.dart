@@ -267,7 +267,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                               context: context,
                               builder: (context) => Container(
                                 padding: EdgeInsets.all(20),
-                                height: MediaQuery.of(context).size.height*0.4,
+                                height: MediaQuery.of(context).size.height*0.42,
                                 decoration: ShapeDecoration(
                                   color: Color(0xFF1C1C1E),
                                   shape: SmoothRectangleBorder(
@@ -304,20 +304,119 @@ class _ScoopStreamState extends State<ScoopStream> {
                                       ],
                                     ),
                                     SizedBox(height: 15),
+                                    Text(
+                                      "Scroll Layout",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white.withOpacity(0.8),
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: -1
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(vertical: 20),
+                                      // height: 160,
+                                      // margin: EdgeInsets.symmetric(horizontal: 10),
+                                      width: MediaQuery.of(context).size.width - 10,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFF222222),
+                                        shape: SmoothRectangleBorder(
+                                          borderRadius: SmoothBorderRadius(
+                                            cornerRadius: 16,
+                                            cornerSmoothing: 0.9,
+                                          ),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          CupertinoButton(
+                                            padding: EdgeInsets.zero,
+                                            onPressed: () {},
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: 50,
+                                                  height: 100,
+                                                  decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  image: DecorationImage(
+                                                  image: AssetImage("lib/assets/vertical.png"),
+                                                  fit: BoxFit.fitWidth,
+                                              ))),
+                                                SizedBox(height: 4),
+                                                Text("Vertical",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    letterSpacing: -.7,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 17
+                                                  ),
+                                                ),
+                                                SizedBox(height: 4),
+                                                Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent),
+                                                SizedBox(height: 8),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(width: 0.1),
+                                          CupertinoButton(
+                                            padding: EdgeInsets.zero,
+                                            onPressed: () {},
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                    width: 50,
+                                                    height: 100,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.transparent,
+                                                        image: DecorationImage(
+                                                          image: AssetImage("lib/assets/horizontal.png"),
+                                                          fit: BoxFit.fitWidth,
+                                                        ))),
+                                                SizedBox(height: 6),
+                                                Text("Horizontal",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      letterSpacing: -.7,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: 17
+                                                  ),
+                                                ),
+                                                SizedBox(height: 8),
+                                                Icon(CupertinoIcons.circle, color: Colors.grey),
+                                                SizedBox(height: 4),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 20),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          "Scroll Layout",
+                                        Text("  Custom setting",
                                           style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white.withOpacity(0.8),
+                                            color: Colors.white,
+                                            fontSize: 19,
                                             fontWeight: FontWeight.w600,
                                             letterSpacing: -1
                                           ),
                                         ),
+                                        CupertinoSwitch(
+                                            value: true,
+                                            onChanged: (boolean) {
+                                              print(boolean);
+                                          }
+                                        )
                                       ],
-                                    ),
+                                    )
                                     // Container(width: double.infinity, height: 1, color: Colors.grey.withOpacity(0.3),)
                                   ],
                                 ),
