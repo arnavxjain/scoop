@@ -401,7 +401,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("  Custom setting",
+                                        Text("  Custom Setting",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 19,
