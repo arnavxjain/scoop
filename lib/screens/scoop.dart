@@ -267,7 +267,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                               context: context,
                               builder: (context) => Container(
                                 padding: EdgeInsets.all(20),
-                                height: MediaQuery.of(context).size.height*0.42,
+                                height: MediaQuery.of(context).size.height*0.5,
                                 decoration: ShapeDecoration(
                                   color: Color(0xFF1C1C1E),
                                   shape: SmoothRectangleBorder(
@@ -347,7 +347,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                   image: AssetImage("lib/assets/vertical.png"),
                                                   fit: BoxFit.fitWidth,
                                               ))),
-                                                SizedBox(height: 4),
+                                                SizedBox(height: 6),
                                                 Text("Vertical",
                                                   style: TextStyle(
                                                     color: Colors.white,
@@ -356,9 +356,9 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                     fontSize: 17
                                                   ),
                                                 ),
-                                                SizedBox(height: 4),
-                                                Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent),
                                                 SizedBox(height: 8),
+                                                Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent),
+                                                SizedBox(height: 4),
                                               ],
                                             ),
                                           ),
