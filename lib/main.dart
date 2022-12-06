@@ -6,8 +6,8 @@ import 'package:scoop/screens/home.dart';
 void main() {
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-      statusBarColor: Colors.white, // Color for Android
-      statusBarBrightness: Brightness.dark // Dark == white status bar -- for IOS.
+      // statusBarColor: Colors.blueAccent, // Color for Android
+      statusBarBrightness: Brightness.light // Dark == white status bar -- for IOS.
   ));
 
   runApp(MaterialApp(
