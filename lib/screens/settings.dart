@@ -22,40 +22,16 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text("Settings"),
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 80),
         alignment: Alignment.topLeft,
-        color: Color(0xFF131313),
+        color: Color(0xFF000000),
         height: double.infinity,
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  height: 30,
-                  width: 50,
-                  child: CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(FeatherIcons.chevronLeft, color: Colors.blueAccent, size: 30,),
-                  ),
-                ),
-                Text("Settings",
-                  style: TextStyle(
-                    letterSpacing: -1,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
       ),
     );
   }

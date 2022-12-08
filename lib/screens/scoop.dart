@@ -11,6 +11,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sheet/sheet.dart';
 
 class ScoopStream extends StatefulWidget {
@@ -28,6 +29,8 @@ class _ScoopStreamState extends State<ScoopStream> {
   final String? category;
   final String? locale;
 
+  String? _currentScroll;
+
   _ScoopStreamState(this.locale, this.category);
 
   // print();
@@ -36,8 +39,30 @@ class _ScoopStreamState extends State<ScoopStream> {
 
   double boxHeight = 300;
 
+  getScrollLayout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _currentScroll = prefs.getString("scrollsystem");
+    if (_currentScroll != "vertical" || _currentScroll != "horizontal") {
+      setScrollLayout("vertical");
+      _currentScroll = "vertical";
+    }
+    return prefs.getString("scrollsystem");
+  }
+
+
+  setScrollLayout(String data) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("scrollsystem", data);
+  }
+
   Future<void> _refresh() async {
     return await Future.delayed(Duration(seconds: 2));
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
@@ -69,7 +94,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                     child: PageView.builder(
                       controller: _controller,
                       padEnds: false,
-                      scrollDirection: Axis.vertical,
+                      scrollDirection: _currentScroll == "vertical" ? Axis.vertical : Axis.horizontal,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         return Stack(
@@ -92,7 +117,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                             Container(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height,
-                              color: Colors.black.withOpacity(0.4),
+                              color: Colors.black.withOpacity(0.2),
                             ),
                             Positioned(
                               width: MediaQuery.of(context).size.width,
@@ -333,7 +358,12 @@ class _ScoopStreamState extends State<ScoopStream> {
                                         children: [
                                           CupertinoButton(
                                             padding: EdgeInsets.zero,
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              setScrollLayout("vertical");
+                                              setState(() {
+                                                _currentScroll = "vertical";
+                                              });
+                                            },
                                             child: Column(
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -357,7 +387,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                   ),
                                                 ),
                                                 SizedBox(height: 8),
-                                                Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent),
+                                                _currentScroll == "vertical" ? Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent) : Icon(CupertinoIcons.circle, color: Colors.grey),
                                                 SizedBox(height: 4),
                                               ],
                                             ),
@@ -365,7 +395,12 @@ class _ScoopStreamState extends State<ScoopStream> {
                                           SizedBox(width: 0.1),
                                           CupertinoButton(
                                             padding: EdgeInsets.zero,
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              setScrollLayout("horizontal");
+                                              setState(() {
+                                                _currentScroll = "horizontal";
+                                              });
+                                            },
                                             child: Column(
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -389,7 +424,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                   ),
                                                 ),
                                                 SizedBox(height: 8),
-                                                Icon(CupertinoIcons.circle, color: Colors.grey),
+                                                _currentScroll == "horizontal" ? Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent) : Icon(CupertinoIcons.circle, color: Colors.grey),
                                                 SizedBox(height: 4),
                                               ],
                                             ),

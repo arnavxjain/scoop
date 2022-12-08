@@ -28,6 +28,7 @@ dependencies:
   liquid_pull_to_refresh: ^3.0.1
   localstorage: ^4.0.0+1
   pull_down_button: ^0.4.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
