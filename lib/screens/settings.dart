@@ -29,7 +29,7 @@ class _SettingsState extends State<Settings> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 80),
         alignment: Alignment.topLeft,
-        color: Color(0xFF000000),
+        color: Color(0xFF111111),
         height: double.infinity,
         width: double.infinity,
       ),
