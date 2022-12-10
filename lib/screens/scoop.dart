@@ -393,7 +393,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       letterSpacing: -.7,
-                                                      fontWeight: FontWeight.w500,
+                                                      fontWeight: FontWeight.w400,
                                                       fontSize: 17
                                                     ),
                                                   ),
@@ -435,7 +435,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         letterSpacing: -.7,
-                                                        fontWeight: FontWeight.w500,
+                                                        fontWeight: FontWeight.w400,
                                                         fontSize: 17
                                                     ),
                                                   ),
@@ -456,7 +456,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 19,
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.w500,
                                               letterSpacing: -1
                                             ),
                                           ),
