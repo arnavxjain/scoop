@@ -29,8 +29,6 @@ class _ScoopStreamState extends State<ScoopStream> {
   final String? category;
   final String? locale;
 
-  String? _currentScroll;
-
   _ScoopStreamState(this.locale, this.category);
 
   // print();
@@ -39,24 +37,29 @@ class _ScoopStreamState extends State<ScoopStream> {
 
   double boxHeight = 300;
 
-  getScrollLayout() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _currentScroll = prefs.getString("scrollsystem");
-    if (_currentScroll != "vertical" || _currentScroll != "horizontal") {
-      setScrollLayout("vertical");
-      _currentScroll = "vertical";
-    }
-    return prefs.getString("scrollsystem");
-  }
-
-
-  setScrollLayout(String data) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.setString("scrollsystem", data);
-  }
-
   Future<void> _refresh() async {
     return await Future.delayed(Duration(seconds: 2));
+  }
+
+  bool? scrollY = true;
+
+  getScrollYMethod() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.getBool("scroll") == null || prefs.getBool("scroll") == "") {
+      setScrollYMethod(true);
+      scrollY = true;
+      return true;
+    }
+
+    scrollY = prefs.getBool("scroll");
+    return prefs.getBool("scroll");
+  }
+
+  setScrollYMethod(bool stance) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    scrollY = stance;
+    prefs.setBool("scroll", stance);
   }
 
   @override
@@ -68,6 +71,7 @@ class _ScoopStreamState extends State<ScoopStream> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF222222),
       body: Stack(
         children: [
           Container(
@@ -94,7 +98,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                     child: PageView.builder(
                       controller: _controller,
                       padEnds: false,
-                      scrollDirection: _currentScroll == "vertical" ? Axis.vertical : Axis.horizontal,
+                      scrollDirection: scrollY == true ? Axis.vertical : Axis.horizontal,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         return Stack(
@@ -290,171 +294,185 @@ class _ScoopStreamState extends State<ScoopStream> {
                             // barrierColor: Colors.black.withOpacity(0.5),
                             backgroundColor: Colors.transparent,
                               context: context,
-                              builder: (context) => Container(
-                                padding: EdgeInsets.all(20),
-                                height: MediaQuery.of(context).size.height*0.5,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFF1C1C1E),
-                                  shape: SmoothRectangleBorder(
-                                    borderRadius: SmoothBorderRadius(
-                                      cornerRadius: 13,
-                                      cornerSmoothing: 0.9,
+                              builder: (context) => StatefulBuilder(
+                                builder: (BuildContext context, StateSetter setModalState) {
+                                  return Container(
+                                  padding: EdgeInsets.all(20),
+                                  height: MediaQuery.of(context).size.height*0.5,
+                                  decoration: ShapeDecoration(
+                                    color: Color(0xFF1C1C1E),
+                                    shape: SmoothRectangleBorder(
+                                      borderRadius: SmoothBorderRadius(
+                                        cornerRadius: 13,
+                                        cornerSmoothing: 0.9,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Preferences", style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                          letterSpacing: -1,
-                                          fontSize: 20
-                                        )),
-                                        SizedBox(
-                                          height: 25,
-                                          width: 24,
-                                          child: CupertinoButton(
-                                              padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.clear_circled_solid, color: Colors.grey.withOpacity(0.4), size: 27,),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              }
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 15),
-                                    Text(
-                                      "Scroll Layout",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white.withOpacity(0.8),
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: -1
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Preferences", style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            letterSpacing: -1,
+                                            fontSize: 20
+                                          )),
+                                          SizedBox(
+                                            height: 25,
+                                            width: 24,
+                                            child: CupertinoButton(
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.clear_circled_solid, color: Colors.grey.withOpacity(0.4), size: 27,),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                }
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(vertical: 20),
-                                      // height: 160,
-                                      // margin: EdgeInsets.symmetric(horizontal: 10),
-                                      width: MediaQuery.of(context).size.width - 10,
-                                      decoration: ShapeDecoration(
-                                        color: Color(0xFF222222),
-                                        shape: SmoothRectangleBorder(
-                                          borderRadius: SmoothBorderRadius(
-                                            cornerRadius: 16,
-                                            cornerSmoothing: 0.9,
-                                          ),
+                                      SizedBox(height: 15),
+                                      Text(
+                                        "Scroll Layout",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white.withOpacity(0.8),
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: -1
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          CupertinoButton(
-                                            padding: EdgeInsets.zero,
-                                            onPressed: () {
-                                              setScrollLayout("vertical");
-                                              setState(() {
-                                                _currentScroll = "vertical";
-                                              });
-                                            },
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  width: 50,
-                                                  height: 100,
-                                                  decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  image: DecorationImage(
-                                                  image: AssetImage("lib/assets/vertical.png"),
-                                                  fit: BoxFit.fitWidth,
-                                              ))),
-                                                SizedBox(height: 6),
-                                                Text("Vertical",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    letterSpacing: -.7,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 17
-                                                  ),
-                                                ),
-                                                SizedBox(height: 8),
-                                                _currentScroll == "vertical" ? Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent) : Icon(CupertinoIcons.circle, color: Colors.grey),
-                                                SizedBox(height: 4),
-                                              ],
+                                      SizedBox(height: 10),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(vertical: 20),
+                                        // height: 160,
+                                        // margin: EdgeInsets.symmetric(horizontal: 10),
+                                        width: MediaQuery.of(context).size.width - 10,
+                                        decoration: ShapeDecoration(
+                                          color: Color(0xFF222222),
+                                          shape: SmoothRectangleBorder(
+                                            borderRadius: SmoothBorderRadius(
+                                              cornerRadius: 16,
+                                              cornerSmoothing: 0.9,
                                             ),
                                           ),
-                                          SizedBox(width: 0.1),
-                                          CupertinoButton(
-                                            padding: EdgeInsets.zero,
-                                            onPressed: () {
-                                              setScrollLayout("horizontal");
-                                              setState(() {
-                                                _currentScroll = "horizontal";
-                                              });
-                                            },
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            CupertinoButton(
+                                              padding: EdgeInsets.zero,
+                                              onPressed: () {
+                                                setModalState(() {
+                                                  scrollY = true;
+                                                  setScrollYMethod(true);
+                                                });
+                                                setState(() {
+                                                  scrollY = true;
+                                                  setScrollYMethod(true);
+                                                });
+                                                print("scrollY $scrollY");
+                                              },
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Container(
                                                     width: 50,
                                                     height: 100,
                                                     decoration: BoxDecoration(
-                                                        color: Colors.transparent,
-                                                        image: DecorationImage(
-                                                          image: AssetImage("lib/assets/horizontal.png"),
-                                                          fit: BoxFit.fitWidth,
-                                                        ))),
-                                                SizedBox(height: 6),
-                                                Text("Horizontal",
-                                                  style: TextStyle(
+                                                    color: Colors.transparent,
+                                                    image: DecorationImage(
+                                                    image: AssetImage("lib/assets/vertical.png"),
+                                                    fit: BoxFit.fitWidth,
+                                                ))),
+                                                  SizedBox(height: 6),
+                                                  Text("Vertical",
+                                                    style: TextStyle(
                                                       color: Colors.white,
                                                       letterSpacing: -.7,
                                                       fontWeight: FontWeight.w500,
                                                       fontSize: 17
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(height: 8),
-                                                _currentScroll == "horizontal" ? Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent) : Icon(CupertinoIcons.circle, color: Colors.grey),
-                                                SizedBox(height: 4),
-                                              ],
+                                                  SizedBox(height: 8),
+                                                  scrollY == true ? Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent) : Icon(CupertinoIcons.circle, color: Colors.grey),
+                                                  SizedBox(height: 4),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(width: 0.1),
+                                            CupertinoButton(
+                                              padding: EdgeInsets.zero,
+                                              onPressed: () {
+                                                setModalState(() {
+                                                  scrollY = false;
+                                                  setScrollYMethod(false);
+                                                });
+                                                setState(() {
+                                                  scrollY = false;
+                                                  setScrollYMethod(false);
+                                                });
+                                                print("scrollY $scrollY");
+                                              },
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                      width: 50,
+                                                      height: 100,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.transparent,
+                                                          image: DecorationImage(
+                                                            image: AssetImage("lib/assets/horizontal.png"),
+                                                            fit: BoxFit.fitWidth,
+                                                          ))),
+                                                  SizedBox(height: 6),
+                                                  Text("Horizontal",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        letterSpacing: -.7,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontSize: 17
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 8),
+                                                  scrollY == false ? Icon(CupertinoIcons.checkmark_circle_fill, color: Colors.blueAccent) : Icon(CupertinoIcons.circle, color: Colors.grey),
+                                                  SizedBox(height: 4),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 20),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("  Custom Setting",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 19,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: -1
                                             ),
                                           ),
+                                          CupertinoSwitch(
+                                              value: true,
+                                              onChanged: (boolean) {
+                                                print(boolean);
+                                            }
+                                          )
                                         ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 20),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("  Custom Setting",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.w600,
-                                            letterSpacing: -1
-                                          ),
-                                        ),
-                                        CupertinoSwitch(
-                                            value: true,
-                                            onChanged: (boolean) {
-                                              print(boolean);
-                                          }
-                                        )
-                                      ],
-                                    )
-                                    // Container(width: double.infinity, height: 1, color: Colors.grey.withOpacity(0.3),)
-                                  ],
-                                ),
+                                      )
+                                      // Container(width: double.infinity, height: 1, color: Colors.grey.withOpacity(0.3),)
+                                    ],
+                                  ),
+                                 );
+                                },
                               )
                           );
                         }

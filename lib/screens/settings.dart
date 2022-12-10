@@ -22,6 +22,9 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
+      
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text("Settings"),
