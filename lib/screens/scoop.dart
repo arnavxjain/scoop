@@ -140,17 +140,17 @@ class _ScoopStreamState extends State<ScoopStream> {
                                     // height: (MediaQuery.of(context).size.width) - 50,
                                     decoration: ShapeDecoration(
                                       image: DecorationImage(
-                                          image: NetworkImage(snapshot.data![index].imgURL),
-                                          fit: BoxFit.cover
+                                        image: NetworkImage(snapshot.data![index].imgURL),
+                                        fit: BoxFit.cover,
                                       ),
                                       shadows: const [
                                         BoxShadow(
-                                            color: Colors.black26,
+                                            color: Colors.black38,
                                             blurRadius: 30.0,
                                             spreadRadius: 5,
                                             offset: Offset(
                                                 0,
-                                                6
+                                                10
                                             )
                                         )
                                       ],
@@ -212,7 +212,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                               color: Colors.white
                                           ),
                                         ),
-                                        SizedBox(height: 7.5),
+                                        SizedBox(height: 8),
                                         SizedBox(
                                           height: 20,
                                           // width: 100,
@@ -228,8 +228,9 @@ class _ScoopStreamState extends State<ScoopStream> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(height: 15),
+                                        SizedBox(height: 14),
                                         Text(snapshot.data![index].content,
+                                          textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: Colors.white.withOpacity(0.7),
                                               fontSize: 16,
@@ -237,7 +238,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                               letterSpacing: -0.4
                                           ),
                                         ),
-                                        Row(
+                                        snapshot.data![index].content != "No Content Available." ? Row(
                                           children: [
                                             SizedBox(
                                               child: CupertinoButton(
@@ -246,16 +247,16 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                 child: Text(
                                                   "Read More",
                                                   style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 17
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 17
                                                   ),
                                                 ),
                                               ),
                                             ),
                                             SizedBox(height: 1,)
                                           ],
-                                        ),
+                                        ) : SizedBox()
                                       ],
                                     ),
                                   )

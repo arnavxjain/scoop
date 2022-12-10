@@ -44,7 +44,7 @@ class NetworkSystem {
         Article newArticle = Article(
             imgURL: resArticles[x]["urlToImage"] ?? "https://picsum.photos/200/200",
             title: resArticles[x]["title"] ?? "Error",
-            content: resArticles[x]["content"] ?? "No Content Available",
+            content: resArticles[x]["content"] ?? "No Content Available.",
             source: resArticles[x]["source"]["name"] ?? "n/a"
         );
 
