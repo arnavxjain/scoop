@@ -13,6 +13,7 @@ import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sheet/sheet.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class ScoopStream extends StatefulWidget {
 
@@ -213,20 +214,51 @@ class _ScoopStreamState extends State<ScoopStream> {
                                           ),
                                         ),
                                         SizedBox(height: 8),
-                                        SizedBox(
-                                          height: 20,
-                                          // width: 100,
-                                          child: CupertinoButton(
-                                            padding: EdgeInsets.zero,
-                                            onPressed: () {},
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                Text(snapshot.data![index].source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600),),
-                                                Icon(FeatherIcons.chevronRight, size: 19, color: Colors.white.withOpacity(0.3),)
-                                              ],
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 20,
+                                              // width: 100,
+                                              child: CupertinoButton(
+                                                padding: EdgeInsets.zero,
+                                                onPressed: () {
+                                                  print(snapshot.data![index].url);
+                                                  showMaterialModalBottomSheet(
+                                                    expand: true,
+                                                    context: context,
+                                                    builder: (BuildContext context) => Container(
+                                                      width: MediaQuery.of(context).size.width,
+                                                      height: MediaQuery.of(context).size.height,
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            padding: EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
+                                                            width: MediaQuery.of(context).size.width,
+                                                            height: 100,
+                                                            child: Text("demo"),
+                                                          ).frosted(blur: 10, frostColor: Colors.black),
+                                                          Expanded(
+                                                            child: WebView(
+                                                              javascriptMode: JavascriptMode.unrestricted,
+                                                              initialUrl: snapshot.data![index].url,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  );
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  children: [
+                                                    Text(snapshot.data![index].source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600),),
+                                                    Icon(FeatherIcons.chevronRight, size: 19, color: Colors.white.withOpacity(0.3),)
+                                                  ],
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                            SizedBox(height: 1,)
+                                          ],
                                         ),
                                         SizedBox(height: 14),
                                         Text(snapshot.data![index].content,

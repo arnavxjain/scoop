@@ -45,7 +45,8 @@ class NetworkSystem {
             imgURL: resArticles[x]["urlToImage"] ?? "https://picsum.photos/200/200",
             title: resArticles[x]["title"] ?? "Error",
             content: resArticles[x]["content"] ?? "No Content Available.",
-            source: resArticles[x]["source"]["name"] ?? "n/a"
+            source: resArticles[x]["source"]["name"] ?? "n/a",
+            url: resArticles[x]["url"]
         );
 
         articles.add(newArticle);
@@ -65,7 +66,8 @@ class NetworkSystem {
         imgURL: resArticles[0]["urlToImage"] ?? "https://picsum.photos/200/200",
         title: resArticles[0]["title"] ?? "Error",
         content: resArticles[0]["content"] ?? "No Content Available",
-        source: resArticles[0]["source"]["name"] ?? "n/a"
+        source: resArticles[0]["source"]["name"] ?? "n/a",
+        url: resArticles[0]["url"]
     );
 
     return newArticle;
