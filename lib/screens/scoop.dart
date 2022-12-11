@@ -11,6 +11,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
+import 'package:scoop/screens/dynamic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sheet/sheet.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -222,31 +223,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                               child: CupertinoButton(
                                                 padding: EdgeInsets.zero,
                                                 onPressed: () {
-                                                  print(snapshot.data![index].url);
-                                                  showMaterialModalBottomSheet(
-                                                    expand: true,
-                                                    context: context,
-                                                    builder: (BuildContext context) => Container(
-                                                      width: MediaQuery.of(context).size.width,
-                                                      height: MediaQuery.of(context).size.height,
-                                                      child: Column(
-                                                        children: [
-                                                          Container(
-                                                            padding: EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
-                                                            width: MediaQuery.of(context).size.width,
-                                                            height: 100,
-                                                            child: Text("demo"),
-                                                          ).frosted(blur: 10, frostColor: Colors.black),
-                                                          Expanded(
-                                                            child: WebView(
-                                                              javascriptMode: JavascriptMode.unrestricted,
-                                                              initialUrl: snapshot.data![index].url,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  );
+                                                  // Navigator.of(context).push(_createRoute(snapshot.data![index].url, snapshot.data![index].source));
                                                 },
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -518,4 +495,23 @@ class _ScoopStreamState extends State<ScoopStream> {
       ),
     );
   }
+}
+
+Route _createRoute(String? urlData, String? source) {
+  print("DynamicLinkState Call: [501:04] : $urlData");
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => DynamicLink(url: urlData, source: source,),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
