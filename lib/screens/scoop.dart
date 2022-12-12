@@ -159,7 +159,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                       color: Colors.grey.withOpacity(0.75),
                                       shape: SmoothRectangleBorder(
                                         borderRadius: SmoothBorderRadius(
-                                          cornerRadius: 18,
+                                          cornerRadius: 15,
                                           cornerSmoothing: 0.9,
                                         ),
                                       ),
