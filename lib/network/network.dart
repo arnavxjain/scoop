@@ -57,7 +57,7 @@ class NetworkSystem {
   }
 
   Future<Article> sysInit() async {
-    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=us&apiKey=$apiKey")));
+    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=gb&apiKey=$apiKey")));
 
     final res = json.decode(response.body);
     final resArticles = res["articles"];
