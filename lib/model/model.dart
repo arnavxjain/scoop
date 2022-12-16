@@ -26,6 +26,7 @@ class Article {
   final String content;
   final String source;
   final String url;
+  final String sourceId;
 
-  Article({required this.imgURL, required this.title, required this.content, required this.source, required this.url});
+  Article({required this.imgURL, required this.title, required this.content, required this.source, required this.url, required this.sourceId});
 }
