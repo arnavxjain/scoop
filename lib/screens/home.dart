@@ -289,7 +289,13 @@ class _HomeState extends State<Home> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("News Region", style: base(18),),
+                          Row(
+                            children: [
+                              Icon(CupertinoIcons.globe, color: Colors.white),
+                              SizedBox(width: 5),
+                              Text("News Region", style: base(17),),
+                            ],
+                          ),
                           SizedBox(
                             height: 38,
                             child: CupertinoButton(
@@ -381,8 +387,8 @@ class _HomeState extends State<Home> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(options[valuations.indexOf(locale)], style: base(18),),
-                                    Icon(FeatherIcons.chevronDown, color: Colors.white,)
+                                    Text(options[valuations.indexOf(locale)], style: base(17)),
+                                    Icon(FeatherIcons.chevronDown, color: Colors.white, size: 22,)
                                   ],
                                 ),
                               ),
@@ -391,7 +397,7 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 14,),
+                    SizedBox(height: 7,),
                     Container(
                       // margin: EdgeInsets.symmetric(horizontal: 26.0),
                       // padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
@@ -408,7 +414,13 @@ class _HomeState extends State<Home> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("News Category", style: base(18),),
+                          Row(
+                            children: [
+                              Icon(CupertinoIcons.list_bullet_below_rectangle, color: Colors.white),
+                              SizedBox(width: 5),
+                              Text("News Category", style: base(17),),
+                            ],
+                          ),
                           SizedBox(
                             height: 38,
                             child: CupertinoButton(
@@ -492,8 +504,8 @@ class _HomeState extends State<Home> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(category.toCapitalized(), style: base(18),),
-                                    Icon(FeatherIcons.chevronDown, color: Colors.white,)
+                                    Text(category.toCapitalized(), style: base(17)),
+                                    Icon(FeatherIcons.chevronDown, color: Colors.white, size: 22)
                                   ],
                                 ),
                               ),
@@ -523,8 +535,8 @@ class _HomeState extends State<Home> {
     return CupertinoButton(
       onPressed: tap,
       child: Container(
-        width: MediaQuery.of(context).size.width-50,
-        height: 54,
+        width: MediaQuery.of(context).size.width,
+        height: 50,
         margin: EdgeInsets.symmetric(horizontal: 6.0),
         decoration: ShapeDecoration(
           color: Colors.black87,

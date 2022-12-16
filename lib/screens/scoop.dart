@@ -137,8 +137,8 @@ class _ScoopStreamState extends State<ScoopStream> {
                                     alignment: Alignment.topLeft,
                                     padding: EdgeInsets.zero,
                                     margin: EdgeInsets.zero,
-                                    width: (MediaQuery.of(context).size.width) - 50,
-                                    height: (MediaQuery.of(context).size.width) - 50,
+                                    width: (MediaQuery.of(context).size.width) - 43,
+                                    height: (MediaQuery.of(context).size.width) - 43,
                                     // height: (MediaQuery.of(context).size.width) - 50,
                                     decoration: ShapeDecoration(
                                       image: DecorationImage(
@@ -203,13 +203,13 @@ class _ScoopStreamState extends State<ScoopStream> {
                                   SizedBox(height: 15),
                                   Container(
                                     margin: EdgeInsets.only(top: 5),
-                                    padding: EdgeInsets.symmetric(horizontal: 30),
+                                    padding: EdgeInsets.symmetric(horizontal: 26),
                                     child: Column(
                                       children: [
                                         Text(snapshot.data![index].title,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               letterSpacing: -0.5,
                                               color: Colors.white
                                           ),
@@ -258,7 +258,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: 17
+                                                      fontSize: 16
                                                   ),
                                                 ),
                                               ),
