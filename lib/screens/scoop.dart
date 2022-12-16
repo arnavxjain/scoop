@@ -12,6 +12,7 @@ import 'package:pull_down_button/pull_down_button.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
 import 'package:scoop/screens/dynamic.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sheet/sheet.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -159,7 +160,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                       color: Colors.grey.withOpacity(0.75),
                                       shape: SmoothRectangleBorder(
                                         borderRadius: SmoothBorderRadius(
-                                          cornerRadius: 15,
+                                          cornerRadius: 20,
                                           cornerSmoothing: 0.9,
                                         ),
                                       ),
@@ -185,6 +186,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                       padding: EdgeInsets.zero,
                                                       child: Icon(Ionicons.share_outline, color: Colors.white, size: 20,),
                                                       onPressed: () {
+                                                        Share.share(snapshot.data![index].url, subject: "Share Article Link");
                                                       }
                                                   )
                                               ),
