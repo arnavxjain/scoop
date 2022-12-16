@@ -36,7 +36,9 @@ class _ScoopStreamState extends State<ScoopStream> {
 
   // print();
 
-  final _controller = PageController();
+  final PageController _controller = PageController();
+
+  int scrollPos = 0;
 
   double boxHeight = 300;
 
@@ -103,6 +105,8 @@ class _ScoopStreamState extends State<ScoopStream> {
                       padEnds: false,
                       scrollDirection: scrollY == true ? Axis.vertical : Axis.horizontal,
                       itemCount: snapshot.data!.length,
+                      onPageChanged: (index) {
+                      },
                       itemBuilder: (context, index) {
                         return Stack(
                           alignment: Alignment.center,
