@@ -190,7 +190,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                       padding: EdgeInsets.zero,
                                                       child: Icon(Ionicons.share_outline, color: Colors.white, size: 20,),
                                                       onPressed: () {
-                                                        Share.share(snapshot.data![index].url, subject: "Share Article Link");
+                                                        Share.share(snapshot.data![index].url, subject: snapshot.data![index].title);
                                                       }
                                                   )
                                               ),
