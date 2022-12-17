@@ -232,6 +232,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                   // Navigator.of(context).push(_createRoute(snapshot.data![index].url, snapshot.data![index].source));
                                                 },
                                                 child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                   children: [
                                                     Text(snapshot.data![index].source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600),),
@@ -260,7 +261,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                 onPressed: () {},
                                                 padding: EdgeInsets.zero,
                                                 child: Text(
-                                                  "Read More",
+                                                  "Read Full Article",
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontWeight: FontWeight.w600,

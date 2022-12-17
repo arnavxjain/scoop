@@ -187,6 +187,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       child: ListView(
+                        physics: NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(top: 0, right: 0, left: 0, bottom: 6),
                         shrinkWrap: true,
                         children: [
