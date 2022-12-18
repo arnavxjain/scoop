@@ -270,7 +270,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(height: 1,)
+                                            SizedBox(height: 0.2,)
                                           ],
                                         ) : SizedBox()
                                       ],
