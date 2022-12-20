@@ -19,7 +19,7 @@ class NetworkSystem {
         SourceObj newSource = SourceObj(
           name: resSources[x]["name"],
           URL: resSources[x]["url"],
-          type: resSources[x]["category"]
+          type: resSources[x]["category"]v
         );
 
         sources.add(newSource);
