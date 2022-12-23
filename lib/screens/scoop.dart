@@ -229,7 +229,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                               child: CupertinoButton(
                                                 padding: EdgeInsets.zero,
                                                 onPressed: () {
-                                                  // Navigator.of(context).push(_createRoute(snapshot.data![index].url, snapshot.data![index].source));
+
                                                 },
                                                 child: Row(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,7 +258,9 @@ class _ScoopStreamState extends State<ScoopStream> {
                                           children: [
                                             SizedBox(
                                               child: CupertinoButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.of(context).push(_createRoute(snapshot.data![index].url, snapshot.data![index].source));
+                                                },
                                                 padding: EdgeInsets.zero,
                                                 child: Text(
                                                   "Read Full Article",
@@ -505,8 +507,9 @@ class _ScoopStreamState extends State<ScoopStream> {
 }
 
 Route _createRoute(String? urlData, String? source) {
-  print("DynamicLinkState Call: [501:04] : $urlData");
+  // print("DynamicLinkState Call: [501:04] : $urlData");
   return PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 100),
     pageBuilder: (context, animation, secondaryAnimation) => DynamicLink(url: urlData, source: source,),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
