@@ -5,12 +5,14 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
 import 'package:scoop/screens/scoop.dart';
 import 'package:scoop/screens/settings.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sheet/sheet.dart';
 
 late List<SourceObj> sources;
@@ -186,33 +188,252 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      child: ListView(
-                        physics: NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.only(top: 0, right: 0, left: 0, bottom: 6),
-                        shrinkWrap: true,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(snapshot.data!.title,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 17,
-                                    letterSpacing: -0.5,
-                                    color: Colors.white
-                                ),
+                      child: CupertinoButton(
+                        onPressed: () {
+                          showMaterialModalBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            expand: true,
+                            context: context,
+                            builder: (context) => Container(
+                              padding: EdgeInsets.only(top: 50),
+                              color: Colors.transparent,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.only(top: 15, bottom: 20),
+                                    alignment: Alignment.center,
+                                    child: Container(
+                                      width: 40,
+                                      height: 5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(100),
+                                        color: Colors.grey.withOpacity(0.5)
+                                      ),
+                                    ),
+                                  ),
+                                  FutureBuilder(
+                                    future: NetworkSystem().sysInit(),
+                                    builder: (BuildContext context, AsyncSnapshot snapshot2) {
+                                      if (snapshot2.hasData) {
+                                        // return Container(
+                                        //     alignment: Alignment.bottomLeft,
+                                        //     padding: EdgeInsets.zero,
+                                        //     margin: EdgeInsets.zero,
+                                        //     clipBehavior: Clip.hardEdge,
+                                        //     width: (MediaQuery.of(context).size.width) - 50,
+                                        //     height: (MediaQuery.of(context).size.width) - 50,
+                                        //     decoration: ShapeDecoration(
+                                        //       image: DecorationImage(
+                                        //           image: NetworkImage(snapshot2.data!.imgURL),
+                                        //           fit: BoxFit.cover
+                                        //       ),
+                                        //       shadows: const [
+                                        //         BoxShadow(
+                                        //             color: Colors.black26,
+                                        //             blurRadius: 30.0,
+                                        //             spreadRadius: 5,
+                                        //             offset: Offset(
+                                        //                 0,
+                                        //                 6
+                                        //             )
+                                        //         )
+                                        //       ],
+                                        //       color: Colors.grey.withOpacity(0.75),
+                                        //       shape: SmoothRectangleBorder(
+                                        //         borderRadius: SmoothBorderRadius(
+                                        //           cornerRadius: 18,
+                                        //           cornerSmoothing: 0.9,
+                                        //         ),
+                                        //       ),
+                                        //     )
+                                        // );
+                                        return Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.topLeft,
+                                              padding: EdgeInsets.zero,
+                                              margin: EdgeInsets.zero,
+                                              width: (MediaQuery.of(context).size.width) - 50,
+                                              height: (MediaQuery.of(context).size.width) - 50,
+                                              // height: (MediaQuery.of(context).size.width) - 50,
+                                              decoration: ShapeDecoration(
+                                                image: DecorationImage(
+                                                  image: NetworkImage(snapshot.data!.imgURL),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                shadows: const [
+                                                  BoxShadow(
+                                                      color: Colors.black38,
+                                                      blurRadius: 30.0,
+                                                      spreadRadius: 5,
+                                                      offset: Offset(
+                                                          0,
+                                                          10
+                                                      )
+                                                  )
+                                                ],
+                                                color: Colors.grey.withOpacity(0.75),
+                                                shape: SmoothRectangleBorder(
+                                                  borderRadius: SmoothBorderRadius(
+                                                    cornerRadius: 20,
+                                                    cornerSmoothing: 0.9,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(15),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(height: 1),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(100),
+                                                          boxShadow: [
+                                                          ]
+                                                      ),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(100),
+                                                        ),
+                                                        child: SizedBox(
+                                                            child: CupertinoButton(
+                                                                padding: EdgeInsets.zero,
+                                                                child: Icon(Ionicons.share_outline, color: Colors.white, size: 20,),
+                                                                onPressed: () {
+                                                                  Share.share(snapshot.data!.url, subject: snapshot.data!.title);
+                                                                }
+                                                            )
+                                                        ),
+                                                      ),
+                                                    ).frosted(
+                                                        blur: 7,
+                                                        borderRadius: BorderRadius.circular(100),
+                                                        frostColor: Colors.black.withOpacity(0.1)
+                                                      // fro
+                                                    ),
+
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 15),
+                                            Container(
+                                              margin: EdgeInsets.only(top: 5),
+                                              padding: EdgeInsets.symmetric(horizontal: 26),
+                                              child: Column(
+                                                children: [
+                                                  Text(snapshot.data!.title,
+                                                    style: TextStyle(
+                                                        fontWeight: FontWeight.w700,
+                                                        fontSize: 18,
+                                                        letterSpacing: -0.5,
+                                                        color: Colors.white
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 8),
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 20,
+                                                        // width: 100,
+                                                        child: CupertinoButton(
+                                                          padding: EdgeInsets.zero,
+                                                          onPressed: () {
+
+                                                          },
+                                                          child: Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                            children: [
+                                                              Text(snapshot.data!.source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600),),
+                                                              Icon(FeatherIcons.chevronRight, size: 19, color: Colors.white.withOpacity(0.3),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 1,)
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 14),
+                                                  Text(snapshot.data!.content,
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                        color: Colors.white.withOpacity(0.7),
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w500,
+                                                        letterSpacing: -0.4
+                                                    ),
+                                                  ),
+                                                  snapshot.data!.content != "No Content Available." ? Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        child: CupertinoButton(
+                                                          onPressed: () {
+                                                            // Navigator.of(context).push(_createRoute(snapshot.data![index].url, snapshot.data![index].source));
+                                                          },
+                                                          padding: EdgeInsets.zero,
+                                                          child: Text(
+                                                            "Read Full Article",
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 16
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 0.2,)
+                                                    ],
+                                                  ) : SizedBox()
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      } else {
+                                        return CupertinoActivityIndicator();
+                                      }
+                                    },
+                                  )
+                                ],
                               ),
-                              SizedBox(height: 7),
-                              Text(snapshot.data!.source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600, fontSize: 16)),
-                            ],
-                          ),
-                        ],
-                      ).frosted(
-                        blur: 20,
-                        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                        frostColor: Colors.black.withOpacity(0.1),
-                        // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))
+                            ).frosted(
+                              blur: 30,
+                              frostColor: Colors.black
+                            )
+                          );
+                        },
+                        padding: EdgeInsets.zero,
+                        child: ListView(
+                          physics: NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(top: 0, right: 0, left: 0, bottom: 6),
+                          shrinkWrap: true,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(snapshot.data!.title,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 17,
+                                      letterSpacing: -0.5,
+                                      color: Colors.white
+                                  ),
+                                ),
+                                SizedBox(height: 7),
+                                Text(snapshot.data!.source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600, fontSize: 16)),
+                              ],
+                            ),
+                          ],
+                        ).frosted(
+                          blur: 20,
+                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                          frostColor: Colors.black.withOpacity(0.1),
+                          // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))
+                        ),
                       ),
                     ),
                     const SizedBox(height: 30),
