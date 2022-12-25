@@ -22,4 +22,8 @@
 
 ## 💫 Features
 1. Data collected from 7000+ sources from around the world using <a href="https://newsapi.org/">NewsAPI</a>
-2. 
+2. Scroll snapping ListView for a smooth and convenient experience.
+3. Customisable components to suit your preferences.
+4. Get regional content - Choose to get news from a particular country
+5. Get categorical news - Multiple categories to choose from, i.e - Politics, Sports, etc.
+6. Elegant UI featuring blur effects and smooth scrolling
