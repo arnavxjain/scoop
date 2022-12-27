@@ -1,4 +1,4 @@
-<h1 align="center">💫 Scoop</h1>
+<h1 align="center">Scoop</h1>
 
 <h3 align="center">⚠ Note: This is a Beta Version ⚠</h3>
 <p align="center">
