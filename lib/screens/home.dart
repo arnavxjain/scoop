@@ -259,7 +259,7 @@ class _HomeState extends State<Home> {
                                               // height: (MediaQuery.of(context).size.width) - 50,
                                               decoration: ShapeDecoration(
                                                 image: DecorationImage(
-                                                  image: NetworkImage(snapshot.data!.imgURL),
+                                                  image: NetworkImage(snapshot2.data!.imgURL),
                                                   fit: BoxFit.cover,
                                                 ),
                                                 shadows: const [
@@ -447,9 +447,10 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 5),
                     SizedBox(
-                      width: 130,
-                      height: 40,
+                      width: 140,
+                      height: 30,
                       child: CupertinoButton(
                         padding: EdgeInsets.zero,
                         // behavior: HitTestBehavior.opaque,
@@ -488,7 +489,7 @@ class _HomeState extends State<Home> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("View all sources", style: baseOpacedDown(14)),
+                            Text("View all sources", style: baseOpacedDown(15)),
                             Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white)
                           ],
                         ),
