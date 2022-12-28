@@ -96,6 +96,7 @@ class _HomeState extends State<Home> {
 
   LocalStorage firstEntry = new LocalStorage("firstEntry");
 
+  String greetingMain = "Evening";
 
   // business entertainment general health science sports technology
 
@@ -135,7 +136,7 @@ class _HomeState extends State<Home> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Good Evening, Arnav", style: TextStyle(
+                          Text("Good $greetingMain, Arnav", style: TextStyle(
                             fontFamily: "SF Pro Display",
                             fontSize: 20,
                             color: Colors.white,
