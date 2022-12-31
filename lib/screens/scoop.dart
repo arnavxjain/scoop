@@ -150,7 +150,7 @@ class _ScoopStreamState extends State<ScoopStream> {
                                               Navigator.pop(context);
                                             },
                                             child: Container(
-                                              color: Colors.black.withOpacity(0.3),
+                                              color: Colors.black.withOpacity(0.2),
                                               child: Center(
                                                 child: Hero(
                                                   tag: "animatedIMG",
