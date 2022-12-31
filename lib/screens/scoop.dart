@@ -138,71 +138,127 @@ class _ScoopStreamState extends State<ScoopStream> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    alignment: Alignment.topLeft,
-                                    padding: EdgeInsets.zero,
-                                    margin: EdgeInsets.zero,
-                                    width: (MediaQuery.of(context).size.width) - 43,
-                                    height: (MediaQuery.of(context).size.width) - 43,
-                                    // height: (MediaQuery.of(context).size.width) - 50,
-                                    decoration: ShapeDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(snapshot.data![index].imgURL),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      shadows: const [
-                                        BoxShadow(
-                                            color: Colors.black38,
-                                            blurRadius: 30.0,
-                                            spreadRadius: 5,
-                                            offset: Offset(
-                                                0,
-                                                10
-                                            )
-                                        )
-                                      ],
-                                      color: Colors.grey.withOpacity(0.75),
-                                      shape: SmoothRectangleBorder(
-                                        borderRadius: SmoothBorderRadius(
-                                          cornerRadius: 20,
-                                          cornerSmoothing: 0.9,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(15),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SizedBox(height: 1),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
-                                                boxShadow: [
-                                                ]
-                                            ),
+                                  CupertinoButton(
+                                    onPressed: () {
+                                      showMaterialModalBottomSheet(
+                                        enableDrag: false,
+                                          backgroundColor: Colors.transparent,
+                                          expand: true,
+                                          context: context,
+                                          builder: (context) => GestureDetector(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
                                             child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
-                                              ),
-                                              child: SizedBox(
-                                                  child: CupertinoButton(
-                                                      padding: EdgeInsets.zero,
-                                                      child: Icon(Ionicons.share_outline, color: Colors.white, size: 20,),
-                                                      onPressed: () {
-                                                        Share.share(snapshot.data![index].url, subject: snapshot.data![index].title);
-                                                      }
-                                                  )
+                                              color: Colors.black.withOpacity(0.3),
+                                              child: Center(
+                                                child: Hero(
+                                                  tag: "animatedIMG",
+                                                  child: Container(
+                                                      width: (MediaQuery.of(context).size.width) - 43,
+                                                      height: 400,
+                                                      // height: (MediaQuery.of(context).size.width) - 43
+                                                    decoration: ShapeDecoration(
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(snapshot.data![index].imgURL),
+                                                        fit: BoxFit.fitHeight,
+                                                      ),
+                                                      shadows: const [
+                                                        BoxShadow(
+                                                            color: Colors.black38,
+                                                            blurRadius: 30.0,
+                                                            spreadRadius: 5,
+                                                            offset: Offset(
+                                                                0,
+                                                                10
+                                                            )
+                                                        )
+                                                      ],
+                                                      color: Colors.grey.withOpacity(0.75),
+                                                      shape: SmoothRectangleBorder(
+                                                        borderRadius: SmoothBorderRadius(
+                                                          cornerRadius: 10,
+                                                          cornerSmoothing: 0.9,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ).frosted(
-                                            blur: 7,
-                                            borderRadius: BorderRadius.circular(100),
-                                            frostColor: Colors.black.withOpacity(0.1)
-                                            // fro
+                                          )
+                                      );
+                                    },
+                                    padding: EdgeInsets.zero,
+                                    child: Hero(
+                                      tag: "animatedIMG",
+                                      child: Container(
+                                        alignment: Alignment.topLeft,
+                                        padding: EdgeInsets.zero,
+                                        margin: EdgeInsets.zero,
+                                        width: (MediaQuery.of(context).size.width) - 43,
+                                        height: (MediaQuery.of(context).size.width) - 43,
+                                        // height: (MediaQuery.of(context).size.width) - 50,
+                                        decoration: ShapeDecoration(
+                                          image: DecorationImage(
+                                            image: NetworkImage(snapshot.data![index].imgURL),
+                                            fit: BoxFit.cover,
                                           ),
+                                          shadows: const [
+                                            BoxShadow(
+                                                color: Colors.black38,
+                                                blurRadius: 30.0,
+                                                spreadRadius: 5,
+                                                offset: Offset(
+                                                    0,
+                                                    10
+                                                )
+                                            )
+                                          ],
+                                          color: Colors.grey.withOpacity(0.75),
+                                          shape: SmoothRectangleBorder(
+                                            borderRadius: SmoothBorderRadius(
+                                              cornerRadius: 20,
+                                              cornerSmoothing: 0.9,
+                                            ),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(15),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(height: 1),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(100),
+                                                    boxShadow: [
+                                                    ]
+                                                ),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(100),
+                                                  ),
+                                                  child: SizedBox(
+                                                      child: CupertinoButton(
+                                                          padding: EdgeInsets.zero,
+                                                          child: Icon(Ionicons.share_outline, color: Colors.white, size: 20,),
+                                                          onPressed: () {
+                                                            Share.share(snapshot.data![index].url, subject: snapshot.data![index].title);
+                                                          }
+                                                      )
+                                                  ),
+                                                ),
+                                              ).frosted(
+                                                blur: 7,
+                                                borderRadius: BorderRadius.circular(100),
+                                                frostColor: Colors.black.withOpacity(0.1)
+                                                // fro
+                                              ),
 
-                                        ],
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),

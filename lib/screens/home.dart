@@ -216,38 +216,6 @@ class _HomeState extends State<Home> {
                                     future: NetworkSystem().sysInit(),
                                     builder: (BuildContext context, AsyncSnapshot snapshot2) {
                                       if (snapshot2.hasData) {
-                                        // return Container(
-                                        //     alignment: Alignment.bottomLeft,
-                                        //     padding: EdgeInsets.zero,
-                                        //     margin: EdgeInsets.zero,
-                                        //     clipBehavior: Clip.hardEdge,
-                                        //     width: (MediaQuery.of(context).size.width) - 50,
-                                        //     height: (MediaQuery.of(context).size.width) - 50,
-                                        //     decoration: ShapeDecoration(
-                                        //       image: DecorationImage(
-                                        //           image: NetworkImage(snapshot2.data!.imgURL),
-                                        //           fit: BoxFit.cover
-                                        //       ),
-                                        //       shadows: const [
-                                        //         BoxShadow(
-                                        //             color: Colors.black26,
-                                        //             blurRadius: 30.0,
-                                        //             spreadRadius: 5,
-                                        //             offset: Offset(
-                                        //                 0,
-                                        //                 6
-                                        //             )
-                                        //         )
-                                        //       ],
-                                        //       color: Colors.grey.withOpacity(0.75),
-                                        //       shape: SmoothRectangleBorder(
-                                        //         borderRadius: SmoothBorderRadius(
-                                        //           cornerRadius: 18,
-                                        //           cornerSmoothing: 0.9,
-                                        //         ),
-                                        //       ),
-                                        //     )
-                                        // );
                                         return Column(
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [

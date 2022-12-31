@@ -31,6 +31,7 @@ dependencies:
   shared_preferences: ^2.0.15
   webview_flutter: ^3.0.4
   share_plus: ^6.3.0
+  image_size_getter: ^2.1.2
 
 dev_dependencies:
   flutter_test:
