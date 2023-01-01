@@ -5,6 +5,7 @@ import 'package:blur/blur.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -34,7 +35,16 @@ class _DynamicLinkState extends State<DynamicLink> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: const SystemUiOverlayStyle(
+        // For Android.
+        // Use [light] for white status bar and [dark] for black status bar.
+        statusBarIconBrightness: Brightness.dark,
+        // For iOS.
+        // Use [dark] for white status bar and [light] for black status bar.
+        statusBarBrightness: Brightness.light,
+    ),
+    child: Scaffold(
       body: Stack(
         children: [
           Container(
@@ -48,13 +58,13 @@ class _DynamicLinkState extends State<DynamicLink> {
             padding: EdgeInsets.only(top: 40, left: 22, right: 22),
             height: 98,
             width: double.infinity,
-            color: Color(0xFF222222),
+            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(source.toString(),
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.black.withOpacity(0.7),
                     fontWeight: FontWeight.w700,
                     fontSize: 17,
                     letterSpacing: -1
@@ -66,7 +76,7 @@ class _DynamicLinkState extends State<DynamicLink> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(CupertinoIcons.clear_circled_solid, color: Colors.white.withOpacity(0.8), size: 20,),
+                    child: Icon(CupertinoIcons.clear, color: Colors.black.withOpacity(0.8), size: 20,),
                     padding: EdgeInsets.zero,
                   ),
                 )
@@ -76,6 +86,7 @@ class _DynamicLinkState extends State<DynamicLink> {
           )
         ]
       ),
+      )
     );
   }
 }

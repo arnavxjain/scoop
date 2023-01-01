@@ -405,64 +405,90 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    Center(
+                    const SizedBox(height: 20),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 3),
+                      width: MediaQuery.of(context).size.width-55,
+                      decoration: ShapeDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        shape: SmoothRectangleBorder(
+                          borderRadius: SmoothBorderRadius(
+                            cornerRadius: 14,
+                            cornerSmoothing: 0.9,
+                          ),
+                        ),
+                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(FeatherIcons.box, color: Colors.white,size: 20),
-                          SizedBox(width: 5),
-                          Text("Your news feed is ready", style: baseLight(18.0))
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width-105,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 12.0),
+                              child: Text(
+                                "Note: All data for Scoop is collected and documented legally from our sources.",
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(0.8),
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: -0.6,
+                                  fontSize: 13.4,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                          ),
+                          CupertinoButton(
+                              padding: EdgeInsets.zero,
+                              child: Icon(CupertinoIcons.info_circle, color: Colors.white),
+                              onPressed: () {
+                                NetworkSystem().showSources();
+                                showMaterialModalBottomSheet(
+                                  useRootNavigator: true,
+                                  elevation: 10,
+                                  // elevation: 10,
+                                  // clipBehavior: Clip.hardEdge,
+                                  duration: Duration(milliseconds: 300),
+                                  // expand: true,
+                                  // bounce: true,
+                                  // elevation: ,
+                                  // useRootNavigator: true,
+                                  // barrierColor: Colors.black.withOpacity(0.7),
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) => Container(
+                                    clipBehavior: Clip.hardEdge,
+                                    // padding: EdgeInsets.all(24),
+                                    height: MediaQuery.of(context).size.height-55,
+                                    decoration: ShapeDecoration(
+                                      color: Color(0xFF1C1C1E),
+                                      shape: SmoothRectangleBorder(
+                                        borderRadius: SmoothBorderRadius(
+                                          cornerRadius: 26,
+                                          cornerSmoothing: 0.9,
+                                        ),
+                                      ),
+                                    ),
+                                    child: _sources(),
+                                  ),
+                                );
+                              }
+                          )
                         ],
                       ),
                     ),
-                    SizedBox(height: 4),
-                    SizedBox(
-                      width: 140,
-                      height: 30,
-                      child: CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        // behavior: HitTestBehavior.opaque,
-                        onPressed: () {
-                          NetworkSystem().showSources();
-                          showMaterialModalBottomSheet(
-                            useRootNavigator: true,
-                            elevation: 10,
-                            // elevation: 10,
-                            // clipBehavior: Clip.hardEdge,
-                            duration: Duration(milliseconds: 300),
-                            // expand: true,
-                            // bounce: true,
-                            // elevation: ,
-                            // useRootNavigator: true,
-                            // barrierColor: Colors.black.withOpacity(0.7),
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (context) => Container(
-                              clipBehavior: Clip.hardEdge,
-                              // padding: EdgeInsets.all(24),
-                              height: MediaQuery.of(context).size.height-55,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFF1C1C1E),
-                                shape: SmoothRectangleBorder(
-                                  borderRadius: SmoothBorderRadius(
-                                    cornerRadius: 26,
-                                    cornerSmoothing: 0.9,
-                                  ),
-                                ),
-                              ),
-                              child: _sources(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("View all sources", style: baseOpacedDown(15)),
-                            Icon(FeatherIcons.chevronRight, size: 18, color: Colors.white)
-                          ],
+                    Padding(padding: EdgeInsets.symmetric(vertical: 5)),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(CupertinoIcons.app_badge, color: Colors.white, size: 15,),
+                        SizedBox(width: 4),
+                        Text("v1.2.8 is out. ", style: TextStyle(color: Colors.white, letterSpacing: -0.7, fontWeight: FontWeight.w600)),
+                        CupertinoButton(
+                          onPressed: () {},
+                          padding: EdgeInsets.zero,
+                          child: Text("Check out new features.", style: TextStyle(color: Colors.blueAccent, letterSpacing: -0.7, fontWeight: FontWeight.w600, fontSize: 14))
                         ),
-                      ),
+                      ],
                     ),
                     const Expanded(child: SizedBox(width: 10)),
                     Container(
@@ -706,10 +732,24 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    themeButton(Icons.play_arrow_rounded, "Start", () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
-                    }),
+                    const SizedBox(height: 20),
+                    // themeButton(CupertinoIcons.square_favorites_alt_fill, "MultiView", () {
+                    //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
+                    // }),
+                    // themeButton(CupertinoIcons.play_arrow_solid, "ScrollView", () {
+                    //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
+                    // }),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        themeButton(CupertinoIcons.square_favorites_alt_fill, "MultiView", () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
+                        }),
+                        themeButton(Icons.swipe_down, "Scroll", () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
+                        }),
+                      ],
+                    ),
                     const SizedBox(height: 36,),
                   ],
                 ),
@@ -725,11 +765,12 @@ class _HomeState extends State<Home> {
 
   themeButton(IconData shuffle, String text, dynamic tap) {
     return CupertinoButton(
+      padding: EdgeInsets.zero,
       onPressed: tap,
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 50,
-        margin: EdgeInsets.symmetric(horizontal: 6.0),
+        width: (MediaQuery.of(context).size.width / 2) - 30,
+        height: 54,
+        margin: EdgeInsets.symmetric(horizontal: 7, vertical: 7),
         decoration: ShapeDecoration(
           color: Colors.black87,
             shape: SmoothRectangleBorder(
@@ -753,10 +794,11 @@ class _HomeState extends State<Home> {
         child: GestureDetector(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(shuffle, color: Color(0xFF4D7EFF), size: 24,),
-              SizedBox(width: 3,),
-              Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 17),),
+              Icon(shuffle, color: Color(0xFF4D7EFF), size: 18,),
+              SizedBox(width: 5,),
+              Text(text, style: TextStyle(color: Color(0xFF4D7EFF), fontWeight: FontWeight.bold, letterSpacing: -0.7, fontSize: 15),),
               const SizedBox(width: 4,)
             ],
           ),
