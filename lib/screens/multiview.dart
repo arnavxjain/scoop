@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:blur/blur.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:scoop/network/network.dart';
 
 class MultiView extends StatefulWidget {
   const MultiView({Key? key}) : super(key: key);
@@ -14,25 +16,90 @@ class MultiView extends StatefulWidget {
 class _MultiViewState extends State<MultiView> {
   @override
   Widget build(BuildContext context) {
+    dynamic src = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Color(0xFF121212),
       body: Stack(
         fit: StackFit.expand,
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.only(top: 90),
-            physics: BouncingScrollPhysics(),
             child: Column(
               children: [
-                Image.network(
-                    'https://images.unsplash.com/photo-1526470702024-9213b24690c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1381&q=80'),
-                Image.network(
-                    'https://images.unsplash.com/photo-1589837687411-50a9efe9bfae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                Image.network(
-                    'https://images.unsplash.com/photo-1541680670548-88e8cd23c0f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                Image.network(
-                    'https://images.unsplash.com/photo-1533158326339-7f3cf2404354?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                Image.network(
-                    'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+                Container(
+                  padding: EdgeInsets.only(top: 100),
+                  width: MediaQuery.of(context).size.width,
+                  height: 450,
+                  child: FutureBuilder(
+                      future: NetworkSystem().contentBuilder("us", "general"),
+                      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                        } else {
+                          return Container(
+                            height: 200,
+                            child: PageView.builder(
+                                itemCount: 5,
+                                scrollDirection: Axis.horizontal,
+                                padEnds: false,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: src.width - 60,
+                                          height: 200,
+                                          decoration: ShapeDecoration(
+                                            image: DecorationImage(
+                                              image: NetworkImage(snapshot.data![index].imgURL),
+                                              fit: BoxFit.cover,
+                                            ),
+                                            shadows: const [
+                                              BoxShadow(
+                                                  color: Colors.black38,
+                                                  blurRadius: 30.0,
+                                                  spreadRadius: 5,
+                                                  offset: Offset(
+                                                      0,
+                                                      10
+                                                  )
+                                              )
+                                            ],
+                                            color: Colors.grey.withOpacity(0.75),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 16,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        SizedBox(
+                                          width: src.width - 60,
+                                            child: Text(snapshot.data![index].title,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700,
+                                                letterSpacing: -1,
+                                                fontSize: 16,
+                                                overflow: TextOverflow.ellipsis,
+                                                height: 1.3
+                                              ),
+                                            )
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }
+                            ),
+                          );
+                        }
+                      }
+
+                  ),
+                ),
               ],
             ),
           ),
