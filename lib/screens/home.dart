@@ -10,6 +10,7 @@ import 'package:localstorage/localstorage.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/model/model.dart';
 import 'package:scoop/network/network.dart';
+import 'package:scoop/screens/multiview.dart';
 import 'package:scoop/screens/scoop.dart';
 import 'package:scoop/screens/settings.dart';
 import 'package:share_plus/share_plus.dart';
@@ -743,7 +744,7 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         themeButton(CupertinoIcons.square_favorites_alt_fill, "MultiView", () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => MultiView()));
                         }),
                         themeButton(Icons.swipe_down, "Scroll", () {
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScoopStream(category: category, locale: locale)));
