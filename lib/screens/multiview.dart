@@ -9,6 +9,13 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:scoop/network/network.dart';
 
+const TextStyle titleStyle = TextStyle(
+  fontSize: 18,
+  color: Colors.white,
+  fontWeight: FontWeight.w700,
+  letterSpacing: -1
+);
+
 class MultiView extends StatefulWidget {
   const MultiView({Key? key}) : super(key: key);
 
@@ -152,6 +159,203 @@ class _MultiViewState extends State<MultiView> {
                      );
                    },
                   ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 250,
+                  // padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(CupertinoIcons.chart_bar_circle_fill, color: Colors.white),
+                            SizedBox(width: 4),
+                            Text("Business", style: titleStyle)
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      FutureBuilder(
+                        future: NetworkSystem().contentBuilder("in", "business"),
+                        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                          } else {
+                            return Container(
+                              height: 200,
+                              child: GridView.builder(
+                                padding: EdgeInsets.only(left: 30),
+                                itemCount: 15,
+                                scrollDirection: Axis.horizontal,
+                                  gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.only(right: 10),
+                                        width: 200,
+                                        height: 130,
+                                        margin: EdgeInsets.symmetric(vertical: 10),
+                                        clipBehavior: Clip.hardEdge,
+                                        decoration: ShapeDecoration(
+                                          color: Colors.black.withOpacity(0.2),
+                                          shape: SmoothRectangleBorder(
+                                            borderRadius: SmoothBorderRadius(
+                                              cornerRadius: 10,
+                                              cornerSmoothing: 0.9,
+                                            ),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: 70,
+                                              height: 100,
+                                              decoration: ShapeDecoration(
+                                                image: DecorationImage(
+                                                  image: NetworkImage(snapshot.data![index].imgURL),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                color: Colors.grey.withOpacity(0.75),
+                                                shape: SmoothRectangleBorder(
+                                                  borderRadius: SmoothBorderRadius(
+                                                    cornerRadius: 0,
+                                                    cornerSmoothing: 0.9,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(width: 10),
+                                            Expanded(
+                                              child: Text(snapshot.data![index].title,
+                                                maxLines: 4,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w600,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  letterSpacing: -0.6,
+                                                  fontSize: 13
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }
+                              ),
+                            );
+                          }
+                        }
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 250,
+                  // padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.run_circle_rounded, color: Colors.white),
+                            SizedBox(width: 4),
+                            Text("Sports", style: titleStyle)
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      FutureBuilder(
+                          future: NetworkSystem().contentBuilder("in", "business"),
+                          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                            } else {
+                              return Container(
+                                height: 200,
+                                child: GridView.builder(
+                                    padding: EdgeInsets.only(left: 30),
+                                    itemCount: 15,
+                                    scrollDirection: Axis.horizontal,
+                                    gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.only(right: 10),
+                                          width: 200,
+                                          height: 130,
+                                          margin: EdgeInsets.symmetric(vertical: 10),
+                                          clipBehavior: Clip.hardEdge,
+                                          decoration: ShapeDecoration(
+                                            color: Colors.black.withOpacity(0.2),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 10,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                width: 70,
+                                                height: 100,
+                                                decoration: ShapeDecoration(
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(snapshot.data![index].imgURL),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  color: Colors.grey.withOpacity(0.75),
+                                                  shape: SmoothRectangleBorder(
+                                                    borderRadius: SmoothBorderRadius(
+                                                      cornerRadius: 0,
+                                                      cornerSmoothing: 0.9,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 10),
+                                              Expanded(
+                                                child: Text(snapshot.data![index].title,
+                                                  maxLines: 4,
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.w600,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      letterSpacing: -0.6,
+                                                      fontSize: 13
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                ),
+                              );
+                            }
+                          }
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
@@ -267,6 +471,116 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
                       cornerRadius: 0,
                       cornerSmoothing: 0.9,
                     ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          Padding(
+            padding: EdgeInsets.only(left: 15, top: 6, right: 10),
+            child: Column(
+              children: [
+                Text(data.title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: -1,
+                    fontSize: 19,
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 20,
+                  // width: 100,
+                  child: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+
+                    },
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(data.source, style: TextStyle(color: Colors.white.withOpacity(0.5), fontWeight: FontWeight.w600, fontSize: 16),),
+                        Icon(FeatherIcons.chevronRight, size: 19, color: Colors.white.withOpacity(0.3),)
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class NoHeroArticleExpanded extends StatefulWidget {
+  const NoHeroArticleExpanded({Key? key, this.data}) : super(key: key);
+
+  final dynamic data;
+
+  @override
+  State<NoHeroArticleExpanded> createState() => _NoHeroArticleExpandedState(this.data);
+}
+
+class _NoHeroArticleExpandedState extends State<NoHeroArticleExpanded> {
+  final dynamic data;
+
+  _NoHeroArticleExpandedState(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    dynamic src = MediaQuery.of(context).size;
+    return Scaffold(
+      backgroundColor: Color(0xFF222222),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            child: Container(
+              padding: EdgeInsets.only(top: 50, left: 20),
+              alignment: Alignment.topLeft,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    boxShadow: [
+                    ]
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: SizedBox(
+                      child: CupertinoButton(
+                          padding: EdgeInsets.zero,
+                          child: Icon(Ionicons.chevron_back, color: Colors.white, size: 20,),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }
+                      )
+                  ),
+                ),
+              ).frosted(
+                  blur: 7,
+                  borderRadius: BorderRadius.circular(100),
+                  frostColor: Colors.black.withOpacity(0.1)
+                // fro
+              ),
+              width: src.width,
+              height: 270,
+              decoration: ShapeDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(data.imgURL),
+                  fit: BoxFit.cover,
+                ),
+                color: Colors.grey.withOpacity(0.75),
+                shape: SmoothRectangleBorder(
+                  borderRadius: SmoothBorderRadius(
+                    cornerRadius: 0,
+                    cornerSmoothing: 0.9,
                   ),
                 ),
               ),

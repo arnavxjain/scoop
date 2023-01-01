@@ -50,6 +50,7 @@ class NetworkSystem {
             url: resArticles[x]["url"]
         );
 
+        print(newArticle);
         articles.add(newArticle);
       }
     }
