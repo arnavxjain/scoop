@@ -42,6 +42,11 @@ class _MultiViewState extends State<MultiView> {
     });
   }
 
+  String sportsCountry = "in";
+  String businessCountry = "in";
+
+  String countryTitle = "India";
+
   void _changeGlobalState(String code, String title) {
     setState(() {
       sportsCountry = code;
@@ -50,11 +55,6 @@ class _MultiViewState extends State<MultiView> {
       countryTitle = title;
     });
   }
-
-  String sportsCountry = "in";
-  String businessCountry = "in";
-
-  String countryTitle = "India";
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +187,7 @@ class _MultiViewState extends State<MultiView> {
                 ),
                 SizedBox(height: 20),
                 StatefulBuilder(
-                  builder: (BuildContext context, StateSetter setSportState) {
+                  builder: (BuildContext context, StateSetter setBizState) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
                       height: 270,
@@ -211,9 +211,289 @@ class _MultiViewState extends State<MultiView> {
                                 CupertinoButton(
                                   padding: EdgeInsets.zero,
                                   onPressed: () {
-                                    setSportState(() {
-                                      businessCountry = "us";
-                                    });
+                                    showMaterialModalBottomSheet(
+                                      backgroundColor: Colors.transparent,
+                                      context: context,
+                                      builder: (context) => StatefulBuilder(
+                                        builder: (BuildContext context, StateSetter setModalState) {
+                                          return Container(
+                                              padding: EdgeInsets.only(top: 20),
+                                              clipBehavior: Clip.hardEdge,
+                                              // padding: EdgeInsets.all(24),
+                                              height: 560,
+                                              decoration: ShapeDecoration(
+                                                // color: Color(0xFF1C1C1E),
+                                                shape: SmoothRectangleBorder(
+                                                  borderRadius: SmoothBorderRadius(
+                                                    cornerRadius: 26,
+                                                    cornerSmoothing: 0.9,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Text("🏳️ Choose A Region",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.w700,
+                                                        letterSpacing: -1,
+                                                        fontSize: 18
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 6),
+                                                  Text("Changing Specific Section",
+                                                    style: TextStyle(
+                                                        color: Colors.white.withOpacity(0.5),
+                                                        fontWeight: FontWeight.w600,
+                                                        letterSpacing: -1,
+                                                        fontSize: 13
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 20),
+                                                  Column(
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // _changeGlobalState("in", "India");
+                                                          setModalState(() {
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "India";
+                                                            sportsCountry = "in";
+                                                          });
+                                                          setBizState(() {
+                                                            businessCountry = "in";
+                                                            countryTitle = "India";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              businessCountry == "in" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("India  🇮🇳",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // _changeGlobalState("in", "India");
+                                                          setModalState(() {
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "USA";
+                                                            sportsCountry = "us";
+                                                          });
+                                                          setBizState(() {
+                                                            businessCountry = "us";
+                                                            countryTitle = "USA";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              businessCountry == "us" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("USA  🇺🇸",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // _changeGlobalState("in", "India");
+                                                          setModalState(() {
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "UK";
+                                                            sportsCountry = "gb";
+                                                          });
+                                                          setBizState(() {
+                                                            businessCountry = "gb";
+                                                            countryTitle = "UK";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              businessCountry == "gb" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("United Kingdom  🇬🇧",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // _changeGlobalState("in", "India");
+                                                          setModalState(() {
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "United Arab Emirates";
+                                                            sportsCountry = "ae";
+                                                          });
+                                                          setBizState(() {
+                                                            businessCountry = "ae";
+                                                            countryTitle = "United Arab Emirates";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              businessCountry == "ae" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("United Arab Emirates  🇦🇪",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // _changeGlobalState("in", "India");
+                                                          setModalState(() {
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "Singapore";
+                                                            sportsCountry = "sg";
+                                                          });
+                                                          setBizState(() {
+                                                            businessCountry = "sg";
+                                                            countryTitle = "Singapore";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                               businessCountry == "sg" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("Singapore  🇸🇬",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // _changeGlobalState("in", "India");
+                                                          setModalState(() {
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "Canada";
+                                                            sportsCountry = "ca";
+                                                          });
+                                                          setBizState(() {
+                                                            businessCountry = "ca";
+                                                            countryTitle = "Canada";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              businessCountry == "ca" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("Canada  🇨🇦",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              )
+                                          ).frosted(
+                                              blur: 30,
+                                              borderRadius: BorderRadius.circular(30),
+                                              frostColor: Colors.black38,
+                                              frostOpacity: 0.3
+                                          );
+                                        },
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 14),
@@ -383,7 +663,7 @@ class _MultiViewState extends State<MultiView> {
                                                     ),
                                                   ),
                                                   SizedBox(height: 6),
-                                                  Text("Changing Speific Section",
+                                                  Text("Changing Specific Section",
                                                     style: TextStyle(
                                                         color: Colors.white.withOpacity(0.5),
                                                         fontWeight: FontWeight.w600,
