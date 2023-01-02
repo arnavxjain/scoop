@@ -7,12 +7,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/network/network.dart';
 
 const TextStyle titleStyle = TextStyle(
   fontSize: 18,
   color: Colors.white,
   fontWeight: FontWeight.w700,
+  letterSpacing: -1
+);
+
+const TextStyle chooserStyle = TextStyle(
+  fontSize: 18,
+  color: Colors.white,
+  fontWeight: FontWeight.w600,
   letterSpacing: -1
 );
 
@@ -34,8 +42,19 @@ class _MultiViewState extends State<MultiView> {
     });
   }
 
+  void _changeGlobalState(String code, String title) {
+    setState(() {
+      sportsCountry = code;
+      businessCountry = code;
+
+      countryTitle = title;
+    });
+  }
+
   String sportsCountry = "in";
   String businessCountry = "in";
+
+  String countryTitle = "India";
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +65,7 @@ class _MultiViewState extends State<MultiView> {
         fit: StackFit.expand,
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.only(top: 100),
+            padding: EdgeInsets.only(top: 100, bottom: 50),
             child: Column(
               children: [
                 Container(
@@ -209,7 +228,7 @@ class _MultiViewState extends State<MultiView> {
                                     ),
                                     child: Row(
                                       children: [
-                                        Text("India",
+                                        Text(countryTitle,
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -333,9 +352,264 @@ class _MultiViewState extends State<MultiView> {
                                 CupertinoButton(
                                   padding: EdgeInsets.zero,
                                   onPressed: () {
-                                    setSportState(() {
-                                      sportsCountry = "us";
-                                    });
+                                    showMaterialModalBottomSheet(
+                                      backgroundColor: Colors.transparent,
+                                      context: context,
+                                      builder: (context) => StatefulBuilder(
+                                        builder: (BuildContext context, StateSetter setModalState) {
+                                          return Container(
+                                              padding: EdgeInsets.only(top: 20),
+                                              clipBehavior: Clip.hardEdge,
+                                              // padding: EdgeInsets.all(24),
+                                              height: 560,
+                                              decoration: ShapeDecoration(
+                                                // color: Color(0xFF1C1C1E),
+                                                shape: SmoothRectangleBorder(
+                                                  borderRadius: SmoothBorderRadius(
+                                                    cornerRadius: 26,
+                                                    cornerSmoothing: 0.9,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Text("🏳️ Choose A Region",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.w700,
+                                                        letterSpacing: -1,
+                                                        fontSize: 18
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 6),
+                                                  Text("Changing Speific Section",
+                                                    style: TextStyle(
+                                                        color: Colors.white.withOpacity(0.5),
+                                                        fontWeight: FontWeight.w600,
+                                                        letterSpacing: -1,
+                                                        fontSize: 13
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 20),
+                                                  Column(
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // _changeGlobalState("in", "India");
+                                                          setModalState(() {
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "India";
+                                                            sportsCountry = "in";
+                                                          });
+                                                          setSportState(() {
+                                                            sportsCountry = "in";
+                                                            countryTitle = "India";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              sportsCountry == "in" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("India  🇮🇳",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          _changeGlobalState("us", "USA");
+                                                          setModalState(() {
+                                                            _changeGlobalState("us", "USA");
+                                                            countryTitle = "USA";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              sportsCountry == "us" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("USA  🇺🇸",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          _changeGlobalState("gb", "UK");
+                                                          setModalState(() {
+                                                            _changeGlobalState("gb", "UK");
+                                                            countryTitle = "UK";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              sportsCountry == "gb" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("United Kingdom  🇬🇧",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          _changeGlobalState("ae", "UAE");
+                                                          setModalState(() {
+                                                            _changeGlobalState("ae", "UAE");
+                                                            countryTitle = "UAE";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              sportsCountry == "ae" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("United Arab Emirates  🇦🇪",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          _changeGlobalState("sg", "Singapore");
+                                                          setModalState(() {
+                                                            _changeGlobalState("sg", "Singapore");
+                                                            countryTitle = "Singapore";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              sportsCountry == "sg" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("Singapore  🇸🇬",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          _changeGlobalState("ca", "Canada");
+                                                          setModalState(() {
+                                                            _changeGlobalState("ca", "Canada");
+                                                            countryTitle = "Canada";
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(context).size.width - 45,
+                                                          margin: EdgeInsets.only(bottom: 10),
+                                                          height: 60,
+                                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                                          decoration: ShapeDecoration(
+                                                            color: Color(0xFF222222),
+                                                            shape: SmoothRectangleBorder(
+                                                              borderRadius: SmoothBorderRadius(
+                                                                cornerRadius: 16,
+                                                                cornerSmoothing: 0.9,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              sportsCountry == "ca" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                              Text("Canada  🇨🇦",
+                                                                style: chooserStyle,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              )
+                                          ).frosted(
+                                              blur: 30,
+                                              borderRadius: BorderRadius.circular(30),
+                                              frostColor: Colors.black38,
+                                              frostOpacity: 0.3
+                                          );
+                                        },
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 14),
@@ -350,7 +624,7 @@ class _MultiViewState extends State<MultiView> {
                                     ),
                                     child: Row(
                                       children: [
-                                        Text("India",
+                                        Text(countryTitle,
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -481,6 +755,291 @@ class _MultiViewState extends State<MultiView> {
                         letterSpacing: -1,
                         color: Colors.white,
                         fontSize: 19
+                    ),
+                  ),
+                  Expanded(child: SizedBox(height: 10)),
+                  CupertinoButton(
+                    padding: EdgeInsets.only(right: 20),
+                    onPressed: () {
+                      showMaterialModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) => StatefulBuilder(
+                          builder: (BuildContext context, StateSetter setModalState) {
+                          return Container(
+                              padding: EdgeInsets.only(top: 20),
+                              clipBehavior: Clip.hardEdge,
+                              // padding: EdgeInsets.all(24),
+                              height: 560,
+                              decoration: ShapeDecoration(
+                                // color: Color(0xFF1C1C1E),
+                                shape: SmoothRectangleBorder(
+                                  borderRadius: SmoothBorderRadius(
+                                    cornerRadius: 26,
+                                    cornerSmoothing: 0.9,
+                                  ),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("🏳️ Choose A Region",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                        letterSpacing: -1,
+                                        fontSize: 18
+                                    ),
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text("Changing All Sections",
+                                    style: TextStyle(
+                                      color: Colors.white.withOpacity(0.5),
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: -1,
+                                      fontSize: 13
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Column(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          _changeGlobalState("in", "India");
+                                          setModalState(() {
+                                            _changeGlobalState("in", "India");
+                                            countryTitle = "India";
+                                          });
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width - 45,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          height: 60,
+                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF222222),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 16,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              sportsCountry == "in" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                              Text("India  🇮🇳",
+                                                style: chooserStyle,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _changeGlobalState("us", "USA");
+                                          setModalState(() {
+                                            _changeGlobalState("us", "USA");
+                                            countryTitle = "USA";
+                                          });
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width - 45,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          height: 60,
+                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF222222),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 16,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              sportsCountry == "us" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                              Text("USA  🇺🇸",
+                                                style: chooserStyle,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _changeGlobalState("gb", "UK");
+                                          setModalState(() {
+                                            _changeGlobalState("gb", "UK");
+                                            countryTitle = "UK";
+                                          });
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width - 45,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          height: 60,
+                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF222222),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 16,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              sportsCountry == "gb" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                              Text("United Kingdom  🇬🇧",
+                                                style: chooserStyle,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _changeGlobalState("ae", "UAE");
+                                          setModalState(() {
+                                            _changeGlobalState("ae", "UAE");
+                                            countryTitle = "UAE";
+                                          });
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width - 45,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          height: 60,
+                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF222222),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 16,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              sportsCountry == "ae" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                              Text("United Arab Emirates  🇦🇪",
+                                                style: chooserStyle,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _changeGlobalState("sg", "Singapore");
+                                          setModalState(() {
+                                            _changeGlobalState("sg", "Singapore");
+                                            countryTitle = "Singapore";
+                                          });
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width - 45,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          height: 60,
+                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF222222),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 16,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              sportsCountry == "sg" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                              Text("Singapore  🇸🇬",
+                                                style: chooserStyle,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _changeGlobalState("ca", "Canada");
+                                          setModalState(() {
+                                            _changeGlobalState("ca", "Canada");
+                                            countryTitle = "Canada";
+                                          });
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width - 45,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          height: 60,
+                                          padding: EdgeInsets.only(left: 15, right: 20),
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF222222),
+                                            shape: SmoothRectangleBorder(
+                                              borderRadius: SmoothBorderRadius(
+                                                cornerRadius: 16,
+                                                cornerSmoothing: 0.9,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              sportsCountry == "ca" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                              Text("Canada  🇨🇦",
+                                                style: chooserStyle,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )
+                          ).frosted(
+                              blur: 30,
+                              borderRadius: BorderRadius.circular(30),
+                              frostColor: Colors.black38,
+                              frostOpacity: 0.3
+                          );
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 14),
+                      decoration: ShapeDecoration(
+                        color: Colors.grey.withOpacity(0.09),
+                        shape: SmoothRectangleBorder(
+                          borderRadius: SmoothBorderRadius(
+                            cornerRadius: 10,
+                            cornerSmoothing: 0.9,
+                          ),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(countryTitle,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                letterSpacing: -1,
+                                fontWeight: FontWeight.w600
+                            ),
+                          ),
+                          SizedBox(width: 2),
+                          Icon(CupertinoIcons.chevron_down, color: Colors.white, size: 15,)
+                        ],
+                      ),
                     ),
                   )
                 ],
