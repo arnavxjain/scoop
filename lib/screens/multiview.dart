@@ -434,9 +434,14 @@ class _MultiViewState extends State<MultiView> {
                                                       ),
                                                       GestureDetector(
                                                         onTap: () {
-                                                          _changeGlobalState("us", "USA");
+                                                          // _changeGlobalState("in", "India");
                                                           setModalState(() {
-                                                            _changeGlobalState("us", "USA");
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "USA";
+                                                            sportsCountry = "us";
+                                                          });
+                                                          setSportState(() {
+                                                            sportsCountry = "us";
                                                             countryTitle = "USA";
                                                           });
                                                         },
@@ -467,9 +472,14 @@ class _MultiViewState extends State<MultiView> {
                                                       ),
                                                       GestureDetector(
                                                         onTap: () {
-                                                          _changeGlobalState("gb", "UK");
+                                                          // _changeGlobalState("in", "India");
                                                           setModalState(() {
-                                                            _changeGlobalState("gb", "UK");
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "UK";
+                                                            sportsCountry = "gb";
+                                                          });
+                                                          setSportState(() {
+                                                            sportsCountry = "gb";
                                                             countryTitle = "UK";
                                                           });
                                                         },
@@ -500,10 +510,15 @@ class _MultiViewState extends State<MultiView> {
                                                       ),
                                                       GestureDetector(
                                                         onTap: () {
-                                                          _changeGlobalState("ae", "UAE");
+                                                          // _changeGlobalState("in", "India");
                                                           setModalState(() {
-                                                            _changeGlobalState("ae", "UAE");
-                                                            countryTitle = "UAE";
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "United Arab Emirates";
+                                                            sportsCountry = "ae";
+                                                          });
+                                                          setSportState(() {
+                                                            sportsCountry = "ae";
+                                                            countryTitle = "United Arab Emirates";
                                                           });
                                                         },
                                                         child: Container(
@@ -533,9 +548,14 @@ class _MultiViewState extends State<MultiView> {
                                                       ),
                                                       GestureDetector(
                                                         onTap: () {
-                                                          _changeGlobalState("sg", "Singapore");
+                                                          // _changeGlobalState("in", "India");
                                                           setModalState(() {
-                                                            _changeGlobalState("sg", "Singapore");
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "Singapore";
+                                                            sportsCountry = "sg";
+                                                          });
+                                                          setSportState(() {
+                                                            sportsCountry = "sg";
                                                             countryTitle = "Singapore";
                                                           });
                                                         },
@@ -566,9 +586,14 @@ class _MultiViewState extends State<MultiView> {
                                                       ),
                                                       GestureDetector(
                                                         onTap: () {
-                                                          _changeGlobalState("ca", "Canada");
+                                                          // _changeGlobalState("in", "India");
                                                           setModalState(() {
-                                                            _changeGlobalState("ca", "Canada");
+                                                            // _changeGlobalState("in", "India");
+                                                            countryTitle = "Canada";
+                                                            sportsCountry = "ca";
+                                                          });
+                                                          setSportState(() {
+                                                            sportsCountry = "ca";
                                                             countryTitle = "Canada";
                                                           });
                                                         },
