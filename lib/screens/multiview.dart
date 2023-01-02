@@ -34,6 +34,9 @@ class _MultiViewState extends State<MultiView> {
     });
   }
 
+  String sportsCountry = "in";
+  String businessCountry = "in";
+
   @override
   Widget build(BuildContext context) {
     dynamic src = MediaQuery.of(context).size;
@@ -113,15 +116,18 @@ class _MultiViewState extends State<MultiView> {
                                               width: src.width - 60,
                                               child: Hero(
                                                 tag: "pv-text",
-                                                child: Text(snapshot.data![index].title,
-                                                  maxLines: 2,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w700,
-                                                    letterSpacing: -1,
-                                                    fontSize: 16,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    height: 1.3,
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  child: Text(snapshot.data![index].title,
+                                                    maxLines: 2,
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.w700,
+                                                      letterSpacing: -1,
+                                                      fontSize: 16,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      height: 1.3,
+                                                    ),
                                                   ),
                                                 ),
                                               )
@@ -161,202 +167,288 @@ class _MultiViewState extends State<MultiView> {
                   ),
                 ),
                 SizedBox(height: 20),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 250,
-                  // padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(CupertinoIcons.chart_bar_circle_fill, color: Colors.white),
-                            SizedBox(width: 4),
-                            Text("Business", style: titleStyle)
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      FutureBuilder(
-                        future: NetworkSystem().contentBuilder("in", "business"),
-                        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
-                          } else {
-                            return Container(
-                              height: 200,
-                              child: GridView.builder(
-                                padding: EdgeInsets.only(left: 30),
-                                itemCount: 15,
-                                scrollDirection: Axis.horizontal,
-                                  gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.only(right: 10),
-                                        width: 200,
-                                        height: 130,
-                                        margin: EdgeInsets.symmetric(vertical: 10),
-                                        clipBehavior: Clip.hardEdge,
-                                        decoration: ShapeDecoration(
-                                          color: Colors.black.withOpacity(0.2),
-                                          shape: SmoothRectangleBorder(
-                                            borderRadius: SmoothBorderRadius(
-                                              cornerRadius: 10,
-                                              cornerSmoothing: 0.9,
-                                            ),
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setSportState) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 270,
+                      // padding: EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30.0, right: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(CupertinoIcons.chart_bar_circle_fill, color: Colors.white),
+                                    SizedBox(width: 4),
+                                    Text("Business", style: titleStyle)
+                                  ],
+                                ),
+                                CupertinoButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {
+                                    setSportState(() {
+                                      businessCountry = "us";
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 14),
+                                    decoration: ShapeDecoration(
+                                      color: Colors.grey.withOpacity(0.09),
+                                      shape: SmoothRectangleBorder(
+                                        borderRadius: SmoothBorderRadius(
+                                          cornerRadius: 10,
+                                          cornerSmoothing: 0.9,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text("India",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              letterSpacing: -1,
+                                              fontWeight: FontWeight.w600
                                           ),
                                         ),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              width: 70,
-                                              height: 100,
+                                        SizedBox(width: 2),
+                                        Icon(CupertinoIcons.chevron_down, color: Colors.white, size: 15,)
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2),
+                          FutureBuilder(
+                              future: NetworkSystem().contentBuilder(businessCountry, "business"),
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                if (snapshot.connectionState == ConnectionState.waiting) {
+                                  return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                } else {
+                                  return Container(
+                                    height: 200,
+                                    child: GridView.builder(
+                                        padding: EdgeInsets.only(left: 30),
+                                        itemCount: 15,
+                                        scrollDirection: Axis.horizontal,
+                                        gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.only(right: 10),
+                                              width: 200,
+                                              height: 130,
+                                              margin: EdgeInsets.symmetric(vertical: 10),
+                                              clipBehavior: Clip.hardEdge,
                                               decoration: ShapeDecoration(
-                                                image: DecorationImage(
-                                                  image: NetworkImage(snapshot.data![index].imgURL),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                                color: Colors.grey.withOpacity(0.75),
+                                                color: Colors.black.withOpacity(0.2),
                                                 shape: SmoothRectangleBorder(
                                                   borderRadius: SmoothBorderRadius(
-                                                    cornerRadius: 0,
+                                                    cornerRadius: 10,
                                                     cornerSmoothing: 0.9,
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            SizedBox(width: 10),
-                                            Expanded(
-                                              child: Text(snapshot.data![index].title,
-                                                maxLines: 4,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w600,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  letterSpacing: -0.6,
-                                                  fontSize: 13
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }
-                              ),
-                            );
-                          }
-                        }
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 250,
-                  // padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(Icons.run_circle_rounded, color: Colors.white),
-                            SizedBox(width: 4),
-                            Text("Sports", style: titleStyle)
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      FutureBuilder(
-                          future: NetworkSystem().contentBuilder("in", "business"),
-                          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                            if (snapshot.connectionState == ConnectionState.waiting) {
-                              return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
-                            } else {
-                              return Container(
-                                height: 200,
-                                child: GridView.builder(
-                                    padding: EdgeInsets.only(left: 30),
-                                    itemCount: 15,
-                                    scrollDirection: Axis.horizontal,
-                                    gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.only(right: 10),
-                                          width: 200,
-                                          height: 130,
-                                          margin: EdgeInsets.symmetric(vertical: 10),
-                                          clipBehavior: Clip.hardEdge,
-                                          decoration: ShapeDecoration(
-                                            color: Colors.black.withOpacity(0.2),
-                                            shape: SmoothRectangleBorder(
-                                              borderRadius: SmoothBorderRadius(
-                                                cornerRadius: 10,
-                                                cornerSmoothing: 0.9,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                width: 70,
-                                                height: 100,
-                                                decoration: ShapeDecoration(
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(snapshot.data![index].imgURL),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  color: Colors.grey.withOpacity(0.75),
-                                                  shape: SmoothRectangleBorder(
-                                                    borderRadius: SmoothBorderRadius(
-                                                      cornerRadius: 0,
-                                                      cornerSmoothing: 0.9,
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    width: 70,
+                                                    height: 100,
+                                                    decoration: ShapeDecoration(
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(snapshot.data![index].imgURL),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      color: Colors.grey.withOpacity(0.75),
+                                                      shape: SmoothRectangleBorder(
+                                                        borderRadius: SmoothBorderRadius(
+                                                          cornerRadius: 0,
+                                                          cornerSmoothing: 0.9,
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
+                                                  SizedBox(width: 10),
+                                                  Expanded(
+                                                    child: Text(snapshot.data![index].title,
+                                                      maxLines: 4,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight: FontWeight.w600,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          letterSpacing: -0.6,
+                                                          fontSize: 13
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                              SizedBox(width: 10),
-                                              Expanded(
-                                                child: Text(snapshot.data![index].title,
-                                                  maxLines: 4,
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.w600,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      letterSpacing: -0.6,
-                                                      fontSize: 13
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                            ),
+                                          );
+                                        }
+                                    ),
+                                  );
+                                }
+                              }
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setSportState) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 270,
+                      // padding: EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30.0, right: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.run_circle_rounded, color: Colors.white),
+                                    SizedBox(width: 4),
+                                    Text("Sports", style: titleStyle)
+                                  ],
+                                ),
+                                CupertinoButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {
+                                    setSportState(() {
+                                      sportsCountry = "us";
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 14),
+                                    decoration: ShapeDecoration(
+                                      color: Colors.grey.withOpacity(0.09),
+                                      shape: SmoothRectangleBorder(
+                                        borderRadius: SmoothBorderRadius(
+                                          cornerRadius: 10,
+                                          cornerSmoothing: 0.9,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text("India",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              letterSpacing: -1,
+                                              fontWeight: FontWeight.w600
                                           ),
                                         ),
-                                      );
-                                    }
-                                ),
-                              );
-                            }
-                          }
-                      )
-                    ],
-                  ),
-                )
+                                        SizedBox(width: 2),
+                                        Icon(CupertinoIcons.chevron_down, color: Colors.white, size: 15,)
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2),
+                          FutureBuilder(
+                              future: NetworkSystem().contentBuilder(sportsCountry, "sport"),
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                if (snapshot.connectionState == ConnectionState.waiting) {
+                                  return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                } else {
+                                  return Container(
+                                    height: 200,
+                                    child: GridView.builder(
+                                        padding: EdgeInsets.only(left: 30),
+                                        itemCount: 15,
+                                        scrollDirection: Axis.horizontal,
+                                        gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.only(right: 10),
+                                              width: 200,
+                                              height: 130,
+                                              margin: EdgeInsets.symmetric(vertical: 10),
+                                              clipBehavior: Clip.hardEdge,
+                                              decoration: ShapeDecoration(
+                                                color: Colors.black.withOpacity(0.2),
+                                                shape: SmoothRectangleBorder(
+                                                  borderRadius: SmoothBorderRadius(
+                                                    cornerRadius: 10,
+                                                    cornerSmoothing: 0.9,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    width: 70,
+                                                    height: 100,
+                                                    decoration: ShapeDecoration(
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(snapshot.data![index].imgURL),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      color: Colors.grey.withOpacity(0.75),
+                                                      shape: SmoothRectangleBorder(
+                                                        borderRadius: SmoothBorderRadius(
+                                                          cornerRadius: 0,
+                                                          cornerSmoothing: 0.9,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Expanded(
+                                                    child: Text(snapshot.data![index].title,
+                                                      maxLines: 4,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight: FontWeight.w600,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          letterSpacing: -0.6,
+                                                          fontSize: 13
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                    ),
+                                  );
+                                }
+                              }
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -481,15 +573,21 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
             padding: EdgeInsets.only(left: 15, top: 6, right: 10),
             child: Column(
               children: [
-                Text(data.title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: -1,
-                    fontSize: 19,
+                Hero(
+                  tag: "pv-text",
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(data.title,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -1,
+                        fontSize: 18,
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 SizedBox(
                   height: 20,
                   // width: 100,
@@ -510,7 +608,20 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
                 ),
               ],
             ),
-          )
+          ),
+          SizedBox(height: 10),
+          data.content != "No Content Available." ? Padding(
+            padding: EdgeInsets.only(left: 15, top: 6, right: 13),
+            child: Text(
+              data.content,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17,
+                  letterSpacing: -1
+              ),
+            ),
+          ) : SizedBox()
         ],
       ),
     );
@@ -599,7 +710,7 @@ class _NoHeroArticleExpandedState extends State<NoHeroArticleExpanded> {
                     fontSize: 19,
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 SizedBox(
                   height: 20,
                   // width: 100,
@@ -620,7 +731,20 @@ class _NoHeroArticleExpandedState extends State<NoHeroArticleExpanded> {
                 ),
               ],
             ),
-          )
+          ),
+          SizedBox(height: 10),
+          data.content != "No Content Available." ? Padding(
+            padding: EdgeInsets.only(left: 15, top: 6, right: 13),
+            child: Text(
+              data.content,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 17,
+                letterSpacing: -1
+              ),
+            ),
+          ) : SizedBox()
         ],
       ),
     );
