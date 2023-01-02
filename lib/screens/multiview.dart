@@ -582,7 +582,7 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -1,
-                        fontSize: 18,
+                        fontSize: 19,
                       ),
                     ),
                   ),
