@@ -45,12 +45,15 @@ class _MultiViewState extends State<MultiView> {
   String sportsCountry = "in";
   String businessCountry = "in";
 
+  String generalCountry = "in";
+
   String countryTitle = "India";
 
   void _changeGlobalState(String code, String title) {
     setState(() {
       sportsCountry = code;
       businessCountry = code;
+      generalCountry = code;
 
       countryTitle = title;
     });
@@ -73,7 +76,7 @@ class _MultiViewState extends State<MultiView> {
                   width: MediaQuery.of(context).size.width,
                   height: 295,
                   child: FutureBuilder(
-                      future: NetworkSystem().contentBuilder("us", "general"),
+                      future: NetworkSystem().contentBuilder(generalCountry, "general"),
                       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
@@ -1383,6 +1386,17 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
+            foregroundDecoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.black54,
+                  Colors.transparent,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0, 0.4],
+              ),
+            ),
             child: Hero(
               tag: "pv-img",
               child: Container(
@@ -1515,6 +1529,17 @@ class _NoHeroArticleExpandedState extends State<NoHeroArticleExpanded> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
+            foregroundDecoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.black54,
+                  Colors.transparent,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0, 0.4],
+              ),
+            ),
             child: Container(
               padding: EdgeInsets.only(top: 50, left: 20),
               alignment: Alignment.topLeft,
