@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ffi';
 import 'dart:ui';
 
@@ -31,6 +32,8 @@ class _DynamicLinkState extends State<DynamicLink> {
   final String? url;
   final String? source;
 
+  final Completer<WebViewController> _controller = Completer<WebViewController>();
+
   _DynamicLinkState(this.url, this.source);
 
   @override
@@ -48,42 +51,123 @@ class _DynamicLinkState extends State<DynamicLink> {
       body: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 98),
+            margin: EdgeInsets.only(top: 70),
             child: WebView(
+              onWebViewCreated: (WebViewController webViewController) {
+                _controller.complete(webViewController);
+              },
               initialUrl: url,
               javascriptMode: JavascriptMode.unrestricted,
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(top: 40, left: 22, right: 22),
-            height: 98,
-            width: double.infinity,
-            color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(source.toString(),
-                  style: TextStyle(
-                    color: Colors.black.withOpacity(0.7),
-                    fontWeight: FontWeight.w700,
-                    fontSize: 17,
-                    letterSpacing: -1
+          Positioned(
+            bottom: 0,
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+              padding: EdgeInsets.only(top: 10, left: 22, right: 22, bottom: 40),
+              height: 90,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                boxShadow:[
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2), //color of shadow
+                    spreadRadius: 14, //spread radius
+                    blurRadius: 14, // blur radius
+                    offset: Offset(0, 2), // changes position of shadow
+                    //first paramerter of offset is left-right
+                    //second parameter is top to down
                   ),
-                ),
-                SizedBox(
-                  width: 20,
-                  child: CupertinoButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(CupertinoIcons.clear, color: Colors.black.withOpacity(0.8), size: 20,),
-                    padding: EdgeInsets.zero,
+                  //you can set more BoxShadow() here
+                ],
+                color: Colors.white,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(CupertinoIcons.lock_fill, color: Colors.black.withOpacity(0.7), size: 20,),
+                      SizedBox(width: 5),
+                      Text(source.toString(),
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.7),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 17,
+                          letterSpacing: -1
+                        ),
+                      ),
+                    ],
                   ),
-                )
-              ],
-            )
-            // color: Colors.black.withOpacity(0.7),
-          )
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 20,
+                            child: CupertinoButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Icon(CupertinoIcons.chevron_left, color: Colors.black.withOpacity(0.8), size: 24,),
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                          SizedBox(width: 25),
+                          SizedBox(
+                            width: 20,
+                            child: CupertinoButton(
+                              onPressed: () {
+                                // Navigator.pop(context);
+                              },
+                              child: Icon(CupertinoIcons.chevron_right, color: Colors.black.withOpacity(0.8), size: 24,),
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 25),
+                      SizedBox(
+                        width: 20,
+                        child: FutureBuilder<WebViewController>(
+
+                          future: _controller.future,
+                          builder: (BuildContext context, AsyncSnapshot<WebViewController> controller) {
+                              if (controller.hasData) {
+                                return CupertinoButton(
+                                  onPressed: () async {
+                                    controller.data!.reload();
+                                  },
+                                  child: Icon(CupertinoIcons.refresh, color: Colors.black.withOpacity(0.8), size: 24,),
+                                  padding: EdgeInsets.zero,
+                                );
+                              }
+
+                              return Container();
+                        },
+                        ),
+                      ),
+                      SizedBox(width: 25),
+                      SizedBox(
+                        width: 20,
+                        child: CupertinoButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(CupertinoIcons.clear, color: Colors.black.withOpacity(0.8), size: 22,),
+                          padding: EdgeInsets.zero,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )
+              // color: Colors.black.withOpacity(0.7),
+            ),
+          ),
         ]
       ),
       )

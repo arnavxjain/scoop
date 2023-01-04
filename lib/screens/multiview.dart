@@ -10,6 +10,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/network/network.dart';
+import 'package:scoop/screens/dynamic.dart';
 
 const TextStyle titleStyle = TextStyle(
   fontSize: 18,
@@ -70,6 +71,7 @@ class _MultiViewState extends State<MultiView> {
   @override
   Widget build(BuildContext context) {
     dynamic src = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Color(0xFF222222),
       body: Stack(
@@ -1463,7 +1465,7 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
           ),
           SizedBox(height: 10),
           Padding(
-            padding: EdgeInsets.only(left: 15, top: 6, right: 10),
+            padding: EdgeInsets.only(left: 20, top: 10, right: 15),
             child: Column(
               children: [
                 Hero(
@@ -1504,7 +1506,7 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
           ),
           SizedBox(height: 10),
           data.content != "No Content Available." ? Padding(
-            padding: EdgeInsets.only(left: 15, top: 6, right: 13),
+            padding: EdgeInsets.only(left: 20, top: 6, right: 15),
             child: Text(
               data.content,
               style: TextStyle(
@@ -1514,6 +1516,27 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
                   letterSpacing: -1
               ),
             ),
+          ) : SizedBox(),
+          data.content != "No Content Available." ? Row(
+            children: [
+              SizedBox(
+                child: CupertinoButton(
+                  onPressed: () {
+                    Navigator.of(context).push(_createRoute(data.url, data.source));
+                  },
+                  padding: EdgeInsets.only(left: 20),
+                  child: Text(
+                    "Read Full Article",
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 0.2,)
+            ],
           ) : SizedBox()
         ],
       ),
@@ -1603,7 +1626,7 @@ class _NoHeroArticleExpandedState extends State<NoHeroArticleExpanded> {
           ),
           SizedBox(height: 10),
           Padding(
-            padding: EdgeInsets.only(left: 15, top: 6, right: 10),
+            padding: EdgeInsets.only(left: 20, top: 10, right: 15),
             child: Column(
               children: [
                 Text(data.title,
@@ -1638,7 +1661,7 @@ class _NoHeroArticleExpandedState extends State<NoHeroArticleExpanded> {
           ),
           SizedBox(height: 10),
           data.content != "No Content Available." ? Padding(
-            padding: EdgeInsets.only(left: 15, top: 6, right: 13),
+            padding: EdgeInsets.only(left: 20, top: 6, right: 15),
             child: Text(
               data.content,
               style: TextStyle(
@@ -1648,9 +1671,50 @@ class _NoHeroArticleExpandedState extends State<NoHeroArticleExpanded> {
                 letterSpacing: -1
               ),
             ),
+          ) : SizedBox(),
+          data.content != "No Content Available." ? Row(
+            children: [
+              SizedBox(
+                child: CupertinoButton(
+                  onPressed: () {
+                    Navigator.of(context).push(_createRoute(data.url, data.source));
+                  },
+                  padding: EdgeInsets.only(left: 20),
+                  child: Text(
+                    "Read Full Article",
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 0.2,)
+            ],
           ) : SizedBox()
         ],
       ),
     );
   }
+}
+
+Route _createRoute(String? urlData, String? source) {
+  // print("DynamicLinkState Call: [501:04] : $urlData");
+  return PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 100),
+    pageBuilder: (context, animation, secondaryAnimation) => DynamicLink(url: urlData, source: source,),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
