@@ -6,6 +6,10 @@ import 'package:scoop/model/model.dart';
 // const String apiKey = "583c3aff8c974bdea492acdb7405a141";
 const String apiKey = "f4d1f25b9dfa43d0960f73c9ff9a707d";
 
+String localeLast = "";
+String categoryLast = "";
+List<Article> localeArticles = [];
+
 class NetworkSystem {
   Future<List<SourceObj>> showSources() async {
     List<SourceObj> sources = [];
@@ -31,32 +35,41 @@ class NetworkSystem {
   }
 
   Future<List<Article>> contentBuilder(locale, category) async {
-    List<Article> articles = [];
+    if (localeLast == locale && categoryLast == category) {
+      print("sending localArticles [saved]");
+      return localeArticles;
+    } else {
+      localeLast = locale;
+      categoryLast = category;
 
-    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey")));
+      print("sending localArticles [new]");
+      List<Article> articles = [];
 
-    print("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey");
+      Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey")));
 
-    if (response.statusCode == 200) {
-      final res = json.decode(response.body);
-      final resArticles = res["articles"];
+      // print("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey");
 
-      for (int x = 0; x < resArticles.length; x++) {
-        Article newArticle = Article(
-            imgURL: resArticles[x]["urlToImage"] ?? "https://picsum.photos/200/200",
-            title: resArticles[x]["title"] ?? "Error",
-            content: resArticles[x]["content"] ?? "No Content Available.",
-            source: resArticles[x]["source"]["name"] ?? "n/a",
-            sourceId: resArticles[x]["source"]["id"] ?? "Source Unavailable",
-            url: resArticles[x]["url"]
-        );
+      if (response.statusCode == 200) {
+        final res = json.decode(response.body);
+        final resArticles = res["articles"];
 
-        print(newArticle);
-        articles.add(newArticle);
+        for (int x = 0; x < resArticles.length; x++) {
+          Article newArticle = Article(
+              imgURL: resArticles[x]["urlToImage"] ?? "https://picsum.photos/200/200",
+              title: resArticles[x]["title"] ?? "Error",
+              content: resArticles[x]["content"] ?? "No Content Available.",
+              source: resArticles[x]["source"]["name"] ?? "n/a",
+              sourceId: resArticles[x]["source"]["id"] ?? "Source Unavailable",
+              url: resArticles[x]["url"]
+          );
+
+          articles.add(newArticle);
+        }
       }
-    }
 
-    return articles;
+      localeArticles = articles;
+      return articles;
+    }
   }
 
   Future<Article> sysInit() async {
