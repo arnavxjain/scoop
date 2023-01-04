@@ -51,7 +51,7 @@ class _DynamicLinkState extends State<DynamicLink> {
       body: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 70),
+            margin: EdgeInsets.only(top: 60, bottom: 90),
             child: WebView(
               onWebViewCreated: (WebViewController webViewController) {
                 _controller.complete(webViewController);

@@ -600,15 +600,30 @@ class _MultiViewState extends State<MultiView> {
                                                     ),
                                                     SizedBox(width: 10),
                                                     Expanded(
-                                                      child: Text(snapshot.data![index].title,
-                                                        maxLines: 4,
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight: FontWeight.w600,
-                                                            overflow: TextOverflow.ellipsis,
-                                                            letterSpacing: -0.6,
-                                                            fontSize: 13
-                                                        ),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                                overflow: TextOverflow.ellipsis,
+                                                                color: Colors.grey,
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
                                                       ),
                                                     )
                                                   ],
@@ -1021,15 +1036,30 @@ class _MultiViewState extends State<MultiView> {
                                                     ),
                                                     SizedBox(width: 10),
                                                     Expanded(
-                                                      child: Text(snapshot.data![index].title,
-                                                        maxLines: 4,
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight: FontWeight.w600,
-                                                            overflow: TextOverflow.ellipsis,
-                                                            letterSpacing: -0.6,
-                                                            fontSize: 13
-                                                        ),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                              overflow: TextOverflow.ellipsis,
+                                                              color: Colors.grey,
+                                                              fontSize: 12,
+                                                              fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
                                                       ),
                                                     )
                                                   ],
