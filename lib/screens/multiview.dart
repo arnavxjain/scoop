@@ -35,7 +35,7 @@ class MultiView extends StatefulWidget {
 
 class _MultiViewState extends State<MultiView> {
 
-  final PageController _pageController = PageController();
+  final PageController _pageController = PageController(viewportFraction: 0.7);
   double? currentPage = 0;
 
   void _affectState(int index) {

@@ -33,6 +33,7 @@ dependencies:
   share_plus: ^6.3.0
   image_size_getter: ^2.1.2
   dots_indicator: ^2.1.0
+  swipeable_page_route: ^0.2.6
 
 dev_dependencies:
   flutter_test:
