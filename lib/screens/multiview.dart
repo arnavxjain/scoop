@@ -11,6 +11,7 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scoop/network/network.dart';
 import 'package:scoop/screens/dynamic.dart';
+import 'package:share_plus/share_plus.dart';
 
 const TextStyle titleStyle = TextStyle(
   fontSize: 18,
@@ -1453,31 +1454,94 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
               child: Container(
                 padding: EdgeInsets.only(top: 50, left: 20),
                 alignment: Alignment.topLeft,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      boxShadow: [
-                      ]
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          boxShadow: [
+                          ]
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: SizedBox(
+                            child: CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                child: Icon(Ionicons.chevron_back, color: Colors.white, size: 20,),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }
+                            )
+                        ),
+                      ),
+                    ).frosted(
+                        blur: 7,
+                        borderRadius: BorderRadius.circular(100),
+                        frostColor: Colors.black.withOpacity(0.1)
+                      // fro
                     ),
-                    child: SizedBox(
-                        child: CupertinoButton(
-                            padding: EdgeInsets.zero,
-                            child: Icon(Ionicons.chevron_back, color: Colors.white, size: 20,),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            }
-                        )
+                    SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          boxShadow: [
+                          ]
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: SizedBox(
+                            child: CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                child: Icon(Icons.supervised_user_circle_sharp, color: Colors.white, size: 20,),
+                                onPressed: () {
+                                  showMaterialModalBottomSheet(
+                                      context: context,
+                                      builder: (context) => Container(
+                                        color: Colors.,
+                                      )
+                                  );
+                                }
+                            )
+                        ),
+                      ),
+                    ).frosted(
+                        blur: 7,
+                        borderRadius: BorderRadius.circular(100),
+                        frostColor: Colors.black.withOpacity(0.1)
+                      // fro
                     ),
-                  ),
-                ).frosted(
-                    blur: 7,
-                    borderRadius: BorderRadius.circular(100),
-                    frostColor: Colors.black.withOpacity(0.1)
-                  // fro
+                    SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          boxShadow: [
+                          ]
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: SizedBox(
+                            child: CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                child: Icon(CupertinoIcons.share, color: Colors.white, size: 20,),
+                                onPressed: () {
+                                  Share.share(data.url, subject: data.title);
+                                }
+                            )
+                        ),
+                      ),
+                    ).frosted(
+                        blur: 7,
+                        borderRadius: BorderRadius.circular(100),
+                        frostColor: Colors.black.withOpacity(0.1)
+                      // fro
+                    ),
+                  ],
                 ),
                 width: src.width,
                 height: 270,
