@@ -50,3 +50,10 @@ flutter:
   assets:
     - lib/assets/horizontal.png
     - lib/assets/vertical.png
+
+  fonts:
+    - family: MonumentExt
+      fonts:
+        - asset: fonts/MonumentExtended-Regular.otf
+        - asset: fonts/MonumentExtended-Ultrabold.otf
+          weight: 500

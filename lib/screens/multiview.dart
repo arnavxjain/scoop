@@ -28,6 +28,28 @@ const TextStyle chooserStyle = TextStyle(
   letterSpacing: -1
 );
 
+TextStyle navStyle = TextStyle(
+  color: Colors.white.withOpacity(0.3),
+  fontWeight: FontWeight.w600,
+  letterSpacing: -0.6,
+  fontSize: 12,
+);
+
+TextStyle navStyleSelected = TextStyle(
+  color: Colors.blueAccent,
+  fontWeight: FontWeight.w600,
+  letterSpacing: -0.6,
+  fontSize: 12,
+);
+
+TextStyle navStyleSpecial = TextStyle(
+  color: Colors.redAccent,
+  fontWeight: FontWeight.w600,
+  letterSpacing: -0.6,
+  fontSize: 12,
+);
+
+
 class MultiView extends StatefulWidget {
   const MultiView({Key? key}) : super(key: key);
 
@@ -45,6 +67,8 @@ class _MultiViewState extends State<MultiView> {
       currentPage = index.toDouble();
     });
   }
+
+  String navPos = "gen";
 
   String sportsCountry = "in";
   String businessCountry = "in";
@@ -90,6 +114,28 @@ class _MultiViewState extends State<MultiView> {
               child: Column(
                 children: [
                   Container(
+                    padding: EdgeInsets.only(left: 30, top: 20),
+                    child: Row(
+                      children: [
+                        Text(
+                          navPos == "gen" ? "General"
+                          : navPos == "spo" ? "Sports"
+                          : navPos == "biz" ? "Business"
+                          : navPos == "ent" ? "Entertainment"
+                          : "Tech",
+                          style: TextStyle(
+                            fontFamily: "MonumentExt",
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            // letterSpacing: -1.34,
+                            fontSize: 24
+                          ),
+                        ),
+                        Expanded(child: SizedBox(height: 1))
+                      ],
+                    ),
+                  ),
+                  Container(
                     // margin: EdgeInsets.only(top: 90),
                     width: MediaQuery.of(context).size.width,
                     height: 295,
@@ -100,7 +146,7 @@ class _MultiViewState extends State<MultiView> {
                             return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
                           } else {
                             return Container(
-                              margin: EdgeInsets.only(top: 20),
+                              margin: EdgeInsets.only(top: 14),
                               height: 200,
                               width: src.width,
                               child: PageView.builder(
@@ -1085,6 +1131,66 @@ class _MultiViewState extends State<MultiView> {
             ),
           ),
           Positioned(
+            bottom: 0,
+            left: 0,
+            child: Container(
+              padding: EdgeInsets.only(top: 15),
+              width: src.width,
+              decoration: BoxDecoration(
+                  border: Border(top: BorderSide(color: Colors.grey.withOpacity(0.2)))
+              ),
+              height: 96,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        navPos = "biz";
+                      });
+                    },
+                    child: _CupertinoClick(CupertinoIcons.graph_circle_fill, "Business", "biz")
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          navPos = "spo";
+                        });
+                      },
+                    child: _CupertinoClick(Icons.run_circle_rounded, "Sports", "spo")
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          navPos = "gen";
+                        });
+                      },
+                    child: _CupertinoClick(CupertinoIcons.cube_box_fill, "General", "gen")
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          navPos = "ent";
+                        });
+                      },
+                    child: _CupertinoClick(CupertinoIcons.tv, "Culture", "ent")
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          navPos = "tch";
+                        });
+                      },
+                    child: _CupertinoClick(CupertinoIcons.keyboard, "Tech", "tch")
+                  ),
+                ],
+              ),
+            ).frosted(
+              blur: 20,
+              frostColor: Colors.black,
+            ),
+          ),
+          Positioned(
             top: 0,
             left: 0,
             child: Container(
@@ -1110,12 +1216,16 @@ class _MultiViewState extends State<MultiView> {
                   SizedBox(width: 10),
                   Icon(CupertinoIcons.square_favorites_alt_fill, size: 20, color: Colors.white,),
                   SizedBox(width: 4),
-                  Text("News",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -1,
-                        color: Colors.white,
-                        fontSize: 19
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 3),
+                    child: Text("News",
+                      style: TextStyle(
+                        fontFamily: "MonumentExt",
+                          fontWeight: FontWeight.w600,
+                          // letterSpacing: -1,
+                          color: Colors.white,
+                          fontSize: 19
+                      ),
                     ),
                   ),
                   Expanded(child: SizedBox(height: 10)),
@@ -1412,6 +1522,19 @@ class _MultiViewState extends State<MultiView> {
           ),
         ],
       ),
+    );
+  }
+
+  _CupertinoClick(IconData icon, String navText, String categ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(icon, color: categ == navPos ? Colors.blueAccent : Colors.grey.withOpacity(0.3)),
+        SizedBox(height: 2),
+        Text(navText,
+          style: categ == navPos ? navStyleSelected : navStyle
+        )
+      ],
     );
   }
 }
@@ -2087,7 +2210,7 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
                   ],
                 ),
                 width: src.width,
-                height: 270,
+                height: 280,
                 decoration: ShapeDecoration(
                   image: DecorationImage(
                     image: NetworkImage(data.imgURL),
