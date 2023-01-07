@@ -1526,52 +1526,217 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
                                               height: MediaQuery.of(context).size.height,
                                               color: Colors.black.withOpacity(0.2),
                                             ),
-                                            Center(
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    height: src.width - 70,
-                                                    width: src.width - 70,
-                                                    decoration: ShapeDecoration(
-                                                      image: DecorationImage(
-                                                        image: NetworkImage(data.imgURL),
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                      color: Colors.grey.withOpacity(0.75),
-                                                      shape: SmoothRectangleBorder(
-                                                        borderRadius: SmoothBorderRadius(
-                                                          cornerRadius: 20,
-                                                          cornerSmoothing: 0.9,
+                                            PageView(
+                                              physics: const ClampingScrollPhysics(),
+                                              children: [
+                                                Container(
+                                                  width: src.width,
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      Container(
+                                                        height: src.width - 70,
+                                                        width: src.width - 70,
+                                                        decoration: ShapeDecoration(
+                                                          image: DecorationImage(
+                                                            image: NetworkImage(data.imgURL),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                          color: Colors.grey.withOpacity(0.75),
+                                                          shape: SmoothRectangleBorder(
+                                                            borderRadius: SmoothBorderRadius(
+                                                              cornerRadius: 20,
+                                                              cornerSmoothing: 0.9,
+                                                            ),
+                                                          ),
+                                                          shadows: const [
+                                                            BoxShadow(
+                                                                color: Colors.black38,
+                                                                blurRadius: 30.0,
+                                                                spreadRadius: 5,
+                                                                offset: Offset(
+                                                                    0,
+                                                                    10
+                                                                )
+                                                            )
+                                                          ],
                                                         ),
                                                       ),
-                                                      shadows: const [
-                                                        BoxShadow(
-                                                            color: Colors.black38,
-                                                            blurRadius: 30.0,
-                                                            spreadRadius: 5,
-                                                            offset: Offset(
-                                                                0,
-                                                                10
-                                                            )
-                                                        )
-                                                      ],
-                                                    ),
+                                                      SizedBox(height: 15),
+                                                      SizedBox(
+                                                        width: src.width - 70,
+                                                        child: Text(data.title,
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.w700,
+                                                              fontSize: 18,
+                                                              letterSpacing: -0.5,
+                                                              color: Colors.white
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
                                                   ),
-                                                  SizedBox(height: 15),
-                                                  SizedBox(
-                                                    width: src.width - 70,
-                                                    child: Text(data.title,
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.w700,
-                                                          fontSize: 18,
-                                                          letterSpacing: -0.5,
-                                                          color: Colors.white
+                                                ),
+                                                Container(
+                                                  width: src.width,
+                                                  child: Center(
+                                                    child: SizedBox(
+                                                      width: src.width - 60,
+                                                      child: ListView(
+                                                        physics: NeverScrollableScrollPhysics(),
+                                                        shrinkWrap: true,
+                                                        children: [
+                                                          Container(
+                                                            // height: 500,
+                                                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                                                            decoration: ShapeDecoration(
+                                                              color: Colors.white.withOpacity(0.1),
+                                                              shape: SmoothRectangleBorder(
+                                                                borderRadius: SmoothBorderRadius(
+                                                                  cornerRadius: 20,
+                                                                  cornerSmoothing: 0.9,
+                                                                ),
+                                                              ),
+                                                              shadows: const [
+                                                                BoxShadow(
+                                                                    color: Colors.black12,
+                                                                    blurRadius: 30.0,
+                                                                    spreadRadius: 5,
+                                                                    offset: Offset(
+                                                                        0,
+                                                                        10
+                                                                    )
+                                                                )
+                                                              ],
+                                                            ),
+                                                            child: Column(
+                                                              // mainAxisAlignment: MainAxisAlignment.center,
+                                                              // crossAxisAlignment: CrossAxisAlignment.center,
+                                                              children: [
+                                                                Container(
+                                                                  height: src.width - 70,
+                                                                  width: src.width - 70,
+                                                                  decoration: ShapeDecoration(
+                                                                    image: DecorationImage(
+                                                                      image: NetworkImage(data.imgURL),
+                                                                      fit: BoxFit.cover,
+                                                                    ),
+                                                                    color: Colors.grey.withOpacity(0.75),
+                                                                    shape: SmoothRectangleBorder(
+                                                                      borderRadius: SmoothBorderRadius(
+                                                                        cornerRadius: 20,
+                                                                        cornerSmoothing: 0.9,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(height: 15),
+                                                                SizedBox(
+                                                                  width: src.width - 70,
+                                                                  child: Text(data.title,
+                                                                    style: TextStyle(
+                                                                        fontWeight: FontWeight.w700,
+                                                                        fontSize: 18,
+                                                                        letterSpacing: -0.5,
+                                                                        color: Colors.white
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
-                                                  )
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: src.width,
+                                                  child: Center(
+                                                    child: SizedBox(
+                                                      width: src.width - 60,
+                                                      child: ListView(
+                                                        physics: NeverScrollableScrollPhysics(),
+                                                        shrinkWrap: true,
+                                                        children: [
+                                                          Container(
+                                                            padding: EdgeInsets.only(bottom: 20),
+                                                            decoration: ShapeDecoration(
+                                                              color: Colors.white.withOpacity(0.1),
+                                                              shape: SmoothRectangleBorder(
+                                                                borderRadius: SmoothBorderRadius(
+                                                                  cornerRadius: 20,
+                                                                  cornerSmoothing: 0.9,
+                                                                ),
+                                                              ),
+                                                              shadows: const [
+                                                                BoxShadow(
+                                                                    color: Colors.black12,
+                                                                    blurRadius: 30.0,
+                                                                    spreadRadius: 5,
+                                                                    offset: Offset(
+                                                                        0,
+                                                                        10
+                                                                    )
+                                                                )
+                                                              ],
+                                                            ),
+                                                            clipBehavior: Clip.hardEdge,
+                                                            child: Column(
+                                                              // mainAxisAlignment: MainAxisAlignment.center,
+                                                              // crossAxisAlignment: CrossAxisAlignment.center,
+                                                              children: [
+                                                                Container(
+                                                                  height: src.width - 70,
+                                                                  // width: src.width - 70,
+                                                                  decoration: BoxDecoration(
+                                                                    image: DecorationImage(
+                                                                      image: NetworkImage(data.imgURL),
+                                                                      fit: BoxFit.cover,
+                                                                    ),
+                                                                    color: Colors.grey.withOpacity(0.75),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(height: 15),
+                                                                SizedBox(
+                                                                  width: src.width - 90,
+                                                                  child: Text(data.title,
+                                                                    style: TextStyle(
+                                                                        fontWeight: FontWeight.w700,
+                                                                        fontSize: 18,
+                                                                        letterSpacing: -0.5,
+                                                                        color: Colors.white
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                              width: src.width,
+                                              bottom: 30,
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text("scoop storymode",
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.w700,
+                                                      color: Colors.black.withOpacity(0.15),
+                                                      fontSize: 13,
+                                                      letterSpacing: -0.5
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
-                                            ),
+                                            )
                                           ],
                                         ),
                                       )

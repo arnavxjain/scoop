@@ -35,6 +35,8 @@ dependencies:
   dots_indicator: ^2.1.0
   swipeable_page_route: ^0.2.6
   animate_gradient: ^0.0.2
+  resizable_widget: ^1.0.5
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
