@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animate_gradient/animate_gradient.dart';
 import 'package:blur/blur.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:figma_squircle/figma_squircle.dart';
@@ -280,7 +281,7 @@ class _MultiViewState extends State<MultiView> {
                                                             setModalState(() {
                                                               // _changeGlobalState("in", "India");
                                                               countryTitle = "India";
-                                                              sportsCountry = "in";
+                                                              businessCountry = "in";
                                                             });
                                                             setBizState(() {
                                                               businessCountry = "in";
@@ -318,7 +319,7 @@ class _MultiViewState extends State<MultiView> {
                                                             setModalState(() {
                                                               // _changeGlobalState("in", "India");
                                                               countryTitle = "USA";
-                                                              sportsCountry = "us";
+                                                              businessCountry = "us";
                                                             });
                                                             setBizState(() {
                                                               businessCountry = "us";
@@ -356,7 +357,7 @@ class _MultiViewState extends State<MultiView> {
                                                             setModalState(() {
                                                               // _changeGlobalState("in", "India");
                                                               countryTitle = "UK";
-                                                              sportsCountry = "gb";
+                                                              businessCountry = "gb";
                                                             });
                                                             setBizState(() {
                                                               businessCountry = "gb";
@@ -394,7 +395,7 @@ class _MultiViewState extends State<MultiView> {
                                                             setModalState(() {
                                                               // _changeGlobalState("in", "India");
                                                               countryTitle = "United Arab Emirates";
-                                                              sportsCountry = "ae";
+                                                              businessCountry = "ae";
                                                             });
                                                             setBizState(() {
                                                               businessCountry = "ae";
@@ -432,7 +433,7 @@ class _MultiViewState extends State<MultiView> {
                                                             setModalState(() {
                                                               // _changeGlobalState("in", "India");
                                                               countryTitle = "Singapore";
-                                                              sportsCountry = "sg";
+                                                              businessCountry = "sg";
                                                             });
                                                             setBizState(() {
                                                               businessCountry = "sg";
@@ -470,7 +471,7 @@ class _MultiViewState extends State<MultiView> {
                                                             setModalState(() {
                                                               // _changeGlobalState("in", "India");
                                                               countryTitle = "Canada";
-                                                              sportsCountry = "ca";
+                                                              businessCountry = "ca";
                                                             });
                                                             setBizState(() {
                                                               businessCountry = "ca";
@@ -1188,7 +1189,7 @@ class _MultiViewState extends State<MultiView> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                sportsCountry == "in" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                generalCountry == "in" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
                                                 Text("India  🇮🇳",
                                                   style: chooserStyle,
                                                 ),
@@ -1221,7 +1222,7 @@ class _MultiViewState extends State<MultiView> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                sportsCountry == "us" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                generalCountry == "us" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
                                                 Text("USA  🇺🇸",
                                                   style: chooserStyle,
                                                 ),
@@ -1254,7 +1255,7 @@ class _MultiViewState extends State<MultiView> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                sportsCountry == "gb" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                generalCountry == "gb" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
                                                 Text("United Kingdom  🇬🇧",
                                                   style: chooserStyle,
                                                 ),
@@ -1287,7 +1288,7 @@ class _MultiViewState extends State<MultiView> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                sportsCountry == "ae" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                generalCountry == "ae" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
                                                 Text("United Arab Emirates  🇦🇪",
                                                   style: chooserStyle,
                                                 ),
@@ -1320,7 +1321,7 @@ class _MultiViewState extends State<MultiView> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                sportsCountry == "sg" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                generalCountry == "sg" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
                                                 Text("Singapore  🇸🇬",
                                                   style: chooserStyle,
                                                 ),
@@ -1353,7 +1354,7 @@ class _MultiViewState extends State<MultiView> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                sportsCountry == "ca" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
+                                                generalCountry == "ca" ? Icon(CupertinoIcons.check_mark_circled_solid, color: Colors.blueAccent, size: 25) : Icon(CupertinoIcons.circle, size: 25, color: Colors.grey),
                                                 Text("Canada  🇨🇦",
                                                   style: chooserStyle,
                                                 ),
@@ -1500,8 +1501,79 @@ class _ArticleExpandedState extends State<ArticleExpanded> {
                                 onPressed: () {
                                   showMaterialModalBottomSheet(
                                       context: context,
+                                      expand: true,
+                                      enableDrag: false,
                                       builder: (context) => Container(
-                                        color: Colors.,
+                                        height: src.height,
+                                        width: src.width,
+                                        child: Stack(
+                                          children: [
+                                            ImageFiltered(
+                                              imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                                              child: Container(
+                                                // padding: EdgeInsets.only(top: 70, left: 10, right: 10),
+                                                height: MediaQuery.of(context).size.height,
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: NetworkImage(data.imgURL)
+                                                    )
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context).size.width,
+                                              height: MediaQuery.of(context).size.height,
+                                              color: Colors.black.withOpacity(0.2),
+                                            ),
+                                            Center(
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    height: src.width - 70,
+                                                    width: src.width - 70,
+                                                    decoration: ShapeDecoration(
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(data.imgURL),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      color: Colors.grey.withOpacity(0.75),
+                                                      shape: SmoothRectangleBorder(
+                                                        borderRadius: SmoothBorderRadius(
+                                                          cornerRadius: 20,
+                                                          cornerSmoothing: 0.9,
+                                                        ),
+                                                      ),
+                                                      shadows: const [
+                                                        BoxShadow(
+                                                            color: Colors.black38,
+                                                            blurRadius: 30.0,
+                                                            spreadRadius: 5,
+                                                            offset: Offset(
+                                                                0,
+                                                                10
+                                                            )
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 15),
+                                                  SizedBox(
+                                                    width: src.width - 70,
+                                                    child: Text(data.title,
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.w700,
+                                                          fontSize: 18,
+                                                          letterSpacing: -0.5,
+                                                          color: Colors.white
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       )
                                   );
                                 }
