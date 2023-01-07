@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:scoop/model/model.dart';
 
-// const String apiKey = "583c3aff8c974bdea492acdb7405a141";
-const String apiKey = "f4d1f25b9dfa43d0960f73c9ff9a707d";
+const String apiKey = "583c3aff8c974bdea492acdb7405a141";
+// const String apiKey = "f4d1f25b9dfa43d0960f73c9ff9a707d";
 
 String localeLast = "";
 String categoryLast = "";
