@@ -1504,6 +1504,351 @@ class _MultiViewState extends State<MultiView> {
                       );
                     },
                   ),
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setBizState) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270,
+                        // padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30.0, right: 30),
+                              child: Row(
+                                children: [
+                                  Text("Trending In UK", style: titleStyle),
+                                  Expanded(child: SizedBox(height: 1))
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            FutureBuilder(
+                                future: NetworkSystem().overCall("gb", "business"),
+                                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                  } else {
+                                    return Container(
+                                      height: 200,
+                                      child: GridView.builder(
+                                          padding: EdgeInsets.only(left: 30),
+                                          itemCount: 15,
+                                          scrollDirection: Axis.horizontal,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.only(right: 10),
+                                                width: 200,
+                                                height: 130,
+                                                margin: EdgeInsets.symmetric(vertical: 10),
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.black.withOpacity(0.2),
+                                                  shape: SmoothRectangleBorder(
+                                                    borderRadius: SmoothBorderRadius(
+                                                      cornerRadius: 10,
+                                                      cornerSmoothing: 0.9,
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 70,
+                                                      height: 100,
+                                                      decoration: ShapeDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(snapshot.data![index].imgURL),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        color: Colors.grey.withOpacity(0.75),
+                                                        shape: SmoothRectangleBorder(
+                                                          borderRadius: SmoothBorderRadius(
+                                                            cornerRadius: 0,
+                                                            cornerSmoothing: 0.9,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                                overflow: TextOverflow.ellipsis,
+                                                                color: Colors.grey,
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                      ),
+                                    );
+                                  }
+                                }
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setBizState) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270,
+                        // padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30.0, right: 30),
+                              child: Row(
+                                children: [
+                                  Text("Trending In Singapore", style: titleStyle),
+                                  Expanded(child: SizedBox(height: 1))
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            FutureBuilder(
+                                future: NetworkSystem().overCall("sg", "business"),
+                                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                  } else {
+                                    return Container(
+                                      height: 200,
+                                      child: GridView.builder(
+                                          padding: EdgeInsets.only(left: 30),
+                                          itemCount: 15,
+                                          scrollDirection: Axis.horizontal,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.only(right: 10),
+                                                width: 200,
+                                                height: 130,
+                                                margin: EdgeInsets.symmetric(vertical: 10),
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.black.withOpacity(0.2),
+                                                  shape: SmoothRectangleBorder(
+                                                    borderRadius: SmoothBorderRadius(
+                                                      cornerRadius: 10,
+                                                      cornerSmoothing: 0.9,
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 70,
+                                                      height: 100,
+                                                      decoration: ShapeDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(snapshot.data![index].imgURL),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        color: Colors.grey.withOpacity(0.75),
+                                                        shape: SmoothRectangleBorder(
+                                                          borderRadius: SmoothBorderRadius(
+                                                            cornerRadius: 0,
+                                                            cornerSmoothing: 0.9,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                                overflow: TextOverflow.ellipsis,
+                                                                color: Colors.grey,
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                      ),
+                                    );
+                                  }
+                                }
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setBizState) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270,
+                        // padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30.0, right: 30),
+                              child: Row(
+                                children: [
+                                  Text("Trending In Canada", style: titleStyle),
+                                  Expanded(child: SizedBox(height: 1))
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            FutureBuilder(
+                                future: NetworkSystem().overCall("ca", "business"),
+                                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                  } else {
+                                    return Container(
+                                      height: 200,
+                                      child: GridView.builder(
+                                          padding: EdgeInsets.only(left: 30),
+                                          itemCount: 15,
+                                          scrollDirection: Axis.horizontal,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.only(right: 10),
+                                                width: 200,
+                                                height: 130,
+                                                margin: EdgeInsets.symmetric(vertical: 10),
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.black.withOpacity(0.2),
+                                                  shape: SmoothRectangleBorder(
+                                                    borderRadius: SmoothBorderRadius(
+                                                      cornerRadius: 10,
+                                                      cornerSmoothing: 0.9,
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 70,
+                                                      height: 100,
+                                                      decoration: ShapeDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(snapshot.data![index].imgURL),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        color: Colors.grey.withOpacity(0.75),
+                                                        shape: SmoothRectangleBorder(
+                                                          borderRadius: SmoothBorderRadius(
+                                                            cornerRadius: 0,
+                                                            cornerSmoothing: 0.9,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                                overflow: TextOverflow.ellipsis,
+                                                                color: Colors.grey,
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                      ),
+                                    );
+                                  }
+                                }
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -1790,7 +2135,352 @@ class _MultiViewState extends State<MultiView> {
                             ),
                             SizedBox(height: 2),
                             FutureBuilder(
-                                future: NetworkSystem().contentBuilder("us", "sport"),
+                                future: NetworkSystem().overCall("us", "sport"),
+                                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                  } else {
+                                    return Container(
+                                      height: 200,
+                                      child: GridView.builder(
+                                          padding: EdgeInsets.only(left: 30),
+                                          itemCount: 15,
+                                          scrollDirection: Axis.horizontal,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.only(right: 10),
+                                                width: 200,
+                                                height: 130,
+                                                margin: EdgeInsets.symmetric(vertical: 10),
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.black.withOpacity(0.2),
+                                                  shape: SmoothRectangleBorder(
+                                                    borderRadius: SmoothBorderRadius(
+                                                      cornerRadius: 10,
+                                                      cornerSmoothing: 0.9,
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 70,
+                                                      height: 100,
+                                                      decoration: ShapeDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(snapshot.data![index].imgURL),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        color: Colors.grey.withOpacity(0.75),
+                                                        shape: SmoothRectangleBorder(
+                                                          borderRadius: SmoothBorderRadius(
+                                                            cornerRadius: 0,
+                                                            cornerSmoothing: 0.9,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                                overflow: TextOverflow.ellipsis,
+                                                                color: Colors.grey,
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                      ),
+                                    );
+                                  }
+                                }
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setBizState) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270,
+                        // padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30.0, right: 30),
+                              child: Row(
+                                children: [
+                                  Text("Trending In UK", style: titleStyle),
+                                  Expanded(child: SizedBox(height: 1))
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            FutureBuilder(
+                                future: NetworkSystem().overCall("gb", "sport"),
+                                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                  } else {
+                                    return Container(
+                                      height: 200,
+                                      child: GridView.builder(
+                                          padding: EdgeInsets.only(left: 30),
+                                          itemCount: 15,
+                                          scrollDirection: Axis.horizontal,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.only(right: 10),
+                                                width: 200,
+                                                height: 130,
+                                                margin: EdgeInsets.symmetric(vertical: 10),
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.black.withOpacity(0.2),
+                                                  shape: SmoothRectangleBorder(
+                                                    borderRadius: SmoothBorderRadius(
+                                                      cornerRadius: 10,
+                                                      cornerSmoothing: 0.9,
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 70,
+                                                      height: 100,
+                                                      decoration: ShapeDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(snapshot.data![index].imgURL),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        color: Colors.grey.withOpacity(0.75),
+                                                        shape: SmoothRectangleBorder(
+                                                          borderRadius: SmoothBorderRadius(
+                                                            cornerRadius: 0,
+                                                            cornerSmoothing: 0.9,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                                overflow: TextOverflow.ellipsis,
+                                                                color: Colors.grey,
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                      ),
+                                    );
+                                  }
+                                }
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setBizState) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270,
+                        // padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30.0, right: 30),
+                              child: Row(
+                                children: [
+                                  Text("Trending In Singapore", style: titleStyle),
+                                  Expanded(child: SizedBox(height: 1))
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            FutureBuilder(
+                                future: NetworkSystem().overCall("sg", "sport"),
+                                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
+                                  } else {
+                                    return Container(
+                                      height: 200,
+                                      child: GridView.builder(
+                                          padding: EdgeInsets.only(left: 30),
+                                          itemCount: 15,
+                                          scrollDirection: Axis.horizontal,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 20, childAspectRatio: (40/100)),
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoHeroArticleExpanded(data: snapshot.data![index])));
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.only(right: 10),
+                                                width: 200,
+                                                height: 130,
+                                                margin: EdgeInsets.symmetric(vertical: 10),
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: ShapeDecoration(
+                                                  color: Colors.black.withOpacity(0.2),
+                                                  shape: SmoothRectangleBorder(
+                                                    borderRadius: SmoothBorderRadius(
+                                                      cornerRadius: 10,
+                                                      cornerSmoothing: 0.9,
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 70,
+                                                      height: 100,
+                                                      decoration: ShapeDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(snapshot.data![index].imgURL),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        color: Colors.grey.withOpacity(0.75),
+                                                        shape: SmoothRectangleBorder(
+                                                          borderRadius: SmoothBorderRadius(
+                                                            cornerRadius: 0,
+                                                            cornerSmoothing: 0.9,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(snapshot.data![index].title,
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight: FontWeight.w600,
+                                                                overflow: TextOverflow.ellipsis,
+                                                                letterSpacing: -0.6,
+                                                                fontSize: 13
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 3),
+                                                          Text(snapshot.data![index].source,
+                                                            style: TextStyle(
+                                                                overflow: TextOverflow.ellipsis,
+                                                                color: Colors.grey,
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w500
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                      ),
+                                    );
+                                  }
+                                }
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setBizState) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 270,
+                        // padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30.0, right: 30),
+                              child: Row(
+                                children: [
+                                  Text("Trending In Canada", style: titleStyle),
+                                  Expanded(child: SizedBox(height: 1))
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            FutureBuilder(
+                                future: NetworkSystem().overCall("ca", "sport"),
                                 builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                                   if (snapshot.connectionState == ConnectionState.waiting) {
                                     return Center(child: CupertinoActivityIndicator(color: Colors.white.withOpacity(0.7)));
