@@ -72,6 +72,35 @@ class NetworkSystem {
     }
   }
 
+  Future<List<Article>> overCall(locale, category) async {
+
+    List<Article> articles = [];
+
+    Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey")));
+
+    // print("https://newsapi.org/v2/top-headlines?country=$locale&category=$category&apiKey=$apiKey");
+
+    if (response.statusCode == 200) {
+      final res = json.decode(response.body);
+      final resArticles = res["articles"];
+
+      for (int x = 4; x < resArticles.length; x++) {
+        Article newArticle = Article(
+            imgURL: resArticles[x]["urlToImage"] ?? "https://picsum.photos/200/200",
+            title: resArticles[x]["title"] ?? "Error",
+            content: resArticles[x]["content"] ?? "No Content Available.",
+            source: resArticles[x]["source"]["name"] ?? "n/a",
+            sourceId: resArticles[x]["source"]["id"] ?? "Source Unavailable",
+            url: resArticles[x]["url"]
+        );
+
+        articles.add(newArticle);
+      }
+    }
+
+    return articles;
+  }
+
   Future<Article> sysInit() async {
     Response response = await get(Uri.parse(Uri.encodeFull("https://newsapi.org/v2/top-headlines?country=us&apiKey=$apiKey")));
 
