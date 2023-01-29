@@ -29,11 +29,15 @@
 6. 📱 Elegant UI featuring blur effects and smooth scrolling.
 
 ## 📸 Photos
-1. Home Screen ![Simulator Screen Shot - iPhone 14 Pro - 2023-01-29 at 19 01 04](https://user-images.githubusercontent.com/70736942/215330075-20ab6a00-f0b2-459a-8339-54ecf7c321b1.png)
+1. Home Screen
+![Simulator Screen Shot - iPhone 14 Pro - 2023-01-29 at 19 01 04](https://user-images.githubusercontent.com/70736942/215330075-20ab6a00-f0b2-459a-8339-54ecf7c321b1.png)
 
-2. Scroll Pagination ![Simulator Screen Shot - iPhone 14 Pro - 2023-01-29 at 19 01 16](https://user-images.githubusercontent.com/70736942/215330091-090c2bf3-a976-43e1-8032-621343d0dac0.png)
+2. Scroll Pagination
+![Simulator Screen Shot - iPhone 14 Pro - 2023-01-29 at 19 01 16](https://user-images.githubusercontent.com/70736942/215330091-090c2bf3-a976-43e1-8032-621343d0dac0.png)
 
-3. MultiView ![Simulator Screen Shot - iPhone 14 Pro - 2023-01-29 at 19 10 29](https://user-images.githubusercontent.com/70736942/215330111-4b9af315-9912-42db-91f0-3db6f010aaf8.png)
+3. MultiView 
+
+![Simulator Screen Shot - iPhone 14 Pro - 2023-01-29 at 19 10 29](https://user-images.githubusercontent.com/70736942/215330111-4b9af315-9912-42db-91f0-3db6f010aaf8.png)
 
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-01-29 at 19 10 34](https://user-images.githubusercontent.com/70736942/215330120-23b44af4-f3e2-4002-9495-c38c0f758bdc.png)
 
