@@ -30,7 +30,7 @@
 
 ## 📸 Photos
 
-<p float="left">
+<p float="center">
   <img src="https://user-images.githubusercontent.com/70736942/215330075-20ab6a00-f0b2-459a-8339-54ecf7c321b1.png" width="200px" />
   <img src="https://user-images.githubusercontent.com/70736942/215330091-090c2bf3-a976-43e1-8032-621343d0dac0.png" width="200px" /> 
 </p>
