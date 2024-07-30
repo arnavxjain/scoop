@@ -28,7 +28,7 @@
 5. 🏓 Get categorical news - Multiple categories to choose from, i.e - Politics, Sports, etc.
 6. 📱 Elegant UI featuring blur effects and smooth scrolling.
 
-## 📸 Photos
+## 📸 Preview
 
 <p float="center">
   <img src="https://user-images.githubusercontent.com/70736942/215330075-20ab6a00-f0b2-459a-8339-54ecf7c321b1.png" width="200px" />
