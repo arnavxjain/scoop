@@ -2673,7 +2673,6 @@ class _MultiViewState extends State<MultiView> {
                       style: TextStyle(
                         fontFamily: "MonumentExt",
                           fontWeight: FontWeight.w600,
-                          // letterSpacing: -1,
                           color: Colors.white,
                           fontSize: 19
                       ),
